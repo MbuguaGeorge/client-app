@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/header';
 import './order.css';
-import Step1 from '../Steps/step1';
+import Step4 from '../Steps/step4';
 import {Button} from '@mui/material';
 import {ArrowBack, ArrowForward} from '@mui/icons-material';
 
@@ -11,7 +11,7 @@ function Order(){
             <div className='order'>
                 <Header />
                 <div className='steps'>
-                    <Step1 />
+                    <Step4 />
                 </div>
                 <div className='buttons'>
                     <Button startIcon={<ArrowBack />} variant='contained' size='small'>Back</Button>

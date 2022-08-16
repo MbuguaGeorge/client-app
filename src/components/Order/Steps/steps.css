@@ -25,9 +25,9 @@
     font-size: 4rem;
 }
 
-.step1 .form h2 {
+.step1 .form h2{
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .step1 .form .radio {
@@ -75,5 +75,144 @@
     cursor: pointer;
 }
 
+/* STEP 3 */
+
+.step3 .calender {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.step3 h2, .step4 h2, .step5 h2 {
+    font-size: 1rem;
+}
+
 /* STEP 4 */
 
+.step4 .requirements {
+    padding-top: 10px;
+}
+
+.step4 .requirements .paper, .subject, .pages {
+    padding-bottom: 10px;
+}
+
+.step4 .requirements .paper h3, .subject h3, .pages h3 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.step4 .requirements .pages .page {
+    display: flex;
+    align-items: center;
+}
+
+
+.step4 .requirements .pages .page .word__count h4 {
+    padding: 11px 15px;
+    background-color: #F9F9F9;
+    border-radius: 2px;
+    color: #1d1d1d;
+    font-weight: 400;
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* STEP 5 */
+
+.step5 .instructions {
+    padding-top: 20px;
+}
+
+.step5 .instructions .up {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.step5 .instructions h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    padding-bottom: 10px;
+}
+
+.step5 .instructions textarea {
+    width: 500px;
+    padding: 10px;
+    color: #ddd;
+    font-size: 1rem;
+    outline: none;
+    border: 1px solid #ddd;
+    height: 150px;
+    margin-bottom: 0;
+}
+
+.step5 .instructions .upload {
+    width: 500px;
+    border-bottom: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.step5 .instructions .upload h4 {
+    padding: 8px 5px;
+    background-color: #F9F9F9;
+    border-radius: 2px;
+    color: blue;
+    font-weight: 400;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.step5 .instructions .format {
+    padding-top: 10px;
+}
+
+.step5 .instructions .format h4, .ref h4 {
+    font-weight: 400;
+}
+
+.step5 .instructions .ref {
+    padding-top: 10px;
+}
+
+.step5 .instructions .ref p {
+    font-size: 0.8rem;
+    color: #1d1d1d;
+}
+
+.step5 .instructions .ref .ref__count, .step4 .requirements .pages .ref__count {
+    display: flex;
+    border: 2px solid #ced4da;
+    width: 150px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.step5 .instructions .ref .ref__count input[type=text], .step4 .requirements .pages .ref__count input[type=text] {
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+    color: #495057;
+    background-color: white;
+    padding: 11px 8px;
+    border: none;
+    width: 80px;
+}
+
+.step5 .instructions .ref .ref__count button, .step4 .requirements .pages .ref__count button {
+    text-align: center;
+    padding: 10px 12px;
+    background-color: transparent;
+    color: #ff084e;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
