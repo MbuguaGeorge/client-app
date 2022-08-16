@@ -121,6 +121,14 @@
     margin-top: 10px;
 }
 
+.step4 .requirements .subject .select, .paper .select {
+    width: 500px !important;
+}
+
+.step4 .requirements .subject .unselect {
+    color: #ddd !important;
+}
+
 /* STEP 5 */
 
 .step5 .instructions {
@@ -169,6 +177,7 @@
     text-align: center;
     cursor: pointer;
     margin-left: 10px;
+    font-size: 1rem;
 }
 
 .step5 .instructions .format {
@@ -177,6 +186,7 @@
 
 .step5 .instructions .format h4, .ref h4 {
     font-weight: 400;
+    font-size: 1rem;
 }
 
 .step5 .instructions .ref {
@@ -215,4 +225,8 @@
     font-size: 1.1rem;
     border: none;
     cursor: pointer;
+}
+
+.step5 .instructions .format .select {
+    width: 150px !important;
 }

@@ -33,8 +33,8 @@ function Step4(){
                             <h3>Type of paper</h3>
                             <div className="col-sm-12 col-md-6 mt-3">
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="E.g. Essay">
-                                    <option>E.g. Essay</option>
+                                    <Form.Select defaultValue="E.g. Essay" className='select'>
+                                    <option className='unselect'>E.g. Essay</option>
                                     <option value="lecturer">Lecture</option>
                                     <option value="staff">Staff</option>
                                     <option value="Comrade">Comrade</option>
@@ -46,8 +46,8 @@ function Step4(){
                             <h3>Subject or discipline</h3>
                             <div className="col-sm-12 col-md-6 mt-3">
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="E.g. Economics">
-                                    <option>E.g. Economics</option>
+                                    <Form.Select defaultValue="E.g. Economics" className='select'>
+                                    <option className='unselect'>E.g. Economics</option>
                                     <option value="lecturer">Lecture</option>
                                     <option value="staff">Staff</option>
                                     <option value="Comrade">Comrade</option>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './steps.css';
+import {Form} from 'react-bootstrap';
 
 function Step5(){
 
@@ -8,12 +9,12 @@ function Step5(){
     const incrementCount = (event) =>{
         event.preventDefault()
         setCount(count => count + 1,)
-    }
+    };
 
     const decrementCount = (event) =>{
         event.preventDefault()
         setCount(count => Math.max(count - 1, 1))
-    }
+    };
 
     return (
         <>
@@ -36,6 +37,16 @@ function Step5(){
                         </div>
                         <div className='format'>
                             <h4>Paper format</h4>
+                            <div className="col-sm-12 col-md-6 mt-3">
+                                <Form.Group controlId="formGridState">
+                                    <Form.Select defaultValue="MLA" className='select'>
+                                    <option className='unselect'>MLA</option>
+                                    <option value="lecturer">Lecture</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="Comrade">Comrade</option>
+                                    </Form.Select>
+                                </Form.Group>
+                            </div>
                         </div>
                         <div className='ref'>
                             <h4>Referrences to be used</h4>

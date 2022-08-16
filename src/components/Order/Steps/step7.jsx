@@ -6,7 +6,7 @@ function Step7(){
         <>
             <div className='step1'>
                 <div className='details'>
-                    <p>STEP 6/7</p>
+                    <p>STEP 7/7</p>
                     <h1>Upgrades</h1>
                 </div>
                 <div className='form'>
