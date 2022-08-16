@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './steps.css';
+import {Form} from 'react-bootstrap';
 
 function Step4(){
 
@@ -30,9 +31,29 @@ function Step4(){
                     <div className='requirements'>
                         <div className='paper'>
                             <h3>Type of paper</h3>
+                            <div className="col-sm-12 col-md-6 mt-3">
+                                <Form.Group controlId="formGridState">
+                                    <Form.Select defaultValue="E.g. Essay">
+                                    <option>E.g. Essay</option>
+                                    <option value="lecturer">Lecture</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="Comrade">Comrade</option>
+                                    </Form.Select>
+                                </Form.Group>
+                            </div>
                         </div>
                         <div className='subject'>
                             <h3>Subject or discipline</h3>
+                            <div className="col-sm-12 col-md-6 mt-3">
+                                <Form.Group controlId="formGridState">
+                                    <Form.Select defaultValue="E.g. Economics">
+                                    <option>E.g. Economics</option>
+                                    <option value="lecturer">Lecture</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="Comrade">Comrade</option>
+                                    </Form.Select>
+                                </Form.Group>
+                            </div>
                         </div>
                         <div className='pages'>
                             <h3>Pages</h3>
