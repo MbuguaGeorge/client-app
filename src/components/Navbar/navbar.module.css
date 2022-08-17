@@ -1,0 +1,44 @@
+.nav {
+    /* background-color: yellow; */
+}
+.nav ul {
+   /* border: 1px solid black;  */
+   padding: 0;
+   position: relative;
+   margin-left: 800px;
+}
+.nav ul li{
+   border: 1px solid white;
+   display: inline-block;
+   /* float: right;  */
+   padding: 20px;
+   font-family: 'Montserrat';
+   font-weight: bold;
+   font-size: 20px;
+   /* margin-right: 20px; */
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+/* .nav ul li a:nth-child(4) {
+    color: #20B2AA;
+} */
+.nav ul li a:hover{
+    color: #20B2AA;
+}
+.orderbtn {
+    display: block;
+    height: 60px;
+    width: 200px;
+    border-radius: 25px;
+    background-color: #20B2AA;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+.orderbtn:hover{
+    background-color: #8FBC8F;
+}
+
