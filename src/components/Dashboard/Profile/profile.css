@@ -1,0 +1,60 @@
+.profile {
+    padding-top: 50px;
+}
+
+.profile .nav {
+    padding-bottom: 30px;
+}
+
+.profile .nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 70px;
+    min-height: 8vh;
+    background-color: skyblue;
+}
+
+.profile .nav ul li {
+    list-style: none;
+    font-weight: 700;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.profile .nav ul li:hover {
+    width: 120px;
+    background-color: rgb(85, 141, 163);
+    min-height: 8vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: all .3s;
+}
+
+.details {
+    padding-left: 90px;
+}
+
+.details button {
+    margin-right: 50px;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: #1d1d1d;
+    font-weight: 600;
+    font-size: .9rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.details button:hover {
+    color: skyblue;
+    border-bottom: 2px solid skyblue;
+    transition: all .2s;
+}
