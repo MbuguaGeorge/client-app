@@ -8,6 +8,10 @@ function Profile() {
 
     const [selected, setSelected] = useState('recentOrders');
 
+    let recentStyle;
+    let cancelStyle;
+    let finishStyle;
+
     const selectedOption = () => {
         if (selected === 'recentOrders') {
             return <Recent />;
@@ -17,6 +21,26 @@ function Profile() {
             return <Canceled />
         }
     };
+
+    if (selected === 'recentOrders'){
+        recentStyle = {
+            color: 'skyblue',
+            borderBottom: '2px solid skyblue',
+            transition: 'all .2s'
+        }
+    } else if (selected === 'finishedOrders') {
+        finishStyle = {
+            color: 'skyblue',
+            borderBottom: '2px solid skyblue',
+            transition: 'all .2s'
+        }
+    } else if (selected === 'canceledOrders') {
+        cancelStyle = {
+            color: 'skyblue',
+            borderBottom: '2px solid skyblue',
+            transition: 'all .2s'
+        }
+    }
  
     return (
         <div className='profile'>
@@ -28,9 +52,9 @@ function Profile() {
             </div>
 
             <div className='details'>
-                <button onClick={() => setSelected('recentOrders')}>RECENT</button>
-                <button onClick={() => setSelected('finishedOrders')}>FINISHED</button>
-                <button onClick={() => setSelected('canceledOrders')}>CANCELED</button>
+                <button onClick={() => setSelected('recentOrders')} style={recentStyle}>RECENT</button>
+                <button onClick={() => setSelected('finishedOrders')} style={finishStyle}>FINISHED</button>
+                <button onClick={() => setSelected('canceledOrders')} style={cancelStyle}>CANCELED</button>
             </div>
 
             <div className='order'>
