@@ -12,6 +12,8 @@
     width: 50%;
     margin-right: 50px;
     height: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .step1 .details p{

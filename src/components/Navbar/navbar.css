@@ -1,0 +1,42 @@
+.nav {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    flex-wrap: unset !important;
+}
+
+.nav ul {
+   padding: 0;
+   position: relative;
+   display: flex;
+   align-items: center;
+   width: 100%;
+}
+.nav ul li{
+   padding: 20px;
+   font-family: 'Montserrat';
+   font-weight: bold;
+   font-size: 20px;
+   list-style: none;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav ul li a:hover{
+    color: #20B2AA;
+}
+.orderbtn {
+    padding: 10px 18px;
+    border-radius: 25px;
+    background-color: #20B2AA;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+.orderbtn:hover{
+    background-color: #8FBC8F;
+}
+
