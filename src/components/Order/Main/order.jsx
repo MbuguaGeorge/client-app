@@ -9,6 +9,7 @@ import Step4 from '../Steps/step4';
 import Step5 from '../Steps/step5';
 import Step6 from '../Steps/step6';
 import Step7 from '../Steps/step7';
+import Summary from '../Steps/summary';
 import './order.css';
 
 function Order(){
@@ -55,12 +56,16 @@ function Order(){
         display = (
             <div>{<Step7 />}</div>
         )
-    };
+    } else if (step === 8) {
+        display = (
+            <div>{<Summary />}</div>
+        )
+    }
 
     let forwardStyle;
     let backStyle;
 
-    if (step <= 6) {
+    if (step <= 7) {
         forwardStyle = {
             display: 'flex'
         }
