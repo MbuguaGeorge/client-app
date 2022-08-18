@@ -8,7 +8,7 @@ import style from "./login.module.css";
 
 export default function Login() {
     return(
-        <React.Fragment>
+       <div>
         <form>
             <div className={style.loginForm}>
                 <h2 className={style.mb5}>Login</h2>
@@ -24,6 +24,6 @@ export default function Login() {
 
             </div>
         </form>
-    </React.Fragment>
+        </div>
     );
 }

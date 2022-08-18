@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Services() {
     return(
-        <React.Fragment>
-            Our services
-        </React.Fragment>
+        <div>
+            Services
+        </div>
     );
 }
 // const services = () => {

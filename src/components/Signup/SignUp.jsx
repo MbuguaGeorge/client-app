@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import RadioGroup from '@mui/material/RadioGroup';
 import MyFormControlLabel from '@mui/material/FormControlLabel';
@@ -10,7 +9,7 @@ import style from "./signup.module.css";
 
 export default function SignUp() {
     return (
-        <React.Fragment>
+        <div>
             <form>
                 <div className={style.registerForm}>
                     <h2 className={style.mb5}>Sign Up</h2>
@@ -30,6 +29,6 @@ export default function SignUp() {
 
                 </div>
             </form>
-        </React.Fragment>
+            </div>
     );
 }
