@@ -6,6 +6,8 @@ import Profile from './components/Dashboard/Profile/profile';
 import Services from './components/Our services/Services';
 import Pricing from './components/Pricing/Pricing';
 import Manage from './components/Manage orders/Manage';
+import Verify from './components/Auth/Verify/verify';
+import EmailVerified from './components/Auth/Verify/email_verified';
 
 function App(){
   return(
@@ -18,6 +20,8 @@ function App(){
         <Route exact path='/services' element={<Services />} />
         <Route exact path='/pricing' element={<Pricing />} />
         <Route exact path='/manage' element={<Manage />} />
+        <Route exact path='/verify' element={<Verify />} />
+        <Route exact path='/email-verified/:token' element={<EmailVerified />} />
       </Routes>
     </Router>
   )
