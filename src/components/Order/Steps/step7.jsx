@@ -1,13 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './steps.css';
+import {ArrowForward, ArrowBack} from '@mui/icons-material';
+import {Button} from '@mui/material';
+import Step6 from './step6';
+import Summary from './summary';
 
 function Step7(){
-    return (
-        <>
+
+    const [next, setNext] = useState(false);
+    const [back, setBack] = useState(false);
+    const [cur, setCur] = useState(true);
+
+    const handleBack = () => {
+        setBack(!back)
+    };
+
+    const handleSubmit = () => {
+        setNext(!next)
+    };
+
+    let display;
+
+    if (next === true) {
+        display = (
+            <Summary />
+        )
+    } else if (back === true) {
+        display = (
+            <Step6 />
+        )
+    } else if (cur === true) {
+        display = (
             <div className='step1'>
+                <div className='det'>
                 <div className='details'>
                     <p>STEP 7/7</p>
                     <h1>Upgrades</h1>
+                </div>
+                <Button startIcon={<ArrowBack />} variant='contained' size='small' onClick={handleBack}>Back</Button>
                 </div>
                 <div className='form'>
                     <h2>Choose the paper level you prefer</h2>
@@ -43,8 +73,15 @@ function Step7(){
                             <label for='calculations' className='description'>Detailed comments on the key writing aspects of your paper</label>
                         </div>
                     </div>
+                    <Button endIcon={<ArrowForward />} variant='contained' size='small' onClick={handleSubmit}>Next Step</Button>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <>
+            {display}
         </>
     )
 }

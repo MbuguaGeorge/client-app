@@ -1,15 +1,45 @@
-import React from 'react';      
+import React, {useState} from 'react';      
 import './steps.css';
 import Calender from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import {ArrowForward, ArrowBack} from '@mui/icons-material';
+import {Button} from '@mui/material';
+import Step4 from './step4';
+import Step2 from './step2';
 
 function Step3(){
-    return (
-        <>
+
+    const [next, setNext] = useState(false);
+    const [back, setBack] = useState(false);
+    const [cur, setCur] = useState(true);
+
+    const handleBack = () => {
+        setBack(!back)
+    };
+
+    const handleSubmit = () => {
+        setNext(!next)
+    };
+
+    let display;
+
+    if (next === true) {
+        display = (
+            <Step4 />
+        )
+    } else if (back === true) {
+        display = (
+            <Step2 />
+        )
+    } else if (cur === true) {
+        display = (
             <div className='step1'>
-                <div className='details'>
-                    <p>STEP 3/7</p>
-                    <h1>When is your paper due?</h1>
+                <div className='det'>
+                    <div className='details'>
+                        <p>STEP 3/7</p>
+                        <h1>When is your paper due?</h1>
+                    </div>
+                    <Button startIcon={<ArrowBack />} variant='contained' size='small' onClick={handleBack}>Back</Button>
                 </div>
                 <div className='step3'>
                     <h2>Pick a date when you need your assignment ready</h2>
@@ -43,8 +73,15 @@ function Step3(){
                             </div>
                         </div>
                     </div>
+                    <Button endIcon={<ArrowForward />} variant='contained' size='small' onClick={handleSubmit}>Next Step</Button>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <>
+            {display}
         </>
     )
 }

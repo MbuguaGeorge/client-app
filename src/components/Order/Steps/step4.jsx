@@ -1,8 +1,24 @@
 import React, {useState} from 'react';
 import './steps.css';
 import {Form} from 'react-bootstrap';
+import {ArrowForward, ArrowBack} from '@mui/icons-material';
+import {Button} from '@mui/material';
+import Step3 from './step3';
+import Step5 from './step5';
 
 function Step4(){
+
+    const [next, setNext] = useState(false);
+    const [back, setBack] = useState(false);
+    const [cur, setCur] = useState(true);
+
+    const handleBack = () => {
+        setBack(!back)
+    };
+
+    const handleSubmit = () => {
+        setNext(!next)
+    };
 
     const[count, setCount] = useState(1);
     const[words, setWords] = useState(275)
@@ -11,20 +27,33 @@ function Step4(){
         event.preventDefault()
         setCount(count => count + 1,)
         setWords(words => words * 2)
-    }
+    };
 
     const decrementCount = (event) =>{
         event.preventDefault()
         setCount(count => Math.max(count - 1, 1))
         setWords(words => Math.max(words/2, 275))
-    }
+    };
 
-    return (
-        <>
+    let display;
+
+    if (next === true) {
+        display = (
+            <Step5 />
+        )
+    } else if (back === true) {
+        display = (
+            <Step3 />
+        )
+    } else if (cur === true) {
+        display = (
             <div className='step1'>
-                <div className='details'>
-                    <p>STEP 4/7</p>
-                    <h1>Basic paper details</h1>
+                <div className='det'>
+                    <div className='details'>
+                        <p>STEP 4/7</p>
+                        <h1>Basic paper details</h1>
+                    </div>
+                    <Button startIcon={<ArrowBack />} variant='contained' size='small' onClick={handleBack}>Back</Button>
                 </div>
                 <div className='step4'>
                     <h2>Provide general requirements</h2>
@@ -69,8 +98,15 @@ function Step4(){
                             </div>
                         </div>
                     </div>
+                    <Button endIcon={<ArrowForward />} variant='contained' size='small' onClick={handleSubmit}>Next Step</Button>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <>
+            {display}
         </>
     )
 }

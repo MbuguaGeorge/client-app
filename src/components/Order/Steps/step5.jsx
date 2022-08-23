@@ -1,8 +1,24 @@
 import React, {useState} from 'react';
 import './steps.css';
 import {Form} from 'react-bootstrap';
+import {ArrowForward, ArrowBack} from '@mui/icons-material';
+import {Button} from '@mui/material';
+import Step4 from './step4';
+import Step6 from './step6';
 
 function Step5(){
+
+    const [next, setNext] = useState(false);
+    const [back, setBack] = useState(false);
+    const [cur, setCur] = useState(true);
+
+    const handleBack = () => {
+        setBack(!back)
+    };
+
+    const handleSubmit = () => {
+        setNext(!next)
+    };
 
     const[count, setCount] = useState(1);
 
@@ -16,12 +32,25 @@ function Step5(){
         setCount(count => Math.max(count - 1, 1))
     };
 
-    return (
-        <>
+    let display;
+
+    if (next === true) {
+        display = (
+            <Step6 />
+        )
+    } else if (back === true) {
+        display = (
+            <Step4 />
+        )
+    } else if (cur === true) {
+        display = (
             <div className='step1'>
-                <div className='details'>
-                    <p>STEP 5/7</p>
-                    <h1>Detailed requirements</h1>
+                <div className='det'>
+                    <div className='details'>
+                        <p>STEP 5/7</p>
+                        <h1>Detailed Requirements</h1>
+                    </div>
+                    <Button startIcon={<ArrowBack />} variant='contained' size='small' onClick={handleBack}>Back</Button>
                 </div>
                 <div className='step5'>
                     <h2>Specify additional instructions</h2>
@@ -58,8 +87,15 @@ function Step5(){
                             </div>
                         </div>
                     </div>
+                    <Button endIcon={<ArrowForward />} variant='contained' size='small' onClick={handleSubmit}>Next Step</Button>
                 </div>
             </div>
+        )
+    }
+
+    return (
+        <>
+            {display}
         </>
     )
 }
