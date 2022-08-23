@@ -9,6 +9,10 @@ import Step2 from './step2';
 
 function Step3(){
 
+    const [selectedDate, setSelectedDate] = useState(new Date())
+
+    console.log((selectedDate.setDate(selectedDate.getDate()-3)))
+
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
@@ -44,7 +48,7 @@ function Step3(){
                 <div className='step3'>
                     <h2>Pick a date when you need your assignment ready</h2>
                     <div className='calender'>
-                        <Calender minDate={new Date()} />
+                        <Calender minDate={new Date()} selected={selectedDate} onChange={date => setSelectedDate(date)} />
                     </div>
                     <div className='step1'>
                         <div className='form'>

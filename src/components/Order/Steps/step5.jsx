@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import './steps.css';
 import {Form} from 'react-bootstrap';
 import {ArrowForward, ArrowBack} from '@mui/icons-material';
@@ -8,19 +8,30 @@ import Step6 from './step6';
 
 function Step5(){
 
+    const[count, setCount] = useState(1);
+
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
+
+    const instructionRef = useRef();
+
+    const [details, setDetails] = useState({
+        instructions: '',
+        instruction_file: '',
+        format: '',
+        references: count
+    });
 
     const handleBack = () => {
         setBack(!back)
     };
 
     const handleSubmit = () => {
+        localStorage.setItem('STEP5', JSON.stringify(details))
+        console.log(details)
         setNext(!next)
     };
-
-    const[count, setCount] = useState(1);
 
     const incrementCount = (event) =>{
         event.preventDefault()
@@ -59,20 +70,33 @@ function Step5(){
                         <div className='up'>
                             <textarea 
                                 placeholder='Type anything you feel important for the writer to consider or attach files with details'
+                                value={details.instructions}
+                                onChange={e => setDetails(details => ({
+                                    ...details, instructions: e.target.value
+                                }))}
                             ></textarea>
                             <div className='upload'>
-                                <h4>Browse</h4>
+                                <input 
+                                    ref={instructionRef}
+                                    type='file' required
+                                    onChange={e => setDetails(details => ({
+                                        ...details, instruction_file: e.target.files[0]
+                                    }))}
+                                />
                             </div>
                         </div>
                         <div className='format'>
                             <h4>Paper format</h4>
                             <div className="col-sm-12 col-md-6 mt-3">
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="MLA" className='select'>
-                                    <option className='unselect'>MLA</option>
-                                    <option value="lecturer">Lecture</option>
-                                    <option value="staff">Staff</option>
-                                    <option value="Comrade">Comrade</option>
+                                    <Form.Select defaultValue="MLA" className='select' onChange={e => setDetails(details => ({
+                                        ...details, format: e.target.value
+                                        }))}>
+                                    <option value="MLA">MLA</option>
+                                    <option value="APA 6">APA 6</option>
+                                    <option value="APA 7">APA 7</option>
+                                    <option value="Chicago / Turabian">Chicago / Turabian</option>
+                                    <option value="Not Applicable">Not Applicable</option>
                                     </Form.Select>
                                 </Form.Group>
                             </div>

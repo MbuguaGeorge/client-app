@@ -8,6 +8,15 @@ import Step5 from './step5';
 
 function Step4(){
 
+    const[count, setCount] = useState(1);
+    const[words, setWords] = useState(275);
+
+    const [details, setDetails] = useState({
+        paper: '',
+        discipline: '',
+        pages: count
+    });
+
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
@@ -17,11 +26,10 @@ function Step4(){
     };
 
     const handleSubmit = () => {
+        localStorage.setItem('STEP4', JSON.stringify(details))
+        console.log(details)
         setNext(!next)
     };
-
-    const[count, setCount] = useState(1);
-    const[words, setWords] = useState(275)
 
     const incrementCount = (event) =>{
         event.preventDefault()
@@ -62,11 +70,15 @@ function Step4(){
                             <h3>Type of paper</h3>
                             <div className="col-sm-12 col-md-6 mt-3">
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="E.g. Essay" className='select'>
+                                    <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
+                                        ...details, paper: e.target.value
+                                        }))}>
                                     <option className='unselect'>E.g. Essay</option>
-                                    <option value="lecturer">Lecture</option>
-                                    <option value="staff">Staff</option>
-                                    <option value="Comrade">Comrade</option>
+                                    <option value="Creative Writing">Creative Writing</option>
+                                    <option value="Essay">Essay</option>
+                                    <option value="Research Paper">Research Paper</option>
+                                    <option value="Speech">Speech</option>
+                                    <option value="Business Plan">Business Plan</option>
                                     </Form.Select>
                                 </Form.Group>
                             </div>
@@ -75,11 +87,15 @@ function Step4(){
                             <h3>Subject or discipline</h3>
                             <div className="col-sm-12 col-md-6 mt-3">
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="E.g. Economics" className='select'>
+                                    <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
+                                        ...details, discipline: e.target.value
+                                        }))}>
                                     <option className='unselect'>E.g. Economics</option>
-                                    <option value="lecturer">Lecture</option>
-                                    <option value="staff">Staff</option>
-                                    <option value="Comrade">Comrade</option>
+                                    <option value="Classic ENglish Literature">Classic ENglish Literature</option>
+                                    <option value="Film & Theatre Studies">SFilm & Theatre Studies</option>
+                                    <option value="History">History</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Philosophy">Philosophy</option>
                                     </Form.Select>
                                 </Form.Group>
                             </div>

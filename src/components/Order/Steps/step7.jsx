@@ -7,6 +7,33 @@ import Summary from './summary';
 
 function Step7(){
 
+    const [expert, setExpert] = useState(false);
+    const [samples, setSamples] = useState(false);
+    const [explanation, setExplanation] = useState(false);
+
+    const [upgrade, setUpgrade] = useState('');
+
+    const handleChange1 = () => {
+        setExpert(!expert)
+        setSamples(false)
+        setExplanation(false)
+        setUpgrade('Advanced Writer')
+    };
+
+    const handleChange2 = () => {
+        setExpert(false)
+        setSamples(!samples)
+        setExplanation(false)
+        setUpgrade('Writers Samples')
+    };
+
+    const handleChange3 = () => {
+        setExpert(false)
+        setSamples(false)
+        setExplanation(!explanation)
+        setUpgrade('Explanations & Comments')
+    };
+
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
@@ -16,6 +43,7 @@ function Step7(){
     };
 
     const handleSubmit = () => {
+        localStorage.setItem('STEP7', upgrade)
         setNext(!next)
     };
 
@@ -48,6 +76,7 @@ function Step7(){
                                 name='work'
                                 value='academics'
                                 id='academics'
+                                onChange={handleChange1}
                             />
                             <label for='academics' className='topic'>Advanced writer</label>
                             <label for='academics' className='description'>Expert writer in the chosen field</label>
@@ -58,6 +87,7 @@ function Step7(){
                                 name='work'
                                 value='programming'
                                 id='programming'
+                                onChange={handleChange2}
                             />
                             <label for='programming' className='topic'>Writer's samples</label>
                             <label for='programming' className='description'>3 samples of works previously completed by your writer</label>
@@ -68,6 +98,7 @@ function Step7(){
                                 name='work'
                                 value='calculations'
                                 id='calculations'
+                                onChange={handleChange3}
                             />
                             <label for='calculations' className='topic'>Explanations and comments</label>
                             <label for='calculations' className='description'>Detailed comments on the key writing aspects of your paper</label>

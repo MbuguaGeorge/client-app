@@ -190,17 +190,17 @@
     padding: 10px;
 }
 
-.step5 .instructions .upload h4 {
+.step5 .instructions .upload input {
     padding: 8px 5px;
     background-color: #F9F9F9;
     border-radius: 2px;
     color: blue;
     font-weight: 400;
-    width: 100px;
     text-align: center;
     cursor: pointer;
     margin-left: 10px;
     font-size: 1rem;
+    border: none;
 }
 
 .step5 .instructions .format {

@@ -43,7 +43,7 @@ function Step2(){
         setLevel3(!level3)
         setLevel4(false)
         setLevel5(false)
-        setEducation('Undergraduate(3-4')
+        setEducation('Undergraduate(3-4)')
     };
 
     const handleChange4 = () => {

@@ -7,6 +7,33 @@ import Step7 from './step7';
 
 function Step6(){
 
+    const [basic, setBasic] = useState(false);
+    const [standard, setStandard] = useState(false);
+    const [advanced, setAdvanced] = useState(false);
+
+    const [paperlevel, setPaperlevel] = useState('')
+
+    const handleChange1 = () => {
+        setBasic(!basic)
+        setStandard(false)
+        setAdvanced(false)
+        setPaperlevel('Basic')
+    };
+
+    const handleChange2 = () => {
+        setBasic(false)
+        setStandard(!standard)
+        setAdvanced(false)
+        setPaperlevel('Standard')
+    };
+
+    const handleChange3 = () => {
+        setBasic(false)
+        setStandard(false)
+        setAdvanced(!advanced)
+        setPaperlevel('Advanced')
+    };
+
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
@@ -16,6 +43,7 @@ function Step6(){
     };
 
     const handleSubmit = () => {
+        localStorage.setItem('STEP6', paperlevel)
         setNext(!next)
     };
 
@@ -48,6 +76,7 @@ function Step6(){
                             name='work'
                             value='academics'
                             id='academics'
+                            onChange={handleChange1}
                         />
                         <label for='academics' className='topic'>Advanced paper</label>
                         <label for='academics' className='description'>A paper done by the writer with high expertise in the field</label>
@@ -58,6 +87,7 @@ function Step6(){
                             name='work'
                             value='programming'
                             id='programming'
+                            onChange={handleChange2}
                         />
                         <label for='programming' className='topic'>Standard paper</label>
                         <label for='programming' className='description'>Just a regular paper according to your instructions</label>
@@ -68,6 +98,7 @@ function Step6(){
                             name='work'
                             value='calculations'
                             id='calculations'
+                            onChange={handleChange3}
                         />
                         <label for='calculations' className='topic'>Basic paper in simple English</label>
                         <label for='calculations' className='description'>Recommended for international students</label>
