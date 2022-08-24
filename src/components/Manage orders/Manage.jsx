@@ -16,7 +16,7 @@ export default function Manage() {
     return (
         <>
             <div className={style.container}>
-                <h2 className={style.intro}>Welome ljcdifoe cnjjd</h2>
+                <h2 className={style.intro}>Login to continue</h2>
                 <div className={style.btns}>
                     <button onClick={() => setSelected("signup")} className={style.btn}>New customer</button>
                     <button onClick={() => setSelected("login")} className={style.btn}>Returning customer</button>

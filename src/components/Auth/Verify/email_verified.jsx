@@ -3,8 +3,7 @@ import React, {Component} from 'react';
 class EmailVerified extends Component{
 
     state = {
-        valid: 0,
-        token: ''
+        valid: 0
     };
 
     async componentDidMount(){
@@ -12,13 +11,17 @@ class EmailVerified extends Component{
         const field = url.split('/')
         const token = field[2]
 
-        this.setState({token: token})
-        console.log(this.state.token)
+        if (token) {
+            this.setState({email_token: token})
+        }
 
-        await fetch('http://127.0.0.1:8000/profile/validate', {
+        fetch('http://127.0.0.1:8000/profile/validate', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(this.state.token)
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({'email_token': token})
         }).then(
             res => res.json()
         ).then(

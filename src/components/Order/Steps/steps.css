@@ -256,6 +256,21 @@
 
 /* SUMMARY */
 
+.step9 .details {
+    background-color: skyblue;
+    border-radius: 30px;
+    padding: 30px;
+    margin-right: 50px;
+    height: 600px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.step9 .details h1, h2 {
+    color: white;
+    font-size: 1rem;
+}
+
 .details .summary .summary1, .summary2 {
     display: flex;
 }
@@ -277,6 +292,7 @@
     border-radius: 3px;
     justify-content: space-between;
     width: 100%;
+    height: 50px;
 }
 
 .details .summary .page-count button {
@@ -292,4 +308,29 @@
 .details .summary .page-count .count {
     display: flex;
     align-items: center;
+}
+
+.total {
+    display: flex;
+    border: 1px solid rgb(28, 41, 46);
+    background-color: rgb(28, 41, 46);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 3px;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 80px;
+    height: 50px;
+    align-items: center;
+}
+
+.total .price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total .price h3, p{
+    color: white;
+    font-size: 1rem;
 }

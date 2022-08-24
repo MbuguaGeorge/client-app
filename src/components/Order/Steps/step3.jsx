@@ -6,12 +6,15 @@ import {ArrowForward, ArrowBack} from '@mui/icons-material';
 import {Button} from '@mui/material';
 import Step4 from './step4';
 import Step2 from './step2';
+import moment from 'moment'
 
 function Step3(){
 
     const [selectedDate, setSelectedDate] = useState(new Date())
 
-    console.log((selectedDate.setDate(selectedDate.getDate()-3)))
+    console.log(selectedDate.toLocaleString())
+    let d = selectedDate.setDate(selectedDate.getDate() - 5)
+    console.log(moment(d))
 
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);

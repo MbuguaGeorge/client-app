@@ -19,6 +19,7 @@
 .recent .recent-details p {
     font-size: .9rem;
     line-height: 10px;
+    color: #111;
 }
 
 .recent .recent-details p span {

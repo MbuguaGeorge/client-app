@@ -1,5 +1,6 @@
 import React from 'react';
 import './order.css';
+import {Link} from 'react-router-dom';
 
 function Recent() {
     return (
@@ -11,7 +12,7 @@ function Recent() {
                 <div className='verify'>
                     <button>Messages</button>
                     <button>Files</button>
-                    <button>Review & Pay</button>
+                    <Link to='/review'><button>Review & Pay</button></Link>
                 </div>
             </div>
             

@@ -3,6 +3,7 @@ import './steps.css';
 import {ArrowBack} from '@mui/icons-material';
 import {Button} from '@mui/material';
 import Step7 from './step7';
+import Manage from '../../Manage orders/Manage';
 
 function Summary({step1}){
 
@@ -21,8 +22,10 @@ function Summary({step1}){
         )
     } else if (cur === true) {
         display = (
-            <div className='step1'>
+            <div className='step9'>
                 <div className='details'>
+                    <h1>SUMMARY</h1>
+                    <h2>Order details</h2>
                     <div className='summary'>
                         <div className='summary1'>
                             <p>{step1}</p>
@@ -40,6 +43,12 @@ function Summary({step1}){
                                 <button>+</button>
                             </div>
                             <div className='price'>
+                                <p>$42.00</p>
+                            </div>
+                        </div>
+                        <div className='total'>
+                            <div className='price'>
+                                <h3>Total</h3>
                                 <p>$42.00</p>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 .registerForm {
-    max-width: 25%;
+    max-width: 35%;
     margin: 0 auto;
     margin-top: 20px;
     padding: 30px !important;
@@ -19,14 +19,13 @@
     height: 2px;
  }
  .input1{
-    width: 70%;
+    width: 100%; 
     margin-top: 20px !important;
-    margin-left: 40px !important;
  }
 .input{
-    width: 70%;
+    width: 100%;
     margin-top: 25px !important;
-    margin-left: 40px !important;
+
 }
 .radio{
     padding-top: 40px;
@@ -55,4 +54,7 @@ p{
     font-family: 'Montserrat';
     font-weight: bold;
     text-align: center;
+}
+.signup_registerForm__ITRyB {
+    max-width: 100% !important;
 }
