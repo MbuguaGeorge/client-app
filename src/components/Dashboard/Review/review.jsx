@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import './review.css';
 import '../Profile/profile.css';
 import {Form} from 'react-bootstrap';
@@ -10,31 +10,64 @@ function Review() {
     const [count2, setCount2] = useState(0);
     const [count3, setCount3] = useState(0);
 
+    const [details, setDetails] = useState({
+        detail: {
+            pages: '',
+            charts: '',
+            slides: '',
+            subject: '',
+            paper_type: ''
+        },
+        requirement: {
+            instructions: '',
+            instruction_file: '',
+            paper_format: '',
+            references: ''
+        },
+        order_type: '',
+        academic_year: '',
+        title: '',
+        deadline: '',
+        paper_level: '',
+        upgrade: ''
+    });
+
+    useEffect(() => {
+        setDetails(details => ({
+            ...details, pages: count, reference: count1, charts: count2, slides: count3
+        }))
+
+    }, [count, count1, count2, count3]);
+
     const [academic, setAcademic] = useState(false);
     const [programming, setProgramming] = useState(false);
     const [calculation, setCalculation] = useState(false);
-    const [level1, setLevel1] = useState('');
 
     const handleChange1 = () => {
         setAcademic(!academic)
         setProgramming(false)
         setCalculation(false)
-        setLevel1('Academics')
+        setDetails(details => ({
+            ...details, order_type: 'Academics'
+        }))
     };
 
     const handleChange2 = () => {
         setProgramming(!programming)
         setAcademic(false)
         setCalculation(false)
-        setLevel1('Programming')
-
+        setDetails(details => ({
+            ...details, order_type: 'Programming'
+        }))
     };
 
     const handleChange3 = () => {
         setCalculation(!calculation)
         setAcademic(false)
         setProgramming(false)
-        setLevel1('Calculations')
+        setDetails(details => ({
+            ...details, order_type: 'Calculations'
+        }))
     };
 
     const [highschool, setHighschool] = useState(false);
@@ -42,7 +75,6 @@ function Review() {
     const [undergraduate1, setUndergraduate1] = useState(false);
     const [undergraduate2, setUndergraduate2] = useState(false);
     const [phd, setPhd] = useState(false);
-    const [level2, setLevel2] = useState('')
 
     const handleChange4 = () => {
         setHighschool(!highschool)
@@ -50,7 +82,9 @@ function Review() {
         setUndergraduate1(false)
         setUndergraduate2(false)
         setPhd(false)
-        setLevel2('High School')
+        setDetails(details => ({
+            ...details, academic_year: 'High School'
+        }))
     };
 
     const handleChange5 = () => {
@@ -59,7 +93,9 @@ function Review() {
         setUndergraduate1(false)
         setUndergraduate2(false)
         setPhd(false)
-        setLevel2('Graduate')
+        setDetails(details => ({
+            ...details, academic_year: 'Graduate'
+        }))
     };
 
     const handleChange6 = () => {
@@ -68,7 +104,9 @@ function Review() {
         setUndergraduate1(!undergraduate1)
         setUndergraduate2(false)
         setPhd(false)
-        setLevel2('Undergraduate (years 1-2)')
+        setDetails(details => ({
+            ...details, academic_year: 'Undergraduate (years 1-2)'
+        }))
     };
 
     const handleChange7 = () => {
@@ -77,7 +115,9 @@ function Review() {
         setUndergraduate1(false)
         setUndergraduate2(!undergraduate2)
         setPhd(false)
-        setLevel2('Undergraduate (years 3-4')
+        setDetails(details => ({
+            ...details, academic_year: 'Undergraduate (years 3-4)'
+        }))
     };
 
     const handleChange8 = () => {
@@ -86,7 +126,9 @@ function Review() {
         setUndergraduate1(false)
         setUndergraduate2(false)
         setPhd(!phd)
-        setLevel2('PhD')
+        setDetails(details => ({
+            ...details, academic_year: 'PhD'
+        }))
     };
 
     const [mla, setMla] = useState(false);
@@ -95,7 +137,6 @@ function Review() {
     const [chicago, setChicago] = useState(false);
     const [none, setNone] = useState(false);
     const [other, setOther] = useState(false);
-    const [level3, setLevel3] = useState('')
 
     const handleChange9 = () => {
         setMla(!mla)
@@ -104,7 +145,9 @@ function Review() {
         setChicago(false)
         setNone(false)
         setOther(false)
-        setLevel3('MLA')
+        setDetails(details => ({
+            ...details, paper_format: 'MLA'
+        }))
     };
 
     const handleChange10 = () => {
@@ -114,7 +157,9 @@ function Review() {
         setChicago(false)
         setNone(false)
         setOther(false)
-        setLevel3('APA 6')
+        setDetails(details => ({
+            ...details, paper_format: 'APA 6'
+        }))
     };
 
     const handleChange11 = () => {
@@ -124,7 +169,9 @@ function Review() {
         setChicago(false)
         setNone(false)
         setOther(false)
-        setLevel3('APA 7')
+        setDetails(details => ({
+            ...details, paper_format: 'APA 7'
+        }))
     };
 
     const handleChange12 = () => {
@@ -134,7 +181,9 @@ function Review() {
         setChicago(!chicago)
         setNone(false)
         setOther(false)
-        setLevel3('Chicago Turabian')
+        setDetails(details => ({
+            ...details, paper_format: 'Chicago Turabian'
+        }))
     };
 
     const handleChange13 = () => {
@@ -144,7 +193,9 @@ function Review() {
         setChicago(false)
         setNone(!none)
         setOther(false)
-        setLevel3('Not Applicable')
+        setDetails(details => ({
+            ...details, paper_format: 'Not Applicable'
+        }))
     };
 
     const handleChange14 = () => {
@@ -154,28 +205,12 @@ function Review() {
         setChicago(false)
         setNone(false)
         setOther(!other)
-        setLevel3('Other')
+        setDetails(details => ({
+            ...details, paper_format: 'Other'
+        }))
     };
 
     const instructionRef = useRef();
-
-    const [details, setDetails] = useState({
-        order_type: level1,
-        paper: '',
-        discipline: '',
-        level: level2,
-        title: '',
-        instructions: '',
-        instruction_file: '',
-        format: level3,
-        deadline: '',
-        pages: count,
-        chart: count2,
-        slides: count3,
-        reference: count1,
-        preference: '',
-        services: ''
-    });
     
     const incrementCount = (event) =>{
         event.preventDefault()
@@ -222,6 +257,203 @@ function Review() {
         console.log(details)
     };
 
+    const [four, setFour] = useState(false);
+    const [eight, setEight] = useState(false);
+    const [twentyfour, setTwentyfour] = useState(false);
+    const [two, setTwo] = useState(false);
+    const [three, setThree] = useState(false);
+    const [five, setFive] = useState(false);
+    const [seven, setSeven] = useState(false);
+    const [fourteen, setFourteen] = useState(false);
+
+    const handleChange15 = () => {
+        setFour(!four)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(false)
+        setFive(false)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '4h'
+        }))
+    };
+
+    const handleChange16 = () => {
+        setFour(false)
+        setEight(!eight)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(false)
+        setFive(false)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '8h'
+        }))
+    };
+
+    const handleChange17 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(!twentyfour)
+        setTwo(false)
+        setThree(false)
+        setFive(false)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '24h'
+        }))
+    };
+
+    const handleChange18 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(!two)
+        setThree(false)
+        setFive(false)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '2d'
+        }))
+    };
+
+    const handleChange19 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(!three)
+        setFive(false)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '3d'
+        }))
+    };
+
+    const handleChange20 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(false)
+        setFive(!five)
+        setSeven(false)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '5d'
+        }))
+    };
+
+    const handleChange21 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(false)
+        setFive(false)
+        setSeven(!seven)
+        setFourteen(false)
+        setDetails(details => ({
+            ...details, deadline: '7d'
+        }))
+    };
+
+    const handleChange22 = () => {
+        setFour(false)
+        setEight(false)
+        setTwentyfour(false)
+        setTwo(false)
+        setThree(false)
+        setFive(false)
+        setSeven(false)
+        setFourteen(!fourteen)
+        setDetails(details => ({
+            ...details, deadline: '14d'
+        }))
+    };
+
+    const [basic, setBasic] = useState(false);
+    const [standard, setStandard] = useState(false);
+    const [advanced, setAdvanced] = useState(false);
+
+    const handleChange23 = () => {
+        setBasic(!basic)
+        setStandard(false)
+        setAdvanced(false)
+        setDetails(details => ({
+            ...details, paper_level: 'Basic'
+        }))
+    };
+
+    const handleChange24 = () => {
+        setBasic(false)
+        setStandard(!standard)
+        setAdvanced(false)
+        setDetails(details => ({
+            ...details, paper_level: 'Standard'
+        }))
+    };
+
+    const handleChange25 = () => {
+        setBasic(false)
+        setStandard(false)
+        setAdvanced(!advanced)
+        setDetails(details => ({
+            ...details, paper_level: 'Advanced'
+        }))
+    };
+
+    const [native, setNative] = useState(false);
+    const [smart, setSmart] = useState(false);
+    const [sample, setSample] = useState(false);
+    const [source, setSource] = useState(false);
+
+    const handleChange26 = () => {
+        setNative(!native)
+        setSmart(false)
+        setSample(false)
+        setSource(false)
+        setDetails(details => ({
+            ...details, upgrade: 'Native Speaker'
+        }))
+    };
+
+    const handleChange27 = () => {
+        setNative(false)
+        setSmart(!smart)
+        setSample(false)
+        setSource(false)
+        setDetails(details => ({
+            ...details, upgrade: 'Smart Paper'
+        }))
+    };
+
+    const handleChange28 = () => {
+        setNative(false)
+        setSmart(false)
+        setSample(!sample)
+        setSource(false)
+        setDetails(details => ({
+            ...details, upgrade: 'Writers Samples'
+        }))
+    };
+
+    const handleChange29 = () => {
+        setNative(false)
+        setSmart(false)
+        setSample(false)
+        setSource(!source)
+        setDetails(details => ({
+            ...details, upgrade: 'Copy of Sources'
+        }))
+    };
+
     return (
         <>
             <div className='profile'>
@@ -240,8 +472,9 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='academics'
+                                value='Academics'
                                 id='academics'
+                                name='order_type'
                                 onChange={handleChange1}
                             />
                             <label for='academics'>Academic Writing</label>
@@ -249,8 +482,9 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='programming'
+                                value='Programming'
                                 id='programming'
+                                name='order_type'
                                 onChange={handleChange2}
                             />
                             <label for='programming'>Programming</label>
@@ -258,8 +492,9 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='calculation'
+                                value='Calculation'
                                 id='calculation'
+                                name='order_type'
                                 onChange={handleChange3}
                             />
                             <label for='calculation'>Calculations</label>
@@ -273,7 +508,7 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
-                                        ...details, paper: e.target.value
+                                        ...details, paper_type: e.target.value
                                         }))}>
                                 <option className='unselect'>E.g. Essay</option>
                                 <option value="Creative Writing">Creative Writing</option>
@@ -293,7 +528,7 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
-                                        ...details, discipline: e.target.value
+                                        ...details, subject: e.target.value
                                         }))}>
                                 <option className='unselect'>E.g. Economics</option>
                                 <option value="Classic ENglish Literature">Classic ENglish Literature</option>
@@ -391,7 +626,7 @@ function Review() {
                         <div className='upload'>
                                 <input 
                                     ref={instructionRef}
-                                    type='file' required
+                                    type='file'
                                     onChange={e => setDetails(details => ({
                                         ...details, instruction_file: e.target.files[0]
                                     }))}
@@ -468,6 +703,7 @@ function Review() {
                                 type='radio'
                                 value='4h'
                                 id='4h'
+                                onChange={handleChange15}
                             />
                             <label for='4h'>4h</label>
                         </div>
@@ -476,6 +712,7 @@ function Review() {
                                 type='radio'
                                 value='8h'
                                 id='8h'
+                                onChange={handleChange16}
                             />
                             <label for='8h'>8h</label>
                         </div>
@@ -484,6 +721,7 @@ function Review() {
                                 type='radio'
                                 value='24h'
                                 id='24h'
+                                onChange={handleChange17}
                             />
                             <label for='24h'>24h</label>
                         </div>
@@ -492,6 +730,7 @@ function Review() {
                                 type='radio'
                                 value='2d'
                                 id='2d'
+                                onChange={handleChange18}
                             />
                             <label for='2d'>2d</label>
                         </div>
@@ -500,6 +739,7 @@ function Review() {
                                 type='radio'
                                 value='3d'
                                 id='3d'
+                                onChange={handleChange19}
                             />
                             <label for='3d'>3d</label>
                         </div>
@@ -508,6 +748,7 @@ function Review() {
                                 type='radio'
                                 value='5d'
                                 id='5d'
+                                onChange={handleChange20}
                             />
                             <label for='5d'>5d</label>
                         </div>
@@ -516,6 +757,7 @@ function Review() {
                                 type='radio'
                                 value='7d'
                                 id='7d'
+                                onChange={handleChange21}
                             />
                             <label for='7d'>7d</label>
                         </div>
@@ -524,6 +766,7 @@ function Review() {
                                 type='radio'
                                 value='14d'
                                 id='14d'
+                                onChange={handleChange22}
                             />
                             <label for='14d'>14d</label>
                         </div>
@@ -582,6 +825,7 @@ function Review() {
                                 type='radio'
                                 value='basic'
                                 id='basic'
+                                onChange={handleChange23}
                             />
                             <label for='basic'>Best Available</label>
                         </div>
@@ -590,6 +834,7 @@ function Review() {
                                 type='radio'
                                 value='standard'
                                 id='standard'
+                                onChange={handleChange24}
                             />
                             <label for='standard'>Advanced</label>
                         </div>
@@ -598,6 +843,7 @@ function Review() {
                                 type='radio'
                                 value='advanced'
                                 id='advanced'
+                                onChange={handleChange25}
                             />
                             <label for='advanced'>Top 10</label>
                         </div>
@@ -613,6 +859,7 @@ function Review() {
                                     type='radio'
                                     value='native'
                                     id='native'
+                                    onChange={handleChange26}
                                 />
                                 <label for='native'>Native speaker</label>
                             </div>
@@ -621,6 +868,7 @@ function Review() {
                                     type='radio'
                                     value='smart'
                                     id='smart'
+                                    onChange={handleChange27}
                                 />
                                 <label for='smart'>Smart paper</label>
                             </div>
@@ -629,6 +877,7 @@ function Review() {
                                     type='radio'
                                     value='sample'
                                     id='sample'
+                                    onChange={handleChange28}
                                 />
                                 <label for='sample'>Writer's samples</label>
                             </div>
@@ -637,6 +886,7 @@ function Review() {
                                     type='radio'
                                     value='sources'
                                     id='sources'
+                                    onChange={handleChange29}
                                 />
                                 <label for='sources'>Copy of sources</label>
                             </div>
