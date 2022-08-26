@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import './review.css';
 import '../Profile/profile.css';
 import {Form} from 'react-bootstrap';
@@ -11,19 +12,23 @@ function Review() {
     const [count3, setCount3] = useState(0);
 
     const [details, setDetails] = useState({
-        detail: {
-            pages: '',
-            charts: '',
-            slides: '',
-            subject: '',
-            paper_type: ''
-        },
-        requirement: {
-            instructions: '',
-            instruction_file: '',
-            paper_format: '',
-            references: ''
-        },
+        detail: [
+            {
+                pages: '',
+                charts: '',
+                slides: '',
+                subject: '',
+                paper_type: ''
+            }
+        ],
+        requirement: [
+            {
+                instructions: '',
+                instruction_file: '',
+                paper_format: '',
+                references: ''
+            }
+        ],
         order_type: '',
         academic_year: '',
         title: '',
@@ -34,7 +39,11 @@ function Review() {
 
     useEffect(() => {
         setDetails(details => ({
-            ...details, pages: count, reference: count1, charts: count2, slides: count3
+            ...details, detail: {
+                ...details.detail[0], pages: count, charts: count2, slides: count3
+            }, requirement: {
+                ...details.requirement[0], references: count1
+            }
         }))
 
     }, [count, count1, count2, count3]);
@@ -48,7 +57,7 @@ function Review() {
         setProgramming(false)
         setCalculation(false)
         setDetails(details => ({
-            ...details, order_type: 'Academics'
+            ...details, order_type: 'Academic Writing'
         }))
     };
 
@@ -57,7 +66,7 @@ function Review() {
         setAcademic(false)
         setCalculation(false)
         setDetails(details => ({
-            ...details, order_type: 'Programming'
+            ...details, order_type: 'Programming Assignment'
         }))
     };
 
@@ -66,7 +75,7 @@ function Review() {
         setAcademic(false)
         setProgramming(false)
         setDetails(details => ({
-            ...details, order_type: 'Calculations'
+            ...details, order_type: 'Calculations Assignment'
         }))
     };
 
@@ -250,11 +259,6 @@ function Review() {
     const decrementCount3 = (event) =>{
         event.preventDefault()
         setCount3(count3 => Math.max(count3 - 1, 0))
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(details)
     };
 
     const [four, setFour] = useState(false);
@@ -454,6 +458,36 @@ function Review() {
         }))
     };
 
+    const [redirect, setRedirect] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(details)
+        // const uploadData = new FormData();
+        // uploadData.append('requirement.instruction_file', details.requirement.instruction_file, details.requirement.instruction_file.name)
+
+        fetch('http://127.0.0.1:8000/orders/summary', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(details)
+        }).then(
+            data => {
+                console.log(data)
+            }
+        ).then(
+            () => setRedirect(!redirect)
+        ).catch(err => console.log(err))
+    };
+
+    const navigate = useNavigate();
+
+    // if (redirect) {
+    //     return navigate('/profile', {replace: true})
+    // }
+
     return (
         <>
             <div className='profile'>
@@ -467,7 +501,7 @@ function Review() {
 
             <div className='order'>
                 <h4>Place an order</h4>
-                <form onSubmit={handleSubmit}>
+                <form encType="multipart/form-data" onSubmit={handleSubmit}>
                     <div className='level1'>
                         <div className='input1'>
                             <input 
@@ -508,7 +542,9 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
-                                        ...details, paper_type: e.target.value
+                                        ...details, detail: {
+                                            ...details.detail, paper_type: e.target.value
+                                        }
                                         }))}>
                                 <option className='unselect'>E.g. Essay</option>
                                 <option value="Creative Writing">Creative Writing</option>
@@ -528,7 +564,9 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
-                                        ...details, subject: e.target.value
+                                        ...details, detail: {
+                                            ...details.detail, subject: e.target.value
+                                        }
                                         }))}>
                                 <option className='unselect'>E.g. Economics</option>
                                 <option value="Classic ENglish Literature">Classic ENglish Literature</option>
@@ -614,7 +652,9 @@ function Review() {
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
-                                    ...details, instructions: e.target.value
+                                    ...details, requirement: {
+                                        ...details.requirement, instructions: e.target.value
+                                    }
                                 }))}
                         ></textarea>
                     </div>
@@ -628,7 +668,9 @@ function Review() {
                                     ref={instructionRef}
                                     type='file'
                                     onChange={e => setDetails(details => ({
-                                        ...details, instruction_file: e.target.files[0]
+                                        ...details, requirement: {
+                                            ...details.requirement, instruction_file: e.target.files[0]
+                                        }
                                     }))}
                                 />
                         </div>
