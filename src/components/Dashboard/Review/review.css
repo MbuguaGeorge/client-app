@@ -100,3 +100,56 @@
     color: crimson;
     transition: all .5s;
 }
+
+/* checkout */
+
+.container1 {
+    width: 250px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    background-color: skyblue;
+    padding: 20px;
+    margin-left: 100px;
+    position: fixed;
+    left: 70%;
+}
+
+.container1 .desc h1{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.container1 .desc h5{
+    font-size: .9rem;
+}
+
+.pricing h5{
+    font-size: .9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkout{
+    text-align: center;
+}
+
+.total-price{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.total-price h3{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.desc {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+.pricing{
+    padding-top: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}

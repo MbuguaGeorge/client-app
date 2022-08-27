@@ -3,8 +3,12 @@ import {useNavigate} from 'react-router-dom';
 import './review.css';
 import '../Profile/profile.css';
 import {Form} from 'react-bootstrap';
+import {Button} from '@mui/material';
+import {Lock} from '@mui/icons-material';
 
 function Review() {
+    //  price hooks
+    const [pagePrice, setPagePrice] = useState(0);
 
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
@@ -12,23 +16,14 @@ function Review() {
     const [count3, setCount3] = useState(0);
 
     const [details, setDetails] = useState({
-        detail: [
-            {
-                pages: '',
-                charts: '',
-                slides: '',
-                subject: '',
-                paper_type: ''
-            }
-        ],
-        requirement: [
-            {
-                instructions: '',
-                instruction_file: '',
-                paper_format: '',
-                references: ''
-            }
-        ],
+        pages: '',
+        charts: '',
+        slides: '',
+        subject: '',
+        paper_type: '',
+        instructions: '',
+        paper_format: '',
+        references: '',
         order_type: '',
         academic_year: '',
         title: '',
@@ -39,105 +34,24 @@ function Review() {
 
     useEffect(() => {
         setDetails(details => ({
-            ...details, detail: {
-                ...details.detail[0], pages: count, charts: count2, slides: count3
-            }, requirement: {
-                ...details.requirement[0], references: count1
-            }
+            ...details, pages: count, charts: count2, slides: count3, references: count1
         }))
 
     }, [count, count1, count2, count3]);
 
-    const [academic, setAcademic] = useState(false);
-    const [programming, setProgramming] = useState(false);
-    const [calculation, setCalculation] = useState(false);
-
-    const handleChange1 = () => {
-        setAcademic(!academic)
-        setProgramming(false)
-        setCalculation(false)
+    const handleChange1 = (e) => {
         setDetails(details => ({
-            ...details, order_type: 'Academic Writing'
+            ...details, order_type: e.target.value
         }))
-    };
+    }
 
-    const handleChange2 = () => {
-        setProgramming(!programming)
-        setAcademic(false)
-        setCalculation(false)
+    const [level2, setLevel2] = useState('')
+
+    const handleChange4 = (e) => {
         setDetails(details => ({
-            ...details, order_type: 'Programming Assignment'
+            ...details, academic_year: e.target.value
         }))
-    };
-
-    const handleChange3 = () => {
-        setCalculation(!calculation)
-        setAcademic(false)
-        setProgramming(false)
-        setDetails(details => ({
-            ...details, order_type: 'Calculations Assignment'
-        }))
-    };
-
-    const [highschool, setHighschool] = useState(false);
-    const [graduate, setGraduate] = useState(false);
-    const [undergraduate1, setUndergraduate1] = useState(false);
-    const [undergraduate2, setUndergraduate2] = useState(false);
-    const [phd, setPhd] = useState(false);
-
-    const handleChange4 = () => {
-        setHighschool(!highschool)
-        setGraduate(false)
-        setUndergraduate1(false)
-        setUndergraduate2(false)
-        setPhd(false)
-        setDetails(details => ({
-            ...details, academic_year: 'High School'
-        }))
-    };
-
-    const handleChange5 = () => {
-        setHighschool(false)
-        setGraduate(!graduate)
-        setUndergraduate1(false)
-        setUndergraduate2(false)
-        setPhd(false)
-        setDetails(details => ({
-            ...details, academic_year: 'Graduate'
-        }))
-    };
-
-    const handleChange6 = () => {
-        setHighschool(false)
-        setGraduate(false)
-        setUndergraduate1(!undergraduate1)
-        setUndergraduate2(false)
-        setPhd(false)
-        setDetails(details => ({
-            ...details, academic_year: 'Undergraduate (years 1-2)'
-        }))
-    };
-
-    const handleChange7 = () => {
-        setHighschool(false)
-        setGraduate(false)
-        setUndergraduate1(false)
-        setUndergraduate2(!undergraduate2)
-        setPhd(false)
-        setDetails(details => ({
-            ...details, academic_year: 'Undergraduate (years 3-4)'
-        }))
-    };
-
-    const handleChange8 = () => {
-        setHighschool(false)
-        setGraduate(false)
-        setUndergraduate1(false)
-        setUndergraduate2(false)
-        setPhd(!phd)
-        setDetails(details => ({
-            ...details, academic_year: 'PhD'
-        }))
+        setLevel2(e.target.value)
     };
 
     const [mla, setMla] = useState(false);
@@ -382,34 +296,9 @@ function Review() {
         }))
     };
 
-    const [basic, setBasic] = useState(false);
-    const [standard, setStandard] = useState(false);
-    const [advanced, setAdvanced] = useState(false);
-
-    const handleChange23 = () => {
-        setBasic(!basic)
-        setStandard(false)
-        setAdvanced(false)
+    const handleChange23 = (e) => {
         setDetails(details => ({
-            ...details, paper_level: 'Basic'
-        }))
-    };
-
-    const handleChange24 = () => {
-        setBasic(false)
-        setStandard(!standard)
-        setAdvanced(false)
-        setDetails(details => ({
-            ...details, paper_level: 'Standard'
-        }))
-    };
-
-    const handleChange25 = () => {
-        setBasic(false)
-        setStandard(false)
-        setAdvanced(!advanced)
-        setDetails(details => ({
-            ...details, paper_level: 'Advanced'
+            ...details, paper_level: e.target.value
         }))
     };
 
@@ -484,9 +373,71 @@ function Review() {
 
     const navigate = useNavigate();
 
-    // if (redirect) {
-    //     return navigate('/profile', {replace: true})
-    // }
+    if (redirect) {
+        return navigate('/profile', {replace: true})
+    }
+
+    let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle;
+
+    if (count < 1) {
+        pageStyle = {
+            display: 'None'
+        }
+    }
+    if (count2 < 1) {
+        chartStyle = {
+            display: 'None'
+        }
+    } 
+    if (count3 < 1) {
+        slideStyle = {
+            display: 'None'
+        }
+    }
+
+    if (level2 === ''){
+        levelStyle = {
+            display: 'None'
+        }
+    }
+    if (details.title === '') {
+        titleStyle = {
+            display: 'None'
+        }
+    }
+    if (details.paper_type === '') {
+        paperStyle = {
+            display: 'None'
+        }
+    }
+    if (details.subject === '') {
+        subjectStyle = {
+            display: 'None'
+        }
+    }
+    if (details.paper_level === '') {
+        paperLevelStyle = {
+            display: 'None'
+        }
+    }
+    if (count < 1 && count2 < 1 && count3 < 1 && details.paper_level === ''){
+        totalStyle = {
+            display: 'None'
+        }
+    }
+
+    // Perform pricing
+
+    let price;
+
+    function highSchoolSwitch(){
+        switch(details.deadline === '4h'){
+            case details.academic_year === 'High School':
+                return count * 39
+            default:
+                return 0
+        }
+    }
 
     return (
         <>
@@ -499,6 +450,28 @@ function Review() {
                 </div>
             </div>
 
+            <div className='container1'>
+                <div className='desc'>
+                    <h1 style={titleStyle}>{details.title}</h1>
+                    <h5 style={levelStyle}>{level2}</h5>
+                    <h5 style={paperStyle}>{details.paper_type}</h5>
+                    <h5 style={subjectStyle}>{details.subject}</h5>
+                </div>
+                <div className='pricing'>
+                    <h5 style={pageStyle}>{count} page x $39.00 <span>${highSchoolSwitch()}</span></h5>
+                    <h5 style={slideStyle}>{count3} slide x $19.50 <span>$19.50</span></h5>
+                    <h5 style={chartStyle}>{count2} chart x $19.50 <span>$19.50</span></h5>
+                    <h5 style={paperLevelStyle}>{details.paper_level} <span>$29.25</span></h5>
+                </div>
+                <div className='total-price'>
+                    <h3 style={totalStyle}>Total price</h3>
+                    <h4 style={totalStyle}>$146.25</h4>
+                </div>
+                <div className='checkout'>
+                <Button startIcon={<Lock />} variant='contained' size='small'>Safe checkout</Button>
+                </div>
+            </div>
+
             <div className='order'>
                 <h4>Place an order</h4>
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -508,7 +481,7 @@ function Review() {
                                 type='radio'
                                 value='Academics'
                                 id='academics'
-                                name='order_type'
+                                checked={details.order_type === 'Academics'}
                                 onChange={handleChange1}
                             />
                             <label for='academics'>Academic Writing</label>
@@ -518,18 +491,18 @@ function Review() {
                                 type='radio'
                                 value='Programming'
                                 id='programming'
-                                name='order_type'
-                                onChange={handleChange2}
+                                checked={details.order_type === 'Programming'}
+                                onChange={handleChange1}
                             />
                             <label for='programming'>Programming</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='Calculation'
+                                value='Calculations'
                                 id='calculation'
-                                name='order_type'
-                                onChange={handleChange3}
+                                checked={details.order_type === 'Calculations'}
+                                onChange={handleChange1}
                             />
                             <label for='calculation'>Calculations</label>
                         </div>
@@ -542,9 +515,7 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
-                                        ...details, detail: {
-                                            ...details.detail, paper_type: e.target.value
-                                        }
+                                        ...details, paper_type: e.target.value
                                         }))}>
                                 <option className='unselect'>E.g. Essay</option>
                                 <option value="Creative Writing">Creative Writing</option>
@@ -564,9 +535,7 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3">
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
-                                        ...details, detail: {
-                                            ...details.detail, subject: e.target.value
-                                        }
+                                        ...details, subject: e.target.value
                                         }))}>
                                 <option className='unselect'>E.g. Economics</option>
                                 <option value="Classic ENglish Literature">Classic ENglish Literature</option>
@@ -586,8 +555,9 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='highschool'
+                                value='High School'
                                 id='highschool'
+                                checked={details.academic_year === 'High School'}
                                 onChange={handleChange4}
                             />
                             <label for='highschool'>High School</label>
@@ -595,36 +565,40 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='undergraduate1'
+                                value='Undergraduate (years 1-2)'
                                 id='undergraduate1'
-                                onChange={handleChange6}
+                                checked={details.academic_year === 'Undergraduate (years 1-2)'}
+                                onChange={handleChange4}
                             />
                             <label for='undergraduate1'>Undergraduate (years 1-2)</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='undergraduate2'
+                                value='Undergraduate (years 3-4)'
                                 id='undergraduate2'
-                                onChange={handleChange7}
+                                checked={details.academic_year === 'Undergraduate (years 3-4)'}
+                                onChange={handleChange4}
                             />
                             <label for='undergraduate2'>Undergraduate (years 3-4)</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='graduate'
+                                value='Graduate'
                                 id='graduate'
-                                onChange={handleChange5}
+                                checked={details.academic_year === 'Graduate'}
+                                onChange={handleChange4}
                             />
                             <label for='graduate'>Graduate</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='phd'
+                                value='PhD'
                                 id='phd'
-                                onChange={handleChange8}
+                                checked={details.academic_year === 'PhD'}
+                                onChange={handleChange4}
                             />
                             <label for='phd'>PhD</label>
                         </div>
@@ -652,9 +626,7 @@ function Review() {
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
-                                    ...details, requirement: {
-                                        ...details.requirement, instructions: e.target.value
-                                    }
+                                    ...details, instructions: e.target.value
                                 }))}
                         ></textarea>
                     </div>
@@ -668,9 +640,7 @@ function Review() {
                                     ref={instructionRef}
                                     type='file'
                                     onChange={e => setDetails(details => ({
-                                        ...details, requirement: {
-                                            ...details.requirement, instruction_file: e.target.files[0]
-                                        }
+                                        ...details, instruction_file: e.target.files[0]
                                     }))}
                                 />
                         </div>
@@ -865,8 +835,9 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='basic'
+                                value='Basic'
                                 id='basic'
+                                checked={details.academic_year === 'Basic'}
                                 onChange={handleChange23}
                             />
                             <label for='basic'>Best Available</label>
@@ -874,18 +845,20 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='standard'
+                                value='Standard'
                                 id='standard'
-                                onChange={handleChange24}
+                                checked={details.academic_year === 'Standard'}
+                                onChange={handleChange23}
                             />
                             <label for='standard'>Advanced</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='advanced'
+                                value='Advanced'
                                 id='advanced'
-                                onChange={handleChange25}
+                                checked={details.academic_year === 'Advanced'}
+                                onChange={handleChange23}
                             />
                             <label for='advanced'>Top 10</label>
                         </div>
