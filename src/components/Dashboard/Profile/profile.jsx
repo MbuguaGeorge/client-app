@@ -3,6 +3,7 @@ import './profile.css';
 import Recent from '../Order/recent';
 import Finished from '../Order/finished';
 import Canceled from '../Order/canceled';
+import Head from '../Header/Header';
 
 function Profile() {
 
@@ -43,6 +44,8 @@ function Profile() {
     }
  
     return (
+        <>
+        <Head />
         <div className='profile'>
             <div className='nav'>
                 <ul>
@@ -61,6 +64,7 @@ function Profile() {
                 {selectedOption()}
             </div>
         </div>
+        </>
     )
 }
 

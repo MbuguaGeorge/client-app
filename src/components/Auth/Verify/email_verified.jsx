@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Button} from '@mui/material';
+import {Link} from 'react-router-dom'; 
 
 class EmailVerified extends Component{
 
@@ -39,9 +41,12 @@ class EmailVerified extends Component{
         return (
             <div>
                     {this.state.valid === 1 && (
+                      <>
                       <div class="alert alert-success" role="alert">
                         <p>Email Verification Done</p>
                       </div>
+                      <Link to='/review'><Button variant='contained' size='small'>Place order</Button></Link>
+                      </>
                     )}
                     {this.state.valid === 2 && (
                       <div class="alert alert-danger" role="alert">

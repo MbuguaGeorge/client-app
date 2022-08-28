@@ -73,3 +73,10 @@
 .recent .recent-progress .payment h2 {
     font-size: 1.1rem;
 }
+
+.place-order{
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,18 @@
+.logo{
+    margin-left: 100px;
+}
+.main{
+    padding-right: 120px;
+    height: 30px;
+}
+.form{
+    width: 120px;
+}
+.icon{
+    padding: 15px;
+}
+.profile-view{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

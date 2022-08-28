@@ -5,10 +5,9 @@ import '../Profile/profile.css';
 import {Form} from 'react-bootstrap';
 import {Button} from '@mui/material';
 import {Lock} from '@mui/icons-material';
+import Head from '../Header/Header';
 
 function Review() {
-    //  price hooks
-    const [pagePrice, setPagePrice] = useState(0);
 
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
@@ -25,10 +24,10 @@ function Review() {
         paper_format: '',
         references: '',
         order_type: '',
-        academic_year: '',
+        academic_year: 'High School',
         title: '',
-        deadline: '',
-        paper_level: '',
+        deadline: '4h',
+        paper_level: 'Basic',
         upgrade: ''
     });
 
@@ -45,7 +44,7 @@ function Review() {
         }))
     }
 
-    const [level2, setLevel2] = useState('')
+    const [level2, setLevel2] = useState('High School')
 
     const handleChange4 = (e) => {
         setDetails(details => ({
@@ -175,124 +174,9 @@ function Review() {
         setCount3(count3 => Math.max(count3 - 1, 0))
     };
 
-    const [four, setFour] = useState(false);
-    const [eight, setEight] = useState(false);
-    const [twentyfour, setTwentyfour] = useState(false);
-    const [two, setTwo] = useState(false);
-    const [three, setThree] = useState(false);
-    const [five, setFive] = useState(false);
-    const [seven, setSeven] = useState(false);
-    const [fourteen, setFourteen] = useState(false);
-
-    const handleChange15 = () => {
-        setFour(!four)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(false)
-        setFive(false)
-        setSeven(false)
-        setFourteen(false)
+    const handleChange15 = (e) => {
         setDetails(details => ({
-            ...details, deadline: '4h'
-        }))
-    };
-
-    const handleChange16 = () => {
-        setFour(false)
-        setEight(!eight)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(false)
-        setFive(false)
-        setSeven(false)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '8h'
-        }))
-    };
-
-    const handleChange17 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(!twentyfour)
-        setTwo(false)
-        setThree(false)
-        setFive(false)
-        setSeven(false)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '24h'
-        }))
-    };
-
-    const handleChange18 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(!two)
-        setThree(false)
-        setFive(false)
-        setSeven(false)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '2d'
-        }))
-    };
-
-    const handleChange19 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(!three)
-        setFive(false)
-        setSeven(false)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '3d'
-        }))
-    };
-
-    const handleChange20 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(false)
-        setFive(!five)
-        setSeven(false)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '5d'
-        }))
-    };
-
-    const handleChange21 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(false)
-        setFive(false)
-        setSeven(!seven)
-        setFourteen(false)
-        setDetails(details => ({
-            ...details, deadline: '7d'
-        }))
-    };
-
-    const handleChange22 = () => {
-        setFour(false)
-        setEight(false)
-        setTwentyfour(false)
-        setTwo(false)
-        setThree(false)
-        setFive(false)
-        setSeven(false)
-        setFourteen(!fourteen)
-        setDetails(details => ({
-            ...details, deadline: '14d'
+            ...details, deadline: e.target.value
         }))
     };
 
@@ -415,12 +299,12 @@ function Review() {
             display: 'None'
         }
     }
-    if (details.paper_level === '') {
+    if (details.paper_level === 'Basic') {
         paperLevelStyle = {
             display: 'None'
         }
     }
-    if (count < 1 && count2 < 1 && count3 < 1 && details.paper_level === ''){
+    if (count < 1 && count2 < 1 && count3 < 1 && details.paper_level === 'Basic'){
         totalStyle = {
             display: 'None'
         }
@@ -428,19 +312,1338 @@ function Review() {
 
     // Perform pricing
 
-    let price;
-
-    function highSchoolSwitch(){
-        switch(details.deadline === '4h'){
-            case details.academic_year === 'High School':
-                return count * 39
-            default:
-                return 0
+    function pageSwitch(){
+        if (level2 === 'High School'){
+            switch(details.academic_year === 'High School'){
+                case details.deadline === '4h':
+                    return (count * 39).toFixed(2)
+                case details.deadline === '8h':
+                    return (count * 34).toFixed(2)
+                case details.deadline === '24h':
+                    return (count * 27).toFixed(2)
+                case details.deadline === '2d':
+                    return (count * 24).toFixed(2)
+                case details.deadline === '3d':
+                    return (count * 20).toFixed(2)
+                case details.deadline === '5d':
+                    return (count * 18).toFixed(2)
+                case details.deadline === '7d':
+                    return (count * 16).toFixed(2)
+                case details.deadline === '14d':
+                    return (count * 10).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 1-2)'){
+            switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                case details.deadline === '4h':
+                    return (count * 43).toFixed(2)
+                case details.deadline === '8h':
+                    return (count * 39).toFixed(2)
+                case details.deadline === '24h':
+                    return (count * 30).toFixed(2)
+                case details.deadline === '2d':
+                    return (count * 26).toFixed(2)
+                case details.deadline === '3d':
+                    return (count * 24).toFixed(2)
+                case details.deadline === '5d':
+                    return (count * 19).toFixed(2)
+                case details.deadline === '7d':
+                    return (count * 17).toFixed(2)
+                case details.deadline === '14d':
+                    return (count * 15).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 3-4)'){
+            switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                case details.deadline === '4h':
+                    return (count * 51).toFixed(2)
+                case details.deadline === '8h':
+                    return (count * 41).toFixed(2)
+                case details.deadline === '24h':
+                    return (count * 32).toFixed(2)
+                case details.deadline === '2d':
+                    return (count * 30).toFixed(2)
+                case details.deadline === '3d':
+                    return (count * 28).toFixed(2)
+                case details.deadline === '5d':
+                    return (count * 23).toFixed(2)
+                case details.deadline === '7d':
+                    return (count * 21).toFixed(2)
+                case details.deadline === '14d':
+                    return (count * 20).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Graduate'){
+            switch(details.academic_year === 'Graduate'){
+                case details.deadline === '4h':
+                    return (count * 61).toFixed(2)
+                case details.deadline === '8h':
+                    return (count * 48).toFixed(2)
+                case details.deadline === '24h':
+                    return (count * 39).toFixed(2)
+                case details.deadline === '2d':
+                    return (count * 36).toFixed(2)
+                case details.deadline === '3d':
+                    return (count * 33).toFixed(2)
+                case details.deadline === '5d':
+                    return (count * 29).toFixed(2)
+                case details.deadline === '7d':
+                    return (count * 27).toFixed(2)
+                case details.deadline === '14d':
+                    return (count * 25).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'PhD'){
+            switch(details.academic_year === 'PhD'){
+                case details.deadline === '4h':
+                    return (count * 73).toFixed(2)
+                case details.deadline === '8h':
+                    return (count * 58).toFixed(2)
+                case details.deadline === '24h':
+                    return (count * 50).toFixed(2)
+                case details.deadline === '2d':
+                    return (count * 45).toFixed(2)
+                case details.deadline === '3d':
+                    return (count * 37).toFixed(2)
+                case details.deadline === '5d':
+                    return (count * 35).toFixed(2)
+                case details.deadline === '7d':
+                    return (count * 31).toFixed(2)
+                case details.deadline === '14d':
+                    return (count * 29).toFixed(2)
+                default:
+                    return 0
+            }
         }
+    }
+
+    function chartSwitch(){
+        if (level2 === 'High School'){
+            switch(details.academic_year === 'High School'){
+                case details.deadline === '4h':
+                    return (count2 * 39/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count2 * 34/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count2 * 27/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count2 * 24/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count2 * 20/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count2 * 18/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count2 * 16/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count2 * 10/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 1-2)'){
+            switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                case details.deadline === '4h':
+                    return (count2 * 43/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count2 * 39/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count2 * 30/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count2 * 26/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count2 * 24/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count2 * 19/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count2 * 17/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count2 * 15/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 3-4)'){
+            switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                case details.deadline === '4h':
+                    return (count2 * 51/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count2 * 41/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count2 * 32/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count2 * 30/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count2 * 28/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count2 * 23/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count2 * 21/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count2 * 20/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Graduate'){
+            switch(details.academic_year === 'Graduate'){
+                case details.deadline === '4h':
+                    return (count2 * 61/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count2 * 48/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count2 * 39/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count2 * 36/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count2 * 33/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count2 * 29/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count2 * 27/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count2 * 25/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'PhD'){
+            switch(details.academic_year === 'PhD'){
+                case details.deadline === '4h':
+                    return (count2 * 73/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count2 * 58/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count2 * 50/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count2 * 45/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count2 * 37/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count2 * 35/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count2 * 31/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count2 * 29/2).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
+
+    function slideSwitch(){
+        if (level2 === 'High School'){
+            switch(details.academic_year === 'High School'){
+                case details.deadline === '4h':
+                    return (count3 * 39/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count3 * 34/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count3 * 27/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count3 * 24/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count3 * 20/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count3 * 18/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count3 * 16/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count3 * 10/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 1-2)'){
+            switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                case details.deadline === '4h':
+                    return (count3 * 43/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count3 * 39/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count3 * 30/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count3 * 26/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count3 * 24/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count3 * 19/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count3 * 17/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count3 * 15/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 3-4)'){
+            switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                case details.deadline === '4h':
+                    return (count3 * 51/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count3 * 41/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count3 * 32/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count3 * 30/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count3 * 28/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count3 * 23/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count3 * 21/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count3 * 20/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Graduate'){
+            switch(details.academic_year === 'Graduate'){
+                case details.deadline === '4h':
+                    return (count3 * 61/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count3 * 48/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count3 * 39/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count3 * 36/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count3 * 33/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count3 * 29/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count3 * 27/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count3 * 25/2).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'PhD'){
+            switch(details.academic_year === 'PhD'){
+                case details.deadline === '4h':
+                    return (count3 * 73/2).toFixed(2)
+                case details.deadline === '8h':
+                    return (count3 * 58/2).toFixed(2)
+                case details.deadline === '24h':
+                    return (count3 * 50/2).toFixed(2)
+                case details.deadline === '2d':
+                    return (count3 * 45/2).toFixed(2)
+                case details.deadline === '3d':
+                    return (count3 * 37/2).toFixed(2)
+                case details.deadline === '5d':
+                    return (count3 * 35/2).toFixed(2)
+                case details.deadline === '7d':
+                    return (count3 * 31/2).toFixed(2)
+                case details.deadline === '14d':
+                    return (count3 * 29/2).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
+
+    function pagepreferencePrice(){
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count * 9.75).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 8.50).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 6.75).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 6.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 5.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 4.50).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 4.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 2.50).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 13.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 8.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 4.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count * 10.75).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 9.75).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 7.50).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 6.50).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 6.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 4.75).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 4.25).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 3.75).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count * 17.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 10.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 6.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count * 12.75).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 10.25).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 8.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 7.50).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 7.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 5.75).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 5.25).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 5.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count * 20.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 16.40).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 11.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 9.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 8.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 8.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count * 15.25).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 9.75).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 9.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 8.25).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.25).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.75).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 6.25).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count * 24.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 19.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 14.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 13.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 11.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 10.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count * 18.25).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 14.50).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.50).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 11.25).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 9.25).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 8.75).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 7.75).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 7.25).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count * 29.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 23.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 20.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 18.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 14.80).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 14.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 12.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 11.60).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+    }
+
+    function chartpreferencePrice(){
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count2 * 9.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count2 * 8.50/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count2 * 6.75/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count2 * 6.00/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count2 * 5.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count2 * 4.50/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count2 * 4.00/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count2 * 2.50/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 13.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 8.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 4.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count2 * 10.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count2 * 9.75/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count2 * 7.50/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count2 * 6.50/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count2 * 6.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count2 * 4.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count2 * 4.25/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count2 * 3.75/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count * 17.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 10.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 6.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count2 * 12.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count2 * 10.25/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count2 * 8.00/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count2 * 7.50/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count2 * 7.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count2 * 5.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count2 * 5.25/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count2 * 5.00/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count * 20.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 16.40).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 11.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 9.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 8.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 8.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count2 * 15.25/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count2 * 12.00/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count2 * 9.75/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count2 * 9.00/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count2 * 8.25/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count2 * 7.25/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count2 * 6.75/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count2 * 6.25/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count * 24.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 19.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 14.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 13.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 11.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 10.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count2 * 18.25/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count2 * 14.50/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count2 * 12.50/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count2 * 11.25/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count2 * 9.25/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count2 * 8.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count2 * 7.75/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count2 * 7.25/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count * 29.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 23.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 20.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 18.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 14.80).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 14.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 12.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 11.60).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+    }
+
+    function slidepreferencePrice(){
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count3 * 9.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count3 * 8.50/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count3 * 6.75/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count3 * 6.00/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count3 * 5.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count3 * 4.50/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count3 * 4.00/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count3 * 2.50/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'High School'){
+                    case details.deadline === '4h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 13.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 8.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 4.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count3 * 10.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count3 * 9.75/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count3 * 7.50/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count3 * 6.50/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count3 * 6.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count3 * 4.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count3 * 4.25/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count3 * 3.75/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                    case details.deadline === '4h':
+                        return (count * 17.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 10.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 9.60).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 7.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 6.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 6.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count3 * 12.75/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count3 * 10.25/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count3 * 8.00/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count3 * 7.50/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count3 * 7.00/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count3 * 5.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count3 * 5.25/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count3 * 5.00/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Undergarduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                    case details.deadline === '4h':
+                        return (count * 20.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 16.40).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 12.80).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 12.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 11.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 9.20).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 8.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 8.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count3 * 15.25/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count3 * 12.00/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count3 * 9.75/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count3 * 9.00/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count3 * 8.25/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count3 * 7.25/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count3 * 6.75/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count3 * 6.25/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'Graduate'){
+                    case details.deadline === '4h':
+                        return (count * 24.40).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 19.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 15.60).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 14.40).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 13.20).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 11.60).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 10.80).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 10.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+            if (details.paper_level === 'Standard'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count3 * 18.25/2).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count3 * 14.50/2).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count3 * 12.50/2).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count3 * 11.25/2).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count3   * 9.25/2).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count3 * 8.75/2).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count3 * 7.75/2).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count3 * 7.25/2).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Basic'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '8h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '24h':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '5d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (0.00).toFixed(2)
+                    case details.deadline === '14d':
+                        return (0.00).toFixed(2)
+                    default:
+                        return 0
+                }
+            } else if (details.paper_level === 'Advanced'){
+                switch(details.academic_year === 'PhD'){
+                    case details.deadline === '4h':
+                        return (count * 29.20).toFixed(2)
+                    case details.deadline === '8h':
+                        return (count * 23.20).toFixed(2)
+                    case details.deadline === '24h':
+                        return (count * 20.00).toFixed(2)
+                    case details.deadline === '2d':
+                        return (count * 18.00).toFixed(2)
+                    case details.deadline === '3d':
+                        return (count * 14.80).toFixed(2)
+                    case details.deadline === '5d':
+                        return (count * 14.00).toFixed(2)
+                    case details.deadline === '7d':
+                        return (count * 12.40).toFixed(2)
+                    case details.deadline === '14d':
+                        return (count * 11.60).toFixed(2)
+                    default:
+                        return 0
+                }
+            }
+    }
+
+    function totalpreferencePrice(){
+
+        let pagepreference = pagepreferencePrice()
+        let chartpreference = chartpreferencePrice()
+        let slidepreference = slidepreferencePrice()
+
+        if(count && count2 && count3){
+            return (parseFloat(pagepreference) + parseFloat(chartpreference) + parseFloat(slidepreference)).toFixed(2)
+        }else if (count && count2){
+            return (parseFloat(pagepreference) + parseFloat(chartpreference)).toFixed(2)
+        } else if(count && count3){
+            return (parseFloat(pagepreference) + parseFloat(slidepreference)).toFixed(2)
+        } else if(count2 && count3){
+            return (parseFloat(chartpreference) + parseFloat(slidepreference)).toFixed(2)
+        } else if(count){
+            return pagepreference
+        } else if(count2){
+            return chartpreference
+        } else if (count3){
+            return slidepreference
+        }
+    }
+
+    function totalPrice(){
+        let pagePrice = pageSwitch()
+        let chartPrice = chartSwitch()
+        let slidePrice = slideSwitch()
+        let totalpreference = totalpreferencePrice()
+
+        let totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)
+        return totalPrice.toFixed(2)
     }
 
     return (
         <>
+            <Head />
             <div className='profile'>
                 <div className='nav'>
                     <ul>
@@ -458,14 +1661,14 @@ function Review() {
                     <h5 style={subjectStyle}>{details.subject}</h5>
                 </div>
                 <div className='pricing'>
-                    <h5 style={pageStyle}>{count} page x $39.00 <span>${highSchoolSwitch()}</span></h5>
-                    <h5 style={slideStyle}>{count3} slide x $19.50 <span>$19.50</span></h5>
-                    <h5 style={chartStyle}>{count2} chart x $19.50 <span>$19.50</span></h5>
-                    <h5 style={paperLevelStyle}>{details.paper_level} <span>$29.25</span></h5>
+                    <h5 style={pageStyle}>{count} page x $39.00 <span>${pageSwitch()}</span></h5>
+                    <h5 style={slideStyle}>{count3} slide x $19.50 <span>${slideSwitch()}</span></h5>
+                    <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
+                    <h5 style={paperLevelStyle}>Writer's preferences <span>${totalpreferencePrice()}</span></h5>
                 </div>
                 <div className='total-price'>
                     <h3 style={totalStyle}>Total price</h3>
-                    <h4 style={totalStyle}>$146.25</h4>
+                    <h4 style={totalStyle}>${totalPrice()}</h4>
                 </div>
                 <div className='checkout'>
                 <Button startIcon={<Lock />} variant='contained' size='small'>Safe checkout</Button>
@@ -476,43 +1679,45 @@ function Review() {
                 <h4>Place an order</h4>
                 <form encType="multipart/form-data" onSubmit={handleSubmit}>
                     <div className='level1'>
-                        <div className='input1'>
-                            <input 
-                                type='radio'
-                                value='Academics'
-                                id='academics'
-                                checked={details.order_type === 'Academics'}
-                                onChange={handleChange1}
-                            />
-                            <label for='academics'>Academic Writing</label>
+                        <div className='level20'>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Academics'
+                                    id='academics'
+                                    checked={details.order_type === 'Academics'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='academics'>Academic Writing</label>
+                            </div>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Programming'
+                                    id='programming'
+                                    checked={details.order_type === 'Programming'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='programming'>Programming</label>
+                            </div>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Calculations'
+                                    id='calculation'
+                                    checked={details.order_type === 'Calculations'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='calculation'>Calculations</label>
                         </div>
-                        <div className='input1'>
-                            <input 
-                                type='radio'
-                                value='Programming'
-                                id='programming'
-                                checked={details.order_type === 'Programming'}
-                                onChange={handleChange1}
-                            />
-                            <label for='programming'>Programming</label>
-                        </div>
-                        <div className='input1'>
-                            <input 
-                                type='radio'
-                                value='Calculations'
-                                id='calculation'
-                                checked={details.order_type === 'Calculations'}
-                                onChange={handleChange1}
-                            />
-                            <label for='calculation'>Calculations</label>
                         </div>
                     </div>
 
                     <div className='level2'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Type of paper</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3">
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
                                         ...details, paper_type: e.target.value
@@ -529,10 +1734,10 @@ function Review() {
                     </div>
 
                     <div className='level3'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Discipline</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3">
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
                                         ...details, subject: e.target.value
@@ -549,7 +1754,7 @@ function Review() {
                     </div>
 
                     <div className='level4'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Academic level</h5>
                         </div>
                         <div className='input1'>
@@ -605,10 +1810,10 @@ function Review() {
                     </div>
 
                     <div className='level5'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Title</h5>
                         </div>
-                        <input 
+                        <input style={{width:'760px'}}
                             type='text'
                             placeholder='Enter the title of your paper'
                             value={details.title}
@@ -619,10 +1824,10 @@ function Review() {
                     </div>
 
                     <div className='level6'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Paper details</h5>
                         </div>
-                        <textarea
+                        <textarea style={{width:'760px'}}
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
@@ -632,7 +1837,7 @@ function Review() {
                     </div>
 
                     <div className='level7'>
-                        <div>
+                        <div className='level4-name'>
                             <h5>Additional materials</h5>
                         </div>
                         <div className='upload'>
@@ -647,7 +1852,7 @@ function Review() {
                     </div>
 
                     <div className='level8'>
-                        <div>
+                        <div className='level4-name1'>
                             <h5>Paper format</h5>
                         </div>
                         <div className='input1'>
@@ -707,7 +1912,7 @@ function Review() {
                     </div>
 
                     <div className='level9'>
-                        <div>
+                        <div style={{marginRight: '90px'}}>
                             <h5>Deadline</h5>
                         </div>
                         <div className='input1'>
@@ -715,6 +1920,7 @@ function Review() {
                                 type='radio'
                                 value='4h'
                                 id='4h'
+                                checked={details.deadline === '4h'}
                                 onChange={handleChange15}
                             />
                             <label for='4h'>4h</label>
@@ -724,7 +1930,8 @@ function Review() {
                                 type='radio'
                                 value='8h'
                                 id='8h'
-                                onChange={handleChange16}
+                                checked={details.deadline === '8h'}
+                                onChange={handleChange15}
                             />
                             <label for='8h'>8h</label>
                         </div>
@@ -733,7 +1940,8 @@ function Review() {
                                 type='radio'
                                 value='24h'
                                 id='24h'
-                                onChange={handleChange17}
+                                checked={details.deadline === '24h'}
+                                onChange={handleChange15}
                             />
                             <label for='24h'>24h</label>
                         </div>
@@ -742,7 +1950,8 @@ function Review() {
                                 type='radio'
                                 value='2d'
                                 id='2d'
-                                onChange={handleChange18}
+                                checked={details.deadline === '2d'}
+                                onChange={handleChange15}
                             />
                             <label for='2d'>2d</label>
                         </div>
@@ -751,7 +1960,8 @@ function Review() {
                                 type='radio'
                                 value='3d'
                                 id='3d'
-                                onChange={handleChange19}
+                                checked={details.deadline === '3d'}
+                                onChange={handleChange15}
                             />
                             <label for='3d'>3d</label>
                         </div>
@@ -760,7 +1970,8 @@ function Review() {
                                 type='radio'
                                 value='5d'
                                 id='5d'
-                                onChange={handleChange20}
+                                checked={details.deadline === '5d'}
+                                onChange={handleChange15}
                             />
                             <label for='5d'>5d</label>
                         </div>
@@ -769,7 +1980,8 @@ function Review() {
                                 type='radio'
                                 value='7d'
                                 id='7d'
-                                onChange={handleChange21}
+                                checked={details.deadline === '7d'}
+                                onChange={handleChange15}
                             />
                             <label for='7d'>7d</label>
                         </div>
@@ -778,14 +1990,15 @@ function Review() {
                                 type='radio'
                                 value='14d'
                                 id='14d'
-                                onChange={handleChange22}
+                                checked={details.deadline === '14d'}
+                                onChange={handleChange15}
                             />
                             <label for='14d'>14d</label>
                         </div>
                     </div>
 
                     <div className='level10'>
-                        <div>
+                        <div style={{marginRight: '110px'}}>
                             <h5>Pages</h5>
                         </div>
                         <div className="ref">
@@ -796,8 +2009,8 @@ function Review() {
                     </div>
 
                     <div className='level10'>
-                        <div>
-                            <h5>Sources to be cited</h5>
+                        <div style={{marginRight: '75px'}}>
+                            <h5>References</h5>
                         </div>
                         <div className="ref">
                             <button onClick={decrementCount1} >-</button>
@@ -807,7 +2020,7 @@ function Review() {
                     </div>
 
                     <div className='level10'>
-                        <div>
+                        <div style={{marginRight: '105px'}}>
                             <h5>Charts</h5>
                         </div>
                         <div className="ref">
@@ -818,7 +2031,7 @@ function Review() {
                     </div>
 
                     <div className='level10'>
-                        <div>
+                        <div style={{marginRight: '30px'}}>
                             <h5>PowerPoint Slides</h5>
                         </div>
                         <div className="ref">
@@ -829,7 +2042,7 @@ function Review() {
                     </div>
 
                     <div className='level12'>
-                        <div>
+                        <div style={{marginRight: '20px'}}>
                             <h5>Writers preferences</h5>
                         </div>
                         <div className='input1'>
@@ -865,7 +2078,7 @@ function Review() {
                     </div>
 
                     <div className='level11'>
-                        <div>
+                        <div style={{marginRight: '20px'}}>
                             <h5>Additional Services</h5>
                         </div>
                         <div className='inputs'>
