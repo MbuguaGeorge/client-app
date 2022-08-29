@@ -18,11 +18,8 @@ function Recent() {
             })
             const res = await data.json()
             let order = res.find(item => item.status)
-            if (order.status === 'Recent'){
-                setRecentOrders(res)
-            } else {
-                setRecentOrders([])
-            }
+            console.log(order.status)
+            setRecentOrders(res)
         }
         fetchData()
     }, [])
@@ -30,7 +27,7 @@ function Recent() {
 
     return (
         <>
-            {recentOrders.length !== 0 ? recentOrders.map(recent => (
+            {recentOrders.status !== 0 ? recentOrders.map(recent => (
                 <div className='recent' key={recent.details.id}>
                 <div className='recent-details'>
                     <h3>History / See paper instructions</h3>
@@ -39,7 +36,7 @@ function Recent() {
                     <div className='verify'>
                         <button>Messages</button>
                         <button>Files</button>
-                        <Link to='/review'><button>Review & Pay</button></Link>
+                        <Link to={`/info/${recent.id}`}><button>Review & Pay</button></Link>
                     </div>
                 </div>
                 

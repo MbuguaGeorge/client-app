@@ -1,0 +1,80 @@
+.pay-form {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pay-form .price {
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 3px;
+    width: 220px;
+    padding: 15px 20px;
+}
+
+.pay-form .price h1, .price h2{
+    font-size: 1rem;
+    color: #111;
+}
+
+.pay-form .payment {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-right: 50px;
+    border-radius: 3px;
+}
+
+form .card-info{
+    margin-bottom: 10px;
+    padding-top: 30px;
+}
+
+form .card-name{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+form .email{
+    margin-bottom: 20px;
+}
+
+form .card-info h3, .card-name h3, .email h3{
+    font-size: .9rem;
+    color: #111;
+}
+
+form .expiry input[type='number']{
+    width: 175px;
+    font-size: 1rem;
+    padding: 5px 15px;
+    color: #1d1d1d;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #111;
+    margin: 3px;
+}
+
+form .card-info input[type='number'], .card-name input[type='text'], .email input[type='email']{
+    width: 360px;
+    font-size: 1rem;
+    padding: 5px 15px;
+    color: #1d1d1d;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #111;
+}
+
+form .pay input[type='submit']{
+    width: 360px;
+    text-align: center;
+    border: 1px solid skyblue;
+    background-color: skyblue;
+    color: white;
+    font-weight: 600;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}

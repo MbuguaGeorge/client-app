@@ -9,6 +9,8 @@ import Manage from './components/Manage orders/Manage';
 import Verify from './components/Auth/Verify/verify';
 import EmailVerified from './components/Auth/Verify/email_verified';
 import Review from './components/Dashboard/Review/review';
+import Payment from './components/Payments/payment';
+import Info from './components/Dashboard/Instructions/info';
 
 function App(){
   return(
@@ -24,6 +26,8 @@ function App(){
         <Route exact path='/verify' element={<Verify />} />
         <Route exact path='/email-verified/:token' element={<EmailVerified />} />
         <Route exact path='/review' element={<Review />} />
+        <Route exact path='/order/pay' element={<Payment />} />
+        <Route exact path='/info/:id' element={<Info />} />
       </Routes>
     </Router>
   )

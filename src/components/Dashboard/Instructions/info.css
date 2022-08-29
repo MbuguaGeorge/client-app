@@ -1,0 +1,49 @@
+.details button {
+    margin-right: 50px;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: #1d1d1d;
+    font-weight: 600;
+    font-size: .9rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.details button:hover {
+    color: skyblue;
+    border-bottom: 2px solid skyblue;
+    transition: all .2s;
+}
+
+.info{
+    padding-top: 50px;
+    padding-left: 90px;
+    width: 50%;
+}
+
+.order-info{
+    margin-left: 50px;
+    padding-top: 30px;
+    background-color: #F9F9F9;
+}
+
+.order-info ul li{
+    list-style: none;
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    padding: 12px;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.order-info ul li h1, ul li h2{
+    font-size: .9rem;
+    color: #1d1d1d;
+}
+
+.order-info ul li h2{
+    font-weight: 400;
+}
