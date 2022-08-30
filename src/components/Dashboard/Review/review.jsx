@@ -6,8 +6,10 @@ import {Form} from 'react-bootstrap';
 import {Button} from '@mui/material';
 import {Lock} from '@mui/icons-material';
 import Head from '../Header/Header';
+import Manage from '../../Manage orders/Manage';
 
 function Review() {
+    let token = localStorage.getItem('token');
 
     const [count, setCount] = useState(0);
     const [count1, setCount1] = useState(0);
@@ -23,12 +25,14 @@ function Review() {
         instructions: '',
         paper_format: '',
         references: '',
-        order_type: '',
+        order_type: 'Academics',
         academic_year: 'High School',
         title: '',
-        deadline: '4h',
+        deadline: '24h',
         paper_level: 'Basic',
         upgrade: '',
+        task_size: 'Small',
+        programming_category: 'Web programming',
         amount: 0
     });
 
@@ -181,6 +185,12 @@ function Review() {
         }))
     };
 
+    const handleChange16 = (e) => {
+        setDetails(details => ({
+            ...details, task_size: e.target.value
+        }))
+    };
+
     const handleChange23 = (e) => {
         setDetails(details => ({
             ...details, paper_level: e.target.value
@@ -234,52 +244,58 @@ function Review() {
 
     const [redirect, setRedirect] = useState(false);
 
-    let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle;
+    let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle, progStyle;
 
-    if (count < 1) {
+    if (count < 1 || details.order_type === 'Programming') {
         pageStyle = {
             display: 'None'
         }
     }
-    if (count2 < 1) {
+    if (count2 < 1 || details.order_type === 'Programming') {
         chartStyle = {
             display: 'None'
         }
     } 
-    if (count3 < 1) {
+    if (count3 < 1 || details.order_type === 'Programming') {
         slideStyle = {
             display: 'None'
         }
     }
 
-    if (level2 === ''){
-        levelStyle = {
-            display: 'None'
-        }
-    }
-    if (details.title === '') {
+    if (details.title === '' || details.order_type === 'Programming') {
         titleStyle = {
             display: 'None'
         }
     }
-    if (details.paper_type === '') {
+    if (details.paper_type === '' || details.order_type === 'Programming') {
         paperStyle = {
             display: 'None'
         }
     }
-    if (details.subject === '') {
+    if (details.subject === '' || details.order_type === 'Programming') {
         subjectStyle = {
             display: 'None'
         }
     }
-    if (details.paper_level === 'Basic') {
+    if (details.paper_level === 'Basic' || details.order_type === 'Programming') {
         paperLevelStyle = {
             display: 'None'
         }
     }
+    if (count < 1 && count2 < 1 && count3 < 1){
+        paperLevelStyle = {
+            display: 'None'
+        }
+    }
+
     if (count < 1 && count2 < 1 && count3 < 1 && details.paper_level === 'Basic'){
         totalStyle = {
             display: 'None'
+        }
+    }
+    if (details.order_type === 'Academics'){
+        progStyle = {
+            display: 'none'
         }
     }
 
@@ -1581,6 +1597,80 @@ function Review() {
             }
     }
 
+    // Programming pricing
+
+    function programmingPricing(){
+        if (details.task_size === 'Extra Small'){
+            switch(details.task_size === 'Extra Small'){
+                case details.deadline === '24h':
+                    return (45).toFixed(2)
+                case details.deadline === '2d':
+                    return (39).toFixed(2)
+                case details.deadline === '3d':
+                    return (34.50).toFixed(2)
+                case details.deadline === '5d':
+                    return (31.50).toFixed(2)
+                case details.deadline === '7d':
+                    return (30).toFixed(2)
+                case details.deadline === '14d':
+                    return (28.50).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if(details.task_size === 'Small'){
+            switch(details.task_size === 'Small'){
+                case details.deadline === '24h':
+                    return (97.5).toFixed(2)
+                case details.deadline === '2d':
+                    return (84.5).toFixed(2)
+                case details.deadline === '3d':
+                    return (74.75).toFixed(2)
+                case details.deadline === '5d':
+                    return (68.25).toFixed(2)
+                case details.deadline === '7d':
+                    return (65.00).toFixed(2)
+                case details.deadline === '14d':
+                    return (61.75).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (details.task_size === 'Medium'){
+            switch(details.task_size === 'Medium'){
+                case details.deadline === '24h':
+                    return (187.5).toFixed(2)
+                case details.deadline === '2d':
+                    return (162.5).toFixed(2)
+                case details.deadline === '3d':
+                    return (143.75).toFixed(2)
+                case details.deadline === '5d':
+                    return (131.25).toFixed(2)
+                case details.deadline === '7d':
+                    return (125.00).toFixed(2)
+                case details.deadline === '14d':
+                    return (118.75).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (details.task_size === 'Large'){
+            switch(details.task_size === 'Large'){
+                case details.deadline === '24h':
+                    return (360).toFixed(2)
+                case details.deadline === '2d':
+                    return (312).toFixed(2)
+                case details.deadline === '3d':
+                    return (276).toFixed(2)
+                case details.deadline === '5d':
+                    return (252).toFixed(2)
+                case details.deadline === '7d':
+                    return (240).toFixed(2)
+                case details.deadline === '14d':
+                    return (228).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
+
     function totalpreferencePrice(){
 
         let pagepreference = pagepreferencePrice()
@@ -1616,6 +1706,8 @@ function Review() {
     }
     let price = totalPrice()
 
+    const [id, setId] = useState(null);
+
     const handleSubmit = (e) => {
         localStorage.setItem('amount', price)
         e.preventDefault()
@@ -1632,7 +1724,9 @@ function Review() {
             body: JSON.stringify(details)
         }).then(
             data => {
-                console.log(data)
+                const pk = data.id
+                setId(pk)
+                console.log(id)
             }
         ).then(
             () => setRedirect(!redirect)
@@ -1640,84 +1734,20 @@ function Review() {
     };
 
     const navigate = useNavigate();
+    if(id){
+        localStorage.setItem('new-order-id', id)
+    }
 
     if (redirect) {
         return navigate('/order/pay', {replace: true})
     }
 
-    return (
-        <>
-            <Head />
-            <div className='profile'>
-                <div className='nav'>
-                    <ul>
-                        <li>My orders</li>
-                        <li>New order</li>
-                    </ul>
-                </div>
-            </div>
+    let display;
 
-            <div className='container1'>
-                <div className='desc'>
-                    <h1 style={titleStyle}>{details.title}</h1>
-                    <h5 style={levelStyle}>{level2}</h5>
-                    <h5 style={paperStyle}>{details.paper_type}</h5>
-                    <h5 style={subjectStyle}>{details.subject}</h5>
-                </div>
-                <div className='pricing'>
-                    <h5 style={pageStyle}>{count} page x $39.00 <span>${pageSwitch()}</span></h5>
-                    <h5 style={slideStyle}>{count3} slide x $19.50 <span>${slideSwitch()}</span></h5>
-                    <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
-                    <h5 style={paperLevelStyle}>Writer's preferences <span>${totalpreferencePrice()}</span></h5>
-                </div>
-                <div className='total-price'>
-                    <h3 style={totalStyle}>Total price</h3>
-                    <h4 style={totalStyle}>${price}</h4>
-                </div>
-                <div className='checkout'>
-                <Button startIcon={<Lock />} variant='contained' size='small' onClick={handleSubmit}>Safe checkout</Button>
-                </div>
-            </div>
-
-            <div className='order'>
-                <h4>Place an order</h4>
-                <form encType="multipart/form-data">
-                    <div className='level1'>
-                        <div className='level20'>
-                            <div className='input1'>
-                                <input 
-                                    type='radio'
-                                    value='Academics'
-                                    id='academics'
-                                    checked={details.order_type === 'Academics'}
-                                    onChange={handleChange1}
-                                />
-                                <label for='academics'>Academic Writing</label>
-                            </div>
-                            <div className='input1'>
-                                <input 
-                                    type='radio'
-                                    value='Programming'
-                                    id='programming'
-                                    checked={details.order_type === 'Programming'}
-                                    onChange={handleChange1}
-                                />
-                                <label for='programming'>Programming</label>
-                            </div>
-                            <div className='input1'>
-                                <input 
-                                    type='radio'
-                                    value='Calculations'
-                                    id='calculation'
-                                    checked={details.order_type === 'Calculations'}
-                                    onChange={handleChange1}
-                                />
-                                <label for='calculation'>Calculations</label>
-                        </div>
-                        </div>
-                    </div>
-
-                    <div className='level2'>
+    if (details.order_type === 'Academics'){
+        display = (
+            <div>
+                <div className='level2'>
                         <div className='level4-name'>
                             <h5>Type of paper</h5>
                         </div>
@@ -1735,7 +1765,7 @@ function Review() {
                                 </Form.Select>
                             </Form.Group>
                         </div>
-                    </div>
+                </div>
 
                     <div className='level3'>
                         <div className='level4-name'>
@@ -2124,8 +2154,478 @@ function Review() {
                             </div>
                         </div>
                     </div>
+                    </div>
+        )
+    } else if (details.order_type === 'Programming'){
+        display = (
+            <div>
+                <div className='level2'>
+                        <div className='level4-name'>
+                            <h5>Programming language</h5>
+                        </div>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="Select one" className='select' onChange={e => setDetails(details => ({
+                                        ...details, paper_type: e.target.value
+                                        }))}>
+                                <option className='unselect' style={{color: 'grey'}}>Select one</option>
+                                <option value="Creative Writing">Python</option>
+                                <option value="Essay">C++</option>
+                                <option value="Research Paper">C</option>
+                                <option value="Speech">Java</option>
+                                <option value="Business Plan">JavaScript</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </div>
+                </div>
+
+
+                <div className='level3'>
+                        <div className='level4-name'>
+                            <h5>Category</h5>
+                        </div>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="Web programming" className='select' onChange={e => setDetails(details => ({
+                                        ...details, programming_category: e.target.value
+                                        }))}>
+                                <option value="Web programming">Web Programming</option>
+                                <option value="Mobile application development">Mobile application development</option>
+                                <option value="Database design and optimization">Database design and optimization</option>
+                                <option value="Desktop application development">Desktop application development</option>
+                                <option value="Computer science">Computer science</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </div>
+                </div>
+
+                <div className='level6'>
+                        <div className='level4-name'>
+                            <h5>Instructions</h5>
+                        </div>
+                        <textarea style={{width:'760px'}}
+                            placeholder='Write anything that you feel is important for the writer to consider.'
+                            value={details.instructions}
+                                onChange={e => setDetails(details => ({
+                                    ...details, instructions: e.target.value
+                                }))}
+                        ></textarea>
+                </div>
+
+                <div className='level7'>
+                        <div className='level4-name'>
+                            <h5>Additional materials</h5>
+                        </div>
+                        <div className='upload'>
+                                <input 
+                                    ref={instructionRef}
+                                    type='file'
+                                    onChange={e => setDetails(details => ({
+                                        ...details, instruction_file: e.target.files[0]
+                                    }))}
+                                />
+                        </div>
+                </div>
+
+                <div className='level9'>
+                        <div style={{marginRight: '90px'}}>
+                            <h5>Deadline</h5>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='24h'
+                                id='24h'
+                                checked={details.deadline === '24h'}
+                                onChange={handleChange15}
+                            />
+                            <label for='24h'>24h</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='2d'
+                                id='2d'
+                                checked={details.deadline === '2d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='2d'>2d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='3d'
+                                id='3d'
+                                checked={details.deadline === '3d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='3d'>3d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='5d'
+                                id='5d'
+                                checked={details.deadline === '5d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='5d'>5d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='7d'
+                                id='7d'
+                                checked={details.deadline === '7d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='7d'>7d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='14d'
+                                id='14d'
+                                checked={details.deadline === '14d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='14d'>14d</label>
+                        </div>
+                </div>
+
+                <div className='tasklevel'>
+                    <div className='level5-name'>
+                        <h5>Task size</h5>
+                    </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='Extra small'
+                                id='extra'
+                                checked={details.task_size === 'Extra small'}
+                                onChange={handleChange16}
+                            />
+                            <label for='extra'>Extra small</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='Small'
+                                id='small'
+                                checked={details.task_size === 'Small'}
+                                onChange={handleChange16}
+                            />
+                            <label for='small'>Small</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='Medium'
+                                id='medium'
+                                checked={details.task_size === 'Medium'}
+                                onChange={handleChange16}
+                            />
+                            <label for='medium'>Medium</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='Large'
+                                id='large'
+                                checked={details.task_size === 'Large'}
+                                onChange={handleChange16}
+                            />
+                            <label for='large'>Large</label>
+                        </div>
+                </div>
+
+            </div>
+        )
+    } else if (details.order_type === 'Calculations'){
+        display = (
+            <div>
+                <div className='level2'>
+                        <div className='level4-name'>
+                            <h5>Discipline</h5>
+                        </div>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="Select one" className='select' onChange={e => setDetails(details => ({
+                                        ...details, paper_type: e.target.value
+                                        }))}>
+                                <option className='unselect' style={{color: 'grey'}}>Select one</option>
+                                <option value="Creative Writing">Python</option>
+                                <option value="Essay">C++</option>
+                                <option value="Research Paper">C</option>
+                                <option value="Speech">Java</option>
+                                <option value="Business Plan">JavaScript</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </div>
+                </div>
+
+
+                <div className='level3'>
+                        <div className='level4-name'>
+                            <h5>Software</h5>
+                        </div>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                            <Form.Group controlId="formGridState">
+                                <Form.Select defaultValue="Web programming" className='select' onChange={e => setDetails(details => ({
+                                        ...details, subject: e.target.value
+                                        }))}>
+                                <option value="Classic ENglish Literature">Web Programming</option>
+                                <option value="Film & Theatre Studies">Mobile application development</option>
+                                <option value="History">Database design and optimization</option>
+                                <option value="Music">Desktop application development</option>
+                                <option value="Philosophy">Computer science</option>
+                                </Form.Select>
+                            </Form.Group>
+                        </div>
+                </div>
+
+                <div className='level6'>
+                        <div className='level4-name'>
+                            <h5>Instructions</h5>
+                        </div>
+                        <textarea style={{width:'760px'}}
+                            placeholder='Write anything that you feel is important for the writer to consider.'
+                            value={details.instructions}
+                                onChange={e => setDetails(details => ({
+                                    ...details, instructions: e.target.value
+                                }))}
+                        ></textarea>
+                </div>
+
+                <div className='level7'>
+                        <div className='level4-name'>
+                            <h5>Additional materials</h5>
+                        </div>
+                        <div className='upload'>
+                                <input 
+                                    ref={instructionRef}
+                                    type='file'
+                                    onChange={e => setDetails(details => ({
+                                        ...details, instruction_file: e.target.files[0]
+                                    }))}
+                                />
+                        </div>
+                </div>
+
+                <div className='level9'>
+                        <div style={{marginRight: '90px'}}>
+                            <h5>Deadline</h5>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='24h'
+                                id='24h'
+                                checked={details.deadline === '24h'}
+                                onChange={handleChange15}
+                            />
+                            <label for='24h'>24h</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='2d'
+                                id='2d'
+                                checked={details.deadline === '2d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='2d'>2d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='3d'
+                                id='3d'
+                                checked={details.deadline === '3d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='3d'>3d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='5d'
+                                id='5d'
+                                checked={details.deadline === '5d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='5d'>5d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='7d'
+                                id='7d'
+                                checked={details.deadline === '7d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='7d'>7d</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='14d'
+                                id='14d'
+                                checked={details.deadline === '14d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='14d'>14d</label>
+                        </div>
+                </div>
+
+                <div className='tasklevel'>
+                    <div className='level5-name'>
+                        <h5>Task size</h5>
+                    </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='24h'
+                                id='24h'
+                                checked={details.deadline === '24h'}
+                                onChange={handleChange15}
+                            />
+                            <label for='24h'>Extra small</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='2d'
+                                id='2d'
+                                checked={details.deadline === '2d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='2d'>Small</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='3d'
+                                id='3d'
+                                checked={details.deadline === '3d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='3d'>Medium</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='5d'
+                                id='5d'
+                                checked={details.deadline === '5d'}
+                                onChange={handleChange15}
+                            />
+                            <label for='5d'>Large</label>
+                        </div>
+                </div>
+
+            </div>
+        )
+    }
+
+    let account;
+
+    if (!token){
+        account = (
+            <Manage />
+        )    
+    }
+
+    let title;
+    let job_type;
+
+    if(details.order_type === 'Academics'){
+        title = level2
+        job_type = details.paper_type
+    }else if(details.order_type === 'Programming'){
+        title = 'Programming'
+        job_type = details.programming_category
+    }else if(details.order_type === 'Calculations'){
+        title = 'Calculation'
+    }
+
+    return (
+        <>
+            <Head />
+            <div className='profile'>
+                <div className='nav'>
+                    <ul>
+                        <li>My orders</li>
+                        <li>New order</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className='container1'>
+                <div className='desc'>
+                    <h1 style={titleStyle}>{details.title}</h1>
+                    <h5 style={levelStyle}>{title}</h5>
+                    <h5 style={paperStyle}>{details.paper_type}</h5>
+                    <h5 style={subjectStyle}>{details.subject}</h5>
+                </div>
+                <div className='pricing'>
+                    <h5 style={pageStyle}>{count} page x $39.00 <span>${pageSwitch()}</span></h5>
+                    <h5 style={slideStyle}>{count3} slide x $19.50 <span>${slideSwitch()}</span></h5>
+                    <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
+                    <h5 style={progStyle}>{job_type} <span>$128.00</span></h5>
+                    <h5 style={paperLevelStyle}>Writer's preferences <span>${totalpreferencePrice()}</span></h5>
+                </div>
+                <div className='total-price'>
+                    <h3 style={totalStyle}>Total price</h3>
+                    <h4 style={totalStyle}>${price}</h4>
+                </div>
+                <div className='checkout'>
+                <Button startIcon={<Lock />} variant='contained' size='small' onClick={handleSubmit}>Safe checkout</Button>
+                </div>
+            </div>
+
+            <div className='order'>
+                <h4>Place an order</h4>
+                <form encType="multipart/form-data">
+                    <div className='level1'>
+                        <div className='level20'>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Academics'
+                                    id='academics'
+                                    checked={details.order_type === 'Academics'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='academics'>Academic Writing</label>
+                            </div>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Programming'
+                                    id='programming'
+                                    checked={details.order_type === 'Programming'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='programming'>Programming</label>
+                            </div>
+                            <div className='input1'>
+                                <input 
+                                    type='radio'
+                                    value='Calculations'
+                                    id='calculation'
+                                    checked={details.order_type === 'Calculations'}
+                                    onChange={handleChange1}
+                                />
+                                <label for='calculation'>Calculations</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    {display}
                 </form>
             </div>
+            {account}
         </>
     )
 }

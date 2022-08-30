@@ -24,11 +24,11 @@ function Recent() {
     }, [])
     
     // let order = recentOrders.find(item => item.status)
-    if (.status === 'Recent'){
-        setOrders(recentOrders)
-    }else{
-        setOrders([])
-    }
+    // if (.status === 'Recent'){
+    //     setOrders(recentOrders)
+    // }else{
+    //     setOrders([])
+    // }
 
     return (
         <>

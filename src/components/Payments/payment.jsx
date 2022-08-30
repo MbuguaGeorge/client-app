@@ -6,6 +6,7 @@ import Head from '../Dashboard/Header/Header';
 function Payment(){
 
     const total = localStorage.getItem('amount')
+    const id = localStorage.getItem('new-order-id')
 
     const [card, setCard] = useState({
         card_no: '',
@@ -13,7 +14,8 @@ function Payment(){
         card_cvv: '',
         name: '',
         email: '',
-        amount: total
+        amount: total,
+        ref: id
     });
 
     const [redirect, setRedirect] = useState(false);
