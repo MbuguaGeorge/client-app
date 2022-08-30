@@ -4,10 +4,15 @@
     border: 2px solid #F9F9F9;
     border-radius: 5px;
     padding: 20px;
+    margin: 20px;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 120%;
     align-items: center;
+}
+
+.recent .recent-details{
+    float: left;
 }
 
 .recent .recent-details h3 {

@@ -1,6 +1,6 @@
 import React from "react";
 import './header.css';
-
+import {Link} from 'react-router-dom';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -31,7 +31,7 @@ export default function Head() {
                         size='small'
                     >
                         <MenuItem value={10} size='small'><div className="icon" style={{fontSize: '1rem'}}><PermIdentityIcon /></div>My Profile</MenuItem>
-                        <MenuItem value={20}><div className="icon" style={{fontSize: '1rem'}}><Inventory2Icon /></div>My Orders</MenuItem>
+                        <Link to='/profile' style={{textDecoration: 'none'}}><MenuItem value={20}><div className="icon" style={{fontSize: '1rem'}}><Inventory2Icon /></div>My Orders</MenuItem></Link>
                         <MenuItem value={30} size='small'><div className="icon" style={{fontSize: '1rem'}}><LogoutIcon size='small'/></div>Log out</MenuItem>
                     </Select>
                 </FormControl>

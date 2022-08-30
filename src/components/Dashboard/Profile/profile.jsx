@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import './profile.css';
 import Recent from '../Order/recent';
 import Finished from '../Order/finished';
@@ -49,8 +50,8 @@ function Profile() {
         <div className='profile'>
             <div className='nav'>
                 <ul>
-                    <li>My orders</li>
-                    <li>New order</li>
+                    <Link to='/profile' style={{textDecoration: 'none'}}><li>My orders</li></Link>
+                    <Link to='/review' style={{textDecoration: 'none'}}><li>New order</li></Link>
                 </ul>
             </div>
 

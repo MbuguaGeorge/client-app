@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import './payment.css';
+import {useNavigate} from 'react-router-dom';
+import Head from '../Dashboard/Header/Header';
 
 function Payment(){
+
+    const total = localStorage.getItem('amount')
 
     const [card, setCard] = useState({
         card_no: '',
@@ -9,23 +13,40 @@ function Payment(){
         card_cvv: '',
         name: '',
         email: '',
-        amount: ''
+        amount: total
     });
 
-    const handleSubmit = async (e) => {
+    const [redirect, setRedirect] = useState(false);
+
+    const handleSubmit = (e) => {
+        // localStorage.removeItem('amount')
         e.preventDefault()
-        await fetch('http://127.0.0.1:8000/card/verify', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Token ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(card)
-        }).then(
-            res => console.log(res)
-        ).catch(err => console.log(err))
+
+        async function postData(){
+            const data = await fetch('http://127.0.0.1:8000/card/receive-payment', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(card)
+            })
+    
+            const res = await data.json()
+            console.log(res)
+        }
+        postData()
     };
 
+    let navigate = useNavigate();
+
+    if (redirect) {
+        return navigate('/pay/success', {replace: true})
+    }
+
     return (
+        <>
+        <Head />
         <div className='pay-form'>
             <div className='payment'>
                 <form onSubmit={handleSubmit}>
@@ -101,10 +122,11 @@ function Payment(){
             <div>
                 <div className='price'>
                     <h1>Total Price</h1>
-                    <h2>$25.00</h2>
+                    <h2>${total}</h2>
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

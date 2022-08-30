@@ -11,6 +11,7 @@ import EmailVerified from './components/Auth/Verify/email_verified';
 import Review from './components/Dashboard/Review/review';
 import Payment from './components/Payments/payment';
 import Info from './components/Dashboard/Instructions/info';
+import Success from './components/Payments/success';
 
 function App(){
   return(
@@ -28,6 +29,7 @@ function App(){
         <Route exact path='/review' element={<Review />} />
         <Route exact path='/order/pay' element={<Payment />} />
         <Route exact path='/info/:id' element={<Info />} />
+        <Route exact path='pay/success' element={<Success />} />
       </Routes>
     </Router>
   )

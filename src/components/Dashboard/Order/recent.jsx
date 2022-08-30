@@ -6,6 +6,7 @@ import {Button} from '@mui/material'
 function Recent() {
 
     const [recentOrders, setRecentOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         async function fetchData(){
@@ -17,17 +18,21 @@ function Recent() {
                 }
             })
             const res = await data.json()
-            let order = res.find(item => item.status)
-            console.log(order.status)
             setRecentOrders(res)
         }
         fetchData()
     }, [])
-    console.log(recentOrders)
+    
+    // let order = recentOrders.find(item => item.status)
+    if (.status === 'Recent'){
+        setOrders(recentOrders)
+    }else{
+        setOrders([])
+    }
 
     return (
         <>
-            {recentOrders.status !== 0 ? recentOrders.map(recent => (
+            {orders.length >= 1 ? orders.map(recent => (
                 <div className='recent' key={recent.details.id}>
                 <div className='recent-details'>
                     <h3>History / See paper instructions</h3>
@@ -45,14 +50,14 @@ function Recent() {
                     <p>Your order is unpaid. Please check your email and follow the tips to complete the payment procedure.</p>
                     <div className='payment'>
                         <button onClick={async () => {
-        await fetch(`http://127.0.0.1:8000/dashboard/status/${recent.id}`, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `Token ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({status: 'Canceled'})
-        })}} >Cancel order</button>
+                            await fetch(`http://127.0.0.1:8000/dashboard/status/${recent.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                                    'Conten     t-Type': 'application/json'
+                                },
+                                body: JSON.stringify({status: 'Canceled'})
+                            })}} >Cancel order</button> 
                         <h2>$64.00</h2>
                     </div>
                 </div>

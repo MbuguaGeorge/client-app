@@ -28,7 +28,8 @@ function Review() {
         title: '',
         deadline: '4h',
         paper_level: 'Basic',
-        upgrade: ''
+        upgrade: '',
+        amount: 0
     });
 
     useEffect(() => {
@@ -232,34 +233,6 @@ function Review() {
     };
 
     const [redirect, setRedirect] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(details)
-        // const uploadData = new FormData();
-        // uploadData.append('requirement.instruction_file', details.requirement.instruction_file, details.requirement.instruction_file.name)
-
-        fetch('http://127.0.0.1:8000/orders/summary', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify(details)
-        }).then(
-            data => {
-                console.log(data)
-            }
-        ).then(
-            () => setRedirect(!redirect)
-        ).catch(err => console.log(err))
-    };
-
-    const navigate = useNavigate();
-
-    if (redirect) {
-        return navigate('/profile', {replace: true})
-    }
 
     let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle;
 
@@ -1637,8 +1610,39 @@ function Review() {
         let slidePrice = slideSwitch()
         let totalpreference = totalpreferencePrice()
 
-        let totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)
+        let totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)        
+
         return totalPrice.toFixed(2)
+    }
+    let price = totalPrice()
+
+    const handleSubmit = (e) => {
+        localStorage.setItem('amount', price)
+        e.preventDefault()
+        console.log(details)
+        // const uploadData = new FormData();
+        // uploadData.append('requirement.instruction_file', details.requirement.instruction_file, details.requirement.instruction_file.name)
+
+        fetch('http://127.0.0.1:8000/orders/summary', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(details)
+        }).then(
+            data => {
+                console.log(data)
+            }
+        ).then(
+            () => setRedirect(!redirect)
+        ).catch(err => console.log(err))
+    };
+
+    const navigate = useNavigate();
+
+    if (redirect) {
+        return navigate('/order/pay', {replace: true})
     }
 
     return (
@@ -1668,16 +1672,16 @@ function Review() {
                 </div>
                 <div className='total-price'>
                     <h3 style={totalStyle}>Total price</h3>
-                    <h4 style={totalStyle}>${totalPrice()}</h4>
+                    <h4 style={totalStyle}>${price}</h4>
                 </div>
                 <div className='checkout'>
-                <Button startIcon={<Lock />} variant='contained' size='small'>Safe checkout</Button>
+                <Button startIcon={<Lock />} variant='contained' size='small' onClick={handleSubmit}>Safe checkout</Button>
                 </div>
             </div>
 
             <div className='order'>
                 <h4>Place an order</h4>
-                <form encType="multipart/form-data" onSubmit={handleSubmit}>
+                <form encType="multipart/form-data">
                     <div className='level1'>
                         <div className='level20'>
                             <div className='input1'>
@@ -2119,12 +2123,6 @@ function Review() {
                                 <label for='sources'>Copy of sources</label>
                             </div>
                         </div>
-                    </div>
-                    <div className='submit'>
-                        <input 
-                            type='submit'
-                            value='Submit order and Check out'
-                        />
                     </div>
                 </form>
             </div>
