@@ -1615,6 +1615,17 @@ function Review() {
     }
     let price = totalPrice()
 
+    const [amount, setAmount] = useState(0);
+
+    useEffect(() => {
+        if (price > 0){
+            setAmount(price)
+        }
+    }, [price])
+    console.log(amount)
+
+    const [ref, setref] = useState('');
+
     const handleSubmit = (e) => {
         localStorage.setItem('amount', price)
         e.preventDefault()
@@ -1630,9 +1641,9 @@ function Review() {
             },
             body: JSON.stringify(details)
         }).then(
-            data => {
-                const pk = data.id
-            }
+            data => data.json()
+        ).then(
+            res => setref(res.id)
         ).then(
             () => setRedirect(!redirect)
         ).catch(err => console.log(err))
@@ -1641,7 +1652,7 @@ function Review() {
     const navigate = useNavigate();
 
     if (redirect) {
-        return navigate('/order/pay', {replace: true})
+        return navigate(`/order/pay/${ref}`, {replace: true})
     }
 
     let display;

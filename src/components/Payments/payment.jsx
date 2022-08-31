@@ -20,16 +20,41 @@ function Payment({style1, style2, style3, pk}){
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
+
+        const url = window.location.pathname
+        const field = url.split('/')
+        const id = field[3]
+
+        async function fetchData(){
+            const data = await fetch(`http://127.0.0.1:8000/dashboard/neworder/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application.json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+            const res = data.json()
+            setCard(card => ({
+                ...card, ref: res.id
+            }))
+        }
+
+        if(id){
+            fetchData()
+        }
+
         if(pk !== ''){
             setCard(card => ({
                 ...card, ref: pk
             }))
         };
+
     },[pk])
 
     const handleSubmit = (e) => {
-        // localStorage.removeItem('amount')
+        localStorage.removeItem('amount')
         e.preventDefault()
+        console.log(card)
 
         async function postData(){
             const data = await fetch('http://127.0.0.1:8000/card/receive-payment', {

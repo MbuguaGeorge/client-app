@@ -27,7 +27,7 @@ function App(){
         <Route exact path='/verify' element={<Verify />} />
         <Route exact path='/email-verified/:token' element={<EmailVerified />} />
         <Route exact path='/review' element={<Review />} />
-        <Route exact path='/order/pay' element={<Payment />} />
+        <Route exact path='/order/pay/:id' element={<Payment />} />
         <Route exact path='/info/:id' element={<Info />} />
         <Route exact path='pay/success' element={<Success />} />
       </Routes>
