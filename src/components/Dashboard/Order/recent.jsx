@@ -6,37 +6,30 @@ import {Button} from '@mui/material'
 function Recent() {
 
     const [recentOrders, setRecentOrders] = useState([]);
-    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        async function fetchData(){
-            const data = await fetch('http://127.0.0.1:8000/dashboard/list', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Token ${localStorage.getItem('token')}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            const res = await data.json()
-            setRecentOrders(res)
-        }
         fetchData()
     }, [])
-    
-    // let order = recentOrders.find(item => item.status)
-    // if (.status === 'Recent'){
-    //     setOrders(recentOrders)
-    // }else{
-    //     setOrders([])
-    // }
+
+    async function fetchData(){
+        const data = await fetch('http://127.0.0.1:8000/dashboard/list', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        const res = await data.json()
+        setRecentOrders(res)
+    }
 
     return (
         <>
-            {orders.length >= 1 ? orders.map(recent => (
+            {recentOrders.length >= 1 ? recentOrders.map(recent => (
                 <div className='recent' key={recent.details.id}>
                 <div className='recent-details'>
                     <h3>History / See paper instructions</h3>
-                    <p>#123456 / {recent.details.pages} pages / Undergraduate (yrs, 3-4)</p>
+                    <p>#{recent.id} / {recent.details.pages} pages / {recent.details.academic_year}</p>
                     <p>Deadline: <span>Aug 18, 2022 at 8.25 AM (If you pay right now)</span></p>
                     <div className='verify'>
                         <button>Messages</button>
@@ -54,10 +47,12 @@ function Recent() {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': `Token ${localStorage.getItem('token')}`,
-                                    'Conten     t-Type': 'application/json'
+                                    'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({status: 'Canceled'})
-                            })}} >Cancel order</button> 
+                            })
+                            fetchData()
+                            }} >Cancel order</button> 
                         <h2>$64.00</h2>
                     </div>
                 </div>

@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './payment.css';
 import {useNavigate} from 'react-router-dom';
 import Head from '../Dashboard/Header/Header';
 
-function Payment(){
+function Payment({style1, style2, style3, pk}){
 
     const total = localStorage.getItem('amount')
-    const id = localStorage.getItem('new-order-id')
 
     const [card, setCard] = useState({
         card_no: '',
@@ -15,10 +14,18 @@ function Payment(){
         name: '',
         email: '',
         amount: total,
-        ref: id
+        ref: ''
     });
 
     const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        if(pk !== ''){
+            setCard(card => ({
+                ...card, ref: pk
+            }))
+        };
+    },[pk])
 
     const handleSubmit = (e) => {
         // localStorage.removeItem('amount')
@@ -48,9 +55,9 @@ function Payment(){
 
     return (
         <>
-        <Head />
-        <div className='pay-form'>
-            <div className='payment'>
+        <div style={style2}><Head /></div>
+        <div className='pay-form' style={style3}>
+            <div className='payment' style={style1}> 
                 <form onSubmit={handleSubmit}>
                     <div className='card-info'>
                         <h3>Card Information</h3>
@@ -122,7 +129,7 @@ function Payment(){
                 </form>
             </div>
             <div>
-                <div className='price'>
+                <div className='price' style={style2}>
                     <h1>Total Price</h1>
                     <h2>${total}</h2>
                 </div>

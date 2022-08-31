@@ -26,6 +26,23 @@ export default function SignUp() {
                 console.log(data);
             }
         ).then(
+            await fetch('http://127.0.0.1:8000/profile/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(profile)
+            }).then(
+                res => {
+                    res.json().then(data => {
+                        if(data.token){
+                            localStorage.setItem('token', data.token)
+                        }
+                        if(!data.token){
+                            localStorage.setItem('token', data.error)
+                        }
+                    })
+                }
+            )
+        ).then(
             () => setRedirect(true)
         ).catch(error => console.log(error))
     }
@@ -75,7 +92,7 @@ export default function SignUp() {
                         <MyFormControlLabel value="first" label="I agree to receive discount coupons, exclusive offers, and the latest news by email, SMS, phone, and other electronic means" control={<Radio />} />
                         <MyFormControlLabel value="second" label="I agree to the Terms & Conditions  and Privacy Policy" control={<Radio />} className={style.radio2} />
                     </RadioGroup>
-                    <button type="submit" className={style.signupbtn}>Create account $ Sign in</button>
+                    <button type="submit" className={style.signupbtn}>Create account</button>
 
                 </div>
             </form>

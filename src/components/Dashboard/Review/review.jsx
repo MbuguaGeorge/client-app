@@ -11,7 +11,7 @@ import Manage from '../../Manage orders/Manage';
 function Review() {
     let token = localStorage.getItem('token');
 
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
     const [count1, setCount1] = useState(0);
     const [count2, setCount2] = useState(0);
     const [count3, setCount3] = useState(0);
@@ -26,13 +26,14 @@ function Review() {
         paper_format: '',
         references: '',
         order_type: 'Academics',
-        academic_year: 'High School',
+        academic_year: '',
         title: '',
         deadline: '24h',
-        paper_level: 'Basic',
+        paper_level: '',
         upgrade: '',
-        task_size: 'Small',
-        programming_category: 'Web programming',
+        task_size: '',
+        programming_category: '',
+        prog_language: '',
         amount: 0
     });
 
@@ -42,6 +43,18 @@ function Review() {
         }))
 
     }, [count, count1, count2, count3]);
+
+    useEffect(() => {
+        if(details.order_type === 'Academics'){
+            setDetails(prevState => ({
+                ...prevState, paper_level: 'Basic', paper_format: 'MLA', programming_category: '', prog_language: '', task_size: ''
+            }))
+        }else if(details.order_type === 'Programming'){
+            setDetails(prevState => ({
+                ...prevState, programming_category: 'Web programming', task_size: 'Small', paper_level: '', pages: '', slides: '', subject: '', paper_format: '', academic_year: '', references: '', title: '', upgrade: '', 
+            }))
+        }
+    },[details.order_type])
 
     const handleChange1 = (e) => {
         setDetails(details => ({
@@ -58,82 +71,9 @@ function Review() {
         setLevel2(e.target.value)
     };
 
-    const [mla, setMla] = useState(false);
-    const [apa6, setApa6] = useState(false);
-    const [apa7, setApa7] = useState(false);
-    const [chicago, setChicago] = useState(false);
-    const [none, setNone] = useState(false);
-    const [other, setOther] = useState(false);
-
-    const handleChange9 = () => {
-        setMla(!mla)
-        setApa6(false)
-        setApa7(false)
-        setChicago(false)
-        setNone(false)
-        setOther(false)
+    const handleChange9 = (e) => {
         setDetails(details => ({
-            ...details, paper_format: 'MLA'
-        }))
-    };
-
-    const handleChange10 = () => {
-        setMla(false)
-        setApa6(!apa6)
-        setApa7(false)
-        setChicago(false)
-        setNone(false)
-        setOther(false)
-        setDetails(details => ({
-            ...details, paper_format: 'APA 6'
-        }))
-    };
-
-    const handleChange11 = () => {
-        setMla(false)
-        setApa6(false)
-        setApa7(!apa7)
-        setChicago(false)
-        setNone(false)
-        setOther(false)
-        setDetails(details => ({
-            ...details, paper_format: 'APA 7'
-        }))
-    };
-
-    const handleChange12 = () => {
-        setMla(false)
-        setApa6(false)
-        setApa7(false)
-        setChicago(!chicago)
-        setNone(false)
-        setOther(false)
-        setDetails(details => ({
-            ...details, paper_format: 'Chicago Turabian'
-        }))
-    };
-
-    const handleChange13 = () => {
-        setMla(false)
-        setApa6(false)
-        setApa7(false)
-        setChicago(false)
-        setNone(!none)
-        setOther(false)
-        setDetails(details => ({
-            ...details, paper_format: 'Not Applicable'
-        }))
-    };
-
-    const handleChange14 = () => {
-        setMla(false)
-        setApa6(false)
-        setApa7(false)
-        setChicago(false)
-        setNone(false)
-        setOther(!other)
-        setDetails(details => ({
-            ...details, paper_format: 'Other'
+            ...details, paper_format: e.target.value
         }))
     };
 
@@ -185,11 +125,13 @@ function Review() {
         }))
     };
 
-    const handleChange16 = (e) => {
+    const handleTaskChange = (e) => {
         setDetails(details => ({
             ...details, task_size: e.target.value
         }))
-    };
+
+        console.log(details.task_size)
+    }
 
     const handleChange23 = (e) => {
         setDetails(details => ({
@@ -197,48 +139,9 @@ function Review() {
         }))
     };
 
-    const [native, setNative] = useState(false);
-    const [smart, setSmart] = useState(false);
-    const [sample, setSample] = useState(false);
-    const [source, setSource] = useState(false);
-
-    const handleChange26 = () => {
-        setNative(!native)
-        setSmart(false)
-        setSample(false)
-        setSource(false)
+    const handleChange26 = (e) => {
         setDetails(details => ({
-            ...details, upgrade: 'Native Speaker'
-        }))
-    };
-
-    const handleChange27 = () => {
-        setNative(false)
-        setSmart(!smart)
-        setSample(false)
-        setSource(false)
-        setDetails(details => ({
-            ...details, upgrade: 'Smart Paper'
-        }))
-    };
-
-    const handleChange28 = () => {
-        setNative(false)
-        setSmart(false)
-        setSample(!sample)
-        setSource(false)
-        setDetails(details => ({
-            ...details, upgrade: 'Writers Samples'
-        }))
-    };
-
-    const handleChange29 = () => {
-        setNative(false)
-        setSmart(false)
-        setSample(false)
-        setSource(!source)
-        setDetails(details => ({
-            ...details, upgrade: 'Copy of Sources'
+            ...details, upgrade: e.target.value
         }))
     };
 
@@ -277,7 +180,7 @@ function Review() {
             display: 'None'
         }
     }
-    if (details.paper_level === 'Basic' || details.order_type === 'Programming') {
+    if (details.paper_level === 'Basic' || details.order_type === 'Programming' || details.paper_level === '') {
         paperLevelStyle = {
             display: 'None'
         }
@@ -1600,8 +1503,8 @@ function Review() {
     // Programming pricing
 
     function programmingPricing(){
-        if (details.task_size === 'Extra Small'){
-            switch(details.task_size === 'Extra Small'){
+        if (details.task_size === 'Extra small'){
+            switch(details.task_size === 'Extra small'){
                 case details.deadline === '24h':
                     return (45).toFixed(2)
                 case details.deadline === '2d':
@@ -1699,14 +1602,18 @@ function Review() {
         let chartPrice = chartSwitch()
         let slidePrice = slideSwitch()
         let totalpreference = totalpreferencePrice()
+        let totalprog = programmingPricing()
+        let totalPrice;
 
-        let totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)        
-
-        return totalPrice.toFixed(2)
+        if (details.order_type === 'Academics'){
+            totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)
+            return totalPrice.toFixed(2)
+        }else if(details.order_type === 'Programming'){
+            totalPrice = parseFloat(totalprog)
+            return totalPrice.toFixed(2)
+        }
     }
     let price = totalPrice()
-
-    const [id, setId] = useState(null);
 
     const handleSubmit = (e) => {
         localStorage.setItem('amount', price)
@@ -1725,8 +1632,6 @@ function Review() {
         }).then(
             data => {
                 const pk = data.id
-                setId(pk)
-                console.log(id)
             }
         ).then(
             () => setRedirect(!redirect)
@@ -1734,9 +1639,6 @@ function Review() {
     };
 
     const navigate = useNavigate();
-    if(id){
-        localStorage.setItem('new-order-id', id)
-    }
 
     if (redirect) {
         return navigate('/order/pay', {replace: true})
@@ -1751,7 +1653,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Type of paper</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Essay" className='select' onChange={e => setDetails(details => ({
                                         ...details, paper_type: e.target.value
@@ -1771,7 +1673,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Discipline</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="E.g. Economics" className='select' onChange={e => setDetails(details => ({
                                         ...details, subject: e.target.value
@@ -1847,7 +1749,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Title</h5>
                         </div>
-                        <input style={{width:'760px'}}
+                        <input style={{width:'660px'}}
                             type='text'
                             placeholder='Enter the title of your paper'
                             value={details.title}
@@ -1861,7 +1763,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Paper details</h5>
                         </div>
-                        <textarea style={{width:'760px'}}
+                        <textarea style={{width:'660px'}}
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
@@ -1894,6 +1796,7 @@ function Review() {
                                 type='radio'
                                 value='MLA'
                                 id='MLA'
+                                checked={details.paper_format === 'MLA'}
                                 onChange={handleChange9}
                             />
                             <label for='MLA'>MLA</label>
@@ -1903,7 +1806,8 @@ function Review() {
                                 type='radio'
                                 value='APA6'
                                 id='APA6'
-                                onChange={handleChange10}
+                                checked={details.paper_format === 'APA6'}
+                                onChange={handleChange9}
                             />
                             <label for='APA6'>APA 6</label>
                         </div>
@@ -1912,7 +1816,8 @@ function Review() {
                                 type='radio'
                                 value='APA7'
                                 id='APA7'
-                                onChange={handleChange11}
+                                checked={details.paper_format === 'APA7'}
+                                onChange={handleChange9}
                             />
                             <label for='APA7'>APA 7</label>
                         </div>
@@ -1921,16 +1826,18 @@ function Review() {
                                 type='radio'
                                 value='chicago'
                                 id='chicago'
-                                onChange={handleChange12}
+                                checked={details.paper_format === 'chicago'}
+                                onChange={handleChange9}
                             />
                             <label for='chicago'>Chicago \ Turabian</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='not'
+                                value='not applicable'
                                 id='not'
-                                onChange={handleChange13}
+                                checked={details.paper_format === 'not applicable'}
+                                onChange={handleChange9}
                             />
                             <label for='not'>Not Applicable</label>
                         </div>
@@ -1939,7 +1846,8 @@ function Review() {
                                 type='radio'
                                 value='other'
                                 id='other'
-                                onChange={handleChange14}
+                                checked={details.paper_format === 'other'}
+                                onChange={handleChange9}
                             />
                             <label for='other'>Other</label>
                         </div>
@@ -2118,9 +2026,10 @@ function Review() {
                         <div className='inputs'>
                             <div className='input1'>
                                 <input 
-                                    type='radio'
-                                    value='native'
+                                    type='checkbox'
+                                    value='Native speaker'
                                     id='native'
+                                    checked={details.upgrade === 'Native speaker'}
                                     onChange={handleChange26}
                                 />
                                 <label for='native'>Native speaker</label>
@@ -2128,27 +2037,30 @@ function Review() {
                             <div className='input1'>
                                 <input 
                                     type='radio'
-                                    value='smart'
+                                    value='Smart paper'
                                     id='smart'
-                                    onChange={handleChange27}
+                                    checked={details.upgrade === 'Smart paper'}
+                                    onChange={handleChange26}
                                 />
                                 <label for='smart'>Smart paper</label>
                             </div>
                             <div className='input1'>
                                 <input 
                                     type='radio'
-                                    value='sample'
+                                    value='Writers sample'
                                     id='sample'
-                                    onChange={handleChange28}
+                                    checked={details.upgrade === 'Writers sample'}
+                                    onChange={handleChange26}
                                 />
                                 <label for='sample'>Writer's samples</label>
                             </div>
                             <div className='input1'>
                                 <input 
                                     type='radio'
-                                    value='sources'
+                                    value='Copy of sources'
                                     id='sources'
-                                    onChange={handleChange29}
+                                    checked={details.upgrade === 'Copy of sources'}
+                                    onChange={handleChange26}
                                 />
                                 <label for='sources'>Copy of sources</label>
                             </div>
@@ -2163,10 +2075,10 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Programming language</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
-                                <Form.Select defaultValue="Select one" className='select' onChange={e => setDetails(details => ({
-                                        ...details, paper_type: e.target.value
+                                <Form.Select className='select' onChange={e => setDetails(details => ({
+                                        ...details, prog_language: e.target.value
                                         }))}>
                                 <option className='unselect' style={{color: 'grey'}}>Select one</option>
                                 <option value="Creative Writing">Python</option>
@@ -2184,9 +2096,9 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Category</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
-                                <Form.Select defaultValue="Web programming" className='select' onChange={e => setDetails(details => ({
+                                <Form.Select className='select' onChange={e => setDetails(details => ({
                                         ...details, programming_category: e.target.value
                                         }))}>
                                 <option value="Web programming">Web Programming</option>
@@ -2203,7 +2115,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Instructions</h5>
                         </div>
-                        <textarea style={{width:'760px'}}
+                        <textarea style={{width:'660px'}}
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
@@ -2303,7 +2215,7 @@ function Review() {
                                 value='Extra small'
                                 id='extra'
                                 checked={details.task_size === 'Extra small'}
-                                onChange={handleChange16}
+                                onChange={handleTaskChange}
                             />
                             <label for='extra'>Extra small</label>
                         </div>
@@ -2313,7 +2225,7 @@ function Review() {
                                 value='Small'
                                 id='small'
                                 checked={details.task_size === 'Small'}
-                                onChange={handleChange16}
+                                onChange={handleTaskChange}
                             />
                             <label for='small'>Small</label>
                         </div>
@@ -2323,7 +2235,7 @@ function Review() {
                                 value='Medium'
                                 id='medium'
                                 checked={details.task_size === 'Medium'}
-                                onChange={handleChange16}
+                                onChange={handleTaskChange}
                             />
                             <label for='medium'>Medium</label>
                         </div>
@@ -2333,12 +2245,11 @@ function Review() {
                                 value='Large'
                                 id='large'
                                 checked={details.task_size === 'Large'}
-                                onChange={handleChange16}
+                                onChange={handleTaskChange}
                             />
                             <label for='large'>Large</label>
                         </div>
                 </div>
-
             </div>
         )
     } else if (details.order_type === 'Calculations'){
@@ -2348,7 +2259,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Discipline</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="Select one" className='select' onChange={e => setDetails(details => ({
                                         ...details, paper_type: e.target.value
@@ -2369,7 +2280,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Software</h5>
                         </div>
-                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '760px'}}>
+                        <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="Web programming" className='select' onChange={e => setDetails(details => ({
                                         ...details, subject: e.target.value
@@ -2388,7 +2299,7 @@ function Review() {
                         <div className='level4-name'>
                             <h5>Instructions</h5>
                         </div>
-                        <textarea style={{width:'760px'}}
+                        <textarea style={{width:'660px'}}
                             placeholder='Write anything that you feel is important for the writer to consider.'
                             value={details.instructions}
                                 onChange={e => setDetails(details => ({
@@ -2485,42 +2396,42 @@ function Review() {
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='24h'
-                                id='24h'
-                                checked={details.deadline === '24h'}
-                                onChange={handleChange15}
+                                value='Extra small'
+                                id='extra'
+                                checked={details.task_size === 'Extra small'}
+                                onChange={handleTaskChange}
                             />
-                            <label for='24h'>Extra small</label>
+                            <label for='extra'>Extra small</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='2d'
-                                id='2d'
-                                checked={details.deadline === '2d'}
-                                onChange={handleChange15}
+                                value='Small'
+                                id='small'
+                                checked={details.task_size === 'Small'}
+                                onChange={handleTaskChange}
                             />
-                            <label for='2d'>Small</label>
+                            <label for='small'>Small</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='3d'
-                                id='3d'
-                                checked={details.deadline === '3d'}
-                                onChange={handleChange15}
+                                value='Medium'
+                                id='medium'
+                                checked={details.task_size === 'Medium'}
+                                onChange={handleTaskChange}
                             />
-                            <label for='3d'>Medium</label>
+                            <label for='medium'>Medium</label>
                         </div>
                         <div className='input1'>
                             <input 
                                 type='radio'
-                                value='5d'
-                                id='5d'
-                                checked={details.deadline === '5d'}
-                                onChange={handleChange15}
+                                value='Large'
+                                id='large'
+                                checked={details.task_size === 'Large'}
+                                onChange={handleTaskChange}
                             />
-                            <label for='5d'>Large</label>
+                            <label for='large'>Large</label>
                         </div>
                 </div>
 
@@ -2572,7 +2483,7 @@ function Review() {
                     <h5 style={pageStyle}>{count} page x $39.00 <span>${pageSwitch()}</span></h5>
                     <h5 style={slideStyle}>{count3} slide x $19.50 <span>${slideSwitch()}</span></h5>
                     <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
-                    <h5 style={progStyle}>{job_type} <span>$128.00</span></h5>
+                    <h5 style={progStyle}>{job_type} <span>${programmingPricing()}</span></h5>
                     <h5 style={paperLevelStyle}>Writer's preferences <span>${totalpreferencePrice()}</span></h5>
                 </div>
                 <div className='total-price'>

@@ -5,7 +5,7 @@ import {Button} from '@mui/material';
 function Header(){
     return (
         <div>
-            <Link to='/order'><Button variant="contained">Order now</Button></Link>
+            <Link to='/review'><Button variant="contained">Order now</Button></Link>
         </div>
     )
 }

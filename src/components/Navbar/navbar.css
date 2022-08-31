@@ -6,11 +6,10 @@
 }
 
 .nav ul {
-   padding: 0;
-   position: relative;
    display: flex;
    align-items: center;
-   width: 100%;
+   justify-content: space-between;
+   width: 70%;
 }
 .nav ul li{
    padding: 20px;

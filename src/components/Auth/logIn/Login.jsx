@@ -51,13 +51,13 @@ export default function Login() {
                 <h4>Hey, welcome back.</h4>
                 <hr />
 
-                <TextField id="standard-basic" label="Email" type="email" variant="standard" className={style.input1}
+                <TextField id="standard-b2asic" label="Email" type="email" variant="standard" className={style.input1}
                     value={details.email}
                     onChange={e => setDetails(details => ({
                         ...details, email: e.target.value
                     }))}
                  />
-                <TextField id="standard-basic" label="Password" type="password" variant="standard" className={style.input}
+                <TextField id="standard-b1asic" label="Password" type="password" variant="standard" className={style.input}
                     value={details.password}
                     onChange={e => setDetails(details => ({
                         ...details, password: e.target.value

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button} from '@mui/material';
-import {Link} from 'react-router-dom'; 
+import {Link} from 'react-router-dom';
+import './verify.css';
 
 class EmailVerified extends Component{
 
@@ -42,10 +43,12 @@ class EmailVerified extends Component{
             <div>
                     {this.state.valid === 1 && (
                       <>
-                      <div class="alert alert-success" role="alert">
-                        <p>Email Verification Done</p>
+                      <div className='email-verified'>
+                        <h4>Logo</h4>
+                        <h3>Thanks for signing up.</h3>
+                        <p>Click the button below to place an order</p>
+                        <Link to='/review'><Button variant='contained' size='small'>Place order</Button></Link>
                       </div>
-                      <Link to='/review'><Button variant='contained' size='small'>Place order</Button></Link>
                       </>
                     )}
                     {this.state.valid === 2 && (

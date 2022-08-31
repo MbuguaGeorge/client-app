@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import './info.css';
 import Head from '../Header/Header';
+import Payment from '../../Payments/payment';
 
 function Info(){
     
     const [order, setOrder] = useState([]);
+    const [id, setId] = useState('')
 
     // TODO:payment
     useEffect(() => {
         const url = window.location.pathname
         const field = url.split('/')
         const id = field[2]
+        setId(id)
 
         async function fetchData(){
             const data = await fetch(`http://127.0.0.1:8000/dashboard/recent/${id}`, {
@@ -28,7 +31,16 @@ function Info(){
 
         fetchData()
     },[])
-    console.log(order)
+
+    let checkout;
+
+    order.forEach(stat => {
+        if (stat.status === 'Recent'){      
+            checkout = (
+                <Payment style1={{position: 'relative', left: '70%', top: '50%'}} style2={{display: 'none'}} style3={{marginTop: '50px'}} pk={id}/>
+            )
+        }
+    })
 
     return (
         <>
@@ -40,6 +52,7 @@ function Info(){
                 <button>FILES</button>
             </div>
 
+            <div className='pay'>
             {order.map(new_order => (
                 <div className='order-info' key={new_order.id}>
                 <ul>
@@ -82,6 +95,8 @@ function Info(){
                 </ul>
             </div>
             ))}
+            {checkout}
+            </div>
         </div>
         </>
     )

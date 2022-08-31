@@ -1,5 +1,5 @@
 .order{
-    width: 950px;
+    width: 850px;
 }
 
 .level1, .level4, .level2, .level3, .level5, .level6, .level7, .level8, .level9, .level10, .level12, .level11, .level20, .tasklevel {
@@ -34,7 +34,7 @@
 }
 
 .level4 .input1{
-    width: 153px;
+    width: 130px;
 }
 .level4 .input1 label{
     padding: 10px;
@@ -55,19 +55,18 @@
     text-align: center;
 }
 .level8 .input1{
-    width: 135px;
+    width: 100px;
 }
 .level11 .inputs{
-    width: 80%;
+    width: 75%;
     text-align: left;
 }
 .level11 .input1 label{
     padding: 20px;
-    
 }
 
 .level12 .input1{
-    width: 250px;
+    width: 200px;
 }
 .level12 .input1 label{
     padding: 20px;
@@ -75,7 +74,7 @@
 }
 
 .level1 .input1{
-    width: 250px;
+    width: 200px;
 }
 .level1 .input1 label{
     padding: 30px;
@@ -164,22 +163,6 @@
     cursor: pointer;
 }
 
-.submit input[type='submit'] {
-    border: 1px solid #ff084e;
-    background-color: crimson;
-    outline: none;
-    border-radius: 3px;
-    padding: 10px 15px;
-    cursor: pointer;
-    color: white;
-    font-weight: 700;
-}
-
-.submit input[type='submit']:hover {
-    background-color: white;
-    color: crimson;
-    transition: all .5s;
-}
 
 .level7 .upload{
     border: 1px dotted dodgerblue;
@@ -193,23 +176,6 @@
 .level1{
     margin-left: 150px;
 }
-
-/* .tasklevel{
-    display: flex;
-    justify-content: left;
-    width: 100%;
-}
-
-.tasklevel .input1 label{
-    padding: 5px;
-    border: 1px solid #1d1d1d;
-    cursor: pointer;
-    z-index: 90;
-}
-
-.tasklevel .input label:hover{
-    background-color: skyblue;
-} */
 
 /* checkout */
 

@@ -1,28 +1,69 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './order.css';
+import {Link} from 'react-router-dom';
+import {Button} from '@mui/material'
 
 function Canceled() {
+
+    const [canceledOrders, setCanceledOrders] = useState([]);
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    async function fetchData(){
+        const data = await fetch('http://127.0.0.1:8000/dashboard/canceled', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        const res = await data.json()
+        setCanceledOrders(res)
+    }
+
     return (
-        <div className='recent'>
-            <div className='recent-details'>
-                <h3>History / See paper instructions</h3>
-                <p>#123456 / 2 pages / Undergraduate (yrs, 3-4)</p>
-                <p>Canceled: <span>Aug 18, 2022 at 8.25 AM</span></p>
-                <div className='verify'>
-                    <button>Messages</button>
-                    <button>Files</button>
+        <>
+            {canceledOrders.length >= 1 ? canceledOrders.map(recent => (
+                <div className='recent' key={recent.details.id}>
+                <div className='recent-details'>
+                    <h3>History / See paper instructions</h3>
+                    <p>#{recent.id} / {recent.details.pages} pages / {recent.details.academic_year}</p>
+                    <p>Deadline: <span>Aug 18, 2022 at 8.25 AM (If you pay right now)</span></p>
+                    <div className='verify'>
+                        <button>Messages</button>
+                        <button>Files</button>
+                        <Link to={`/info/${recent.id}`}><button>Review</button></Link>
+                    </div>
+                </div>
+                
+                <div className='recent-progress'>
+                    <h3>Canceled</h3>
+                    <p>Your order has been canceled.</p>
+                    <div className='payment'>
+                        <button onClick={async () => {
+                            await fetch(`http://127.0.0.1:8000/dashboard/status/${recent.id}`, {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({status: 'Recent'})
+                            })
+                            fetchData()
+                            }} >Re-order</button> 
+                        <h2>$64.00</h2>
+                    </div>
                 </div>
             </div>
-            
-            <div className='recent-progress'>
-                <h3>Canceled</h3>
-                <p>Your order is has been canceled. If you want us to proceed working on it, please, contact the Support Team.</p>
-                <div className='payment'>
-                    <button>Re-order</button>
-                    <h2>$64.00</h2>
+            )) : 
+                <div className='place-order'>
+                <Link to='/review'><Button variant='contained' size='small'>Place order</Button></Link>
                 </div>
-            </div>
-        </div>
+             }
+
+        </>
     )
 }
 

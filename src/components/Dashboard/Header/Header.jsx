@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function Head() {
+export default function Head({style}) {
     const [menu, setMenu] = React.useState('');
 
     const handleChange = (event) => {
@@ -17,7 +17,7 @@ export default function Head() {
     };
     return (
         <div className='profile-view'>
-            <h1 className="logo">Logo</h1>
+            <h1 className="logo" style={style}>Logo</h1>
 
             <div className="main">
                 <FormControl className="form" size='small'>
