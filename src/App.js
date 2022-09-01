@@ -4,7 +4,6 @@ import Home from './components/Home/home';
 import Order from './components/Order/Main/order';
 import Profile from './components/Dashboard/Profile/profile';
 import Services from './components/Our services/Services';
-import Pricing from './components/Pricing/Pricing';
 import Manage from './components/Manage orders/Manage';
 import Verify from './components/Auth/Verify/verify';
 import EmailVerified from './components/Auth/Verify/email_verified';
@@ -22,7 +21,6 @@ function App(){
         <Route exact path='/order' element={<Order/>} />
         <Route exact path='/profile' element={<Profile/>} />
         <Route exact path='/services' element={<Services />} />
-        <Route exact path='/pricing' element={<Pricing />} />
         <Route exact path='/manage' element={<Manage />} />
         <Route exact path='/verify' element={<Verify />} />
         <Route exact path='/email-verified/:token' element={<EmailVerified />} />

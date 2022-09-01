@@ -3,7 +3,6 @@ import './steps.css';
 import {ArrowBack} from '@mui/icons-material';
 import {Button} from '@mui/material';
 import Step7 from './step7';
-import Manage from '../../Manage orders/Manage';
 
 function Summary({step1}){
 

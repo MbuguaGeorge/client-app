@@ -13,6 +13,7 @@ function Step5(){
     const [next, setNext] = useState(false);
     const [back, setBack] = useState(false);
     const [cur, setCur] = useState(true);
+    setCur(true)
 
     const instructionRef = useRef();
 

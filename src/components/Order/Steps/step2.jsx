@@ -16,6 +16,7 @@ function Step2(){
     const [level3, setLevel3] = useState(false);
     const [level4, setLevel4] = useState(false);
     const [level5, setLevel5] = useState(false);
+    setCur(true)
 
     const [education, setEducation] = useState('')
 
