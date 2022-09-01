@@ -1697,11 +1697,11 @@ function Review() {
     }
     let price = totalPrice()
 
-    const [amount, setAmount] = useState(0);
-
     useEffect(() => {
         if (price > 0){
-            setAmount(price)
+            setDetails(prevState => ({
+                ...prevState, amount: price
+            }))
         }
     }, [price])
 

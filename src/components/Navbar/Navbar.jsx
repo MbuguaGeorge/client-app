@@ -24,7 +24,7 @@ export default function Navbar() {
             <div>Logo</div>
             <ul>
                 <li><Link to ="/">Home</Link></li>
-                <li><Link to = "/services">Our services</Link></li> 
+                <li><Link to = "/services">Our services</Link></li>
                 <li><Link to = "/pricing">Pricing</Link></li> 
                 {manage} 
                 <li><Link to = "/review"><button className='orderbtn'>Order now</button></Link></li>  

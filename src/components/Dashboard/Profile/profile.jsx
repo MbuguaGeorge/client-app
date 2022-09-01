@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './profile.css';
 import Recent from '../Order/recent';
 import Finished from '../Order/finished';
@@ -42,6 +42,13 @@ function Profile() {
             borderBottom: '2px solid skyblue',
             transition: 'all .2s'
         }
+    }
+
+    let navigate = useNavigate();
+    let authorization = localStorage.getItem('token');
+
+    if(!authorization){
+        return navigate('/', {replace:true})
     }
  
     return (

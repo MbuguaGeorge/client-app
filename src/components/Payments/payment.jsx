@@ -49,7 +49,7 @@ function Payment({style1, style2, style3, pk}){
             }))
         };
 
-    },[])
+    },[pk])
 
     const handleSubmit = (e) => {
         localStorage.removeItem('amount')
