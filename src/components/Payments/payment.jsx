@@ -17,7 +17,7 @@ function Payment({style1, style2, style3, pk}){
         ref: ''
     });
 
-    const [redirect, setRedirect] = useState(false);
+    const [valid, setValid] = useState(0);
 
     useEffect(() => {
 
@@ -33,7 +33,7 @@ function Payment({style1, style2, style3, pk}){
                     'Authorization': `Token ${localStorage.getItem('token')}`
                 }
             })
-            const res = data.json()
+            const res = await data.json()
             setCard(card => ({
                 ...card, ref: res.id
             }))
@@ -43,13 +43,13 @@ function Payment({style1, style2, style3, pk}){
             fetchData()
         }
 
-        if(pk !== ''){
+        if(pk){
             setCard(card => ({
                 ...card, ref: pk
             }))
         };
 
-    },[pk])
+    },[])
 
     const handleSubmit = (e) => {
         localStorage.removeItem('amount')
@@ -67,14 +67,18 @@ function Payment({style1, style2, style3, pk}){
             })
     
             const res = await data.json()
-            console.log(res)
+            if (res.status === 'success'){
+                setValid(1)
+            }else if(res.status === 'failed'){
+                setValid(2)
+            }
         }
         postData()
     };
 
     let navigate = useNavigate();
 
-    if (redirect) {
+    if (valid === 1) {
         return navigate('/pay/success', {replace: true})
     }
 

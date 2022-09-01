@@ -17,14 +17,14 @@ function Review() {
     const [count3, setCount3] = useState(0);
 
     const [details, setDetails] = useState({
-        pages: '',
-        charts: '',
-        slides: '',
+        pages: 0,
+        charts: 0,
+        slides: 0,
         subject: '',
         paper_type: '',
         instructions: '',
         paper_format: '',
-        references: '',
+        references: 0,
         order_type: 'Academics',
         academic_year: '',
         title: '',
@@ -34,6 +34,8 @@ function Review() {
         task_size: '',
         programming_category: '',
         prog_language: '',
+        software: '',
+        discipline: '',
         amount: 0
     });
 
@@ -51,7 +53,11 @@ function Review() {
             }))
         }else if(details.order_type === 'Programming'){
             setDetails(prevState => ({
-                ...prevState, programming_category: 'Web programming', task_size: 'Small', paper_level: '', pages: '', slides: '', subject: '', paper_format: '', academic_year: '', references: '', title: '', upgrade: '', 
+                ...prevState, programming_category: 'Web programming', task_size: 'Small', paper_level: '', subject: '', paper_format: '', academic_year: '', title: '', upgrade: '', discipline: '', software: '', pages: 0, references: 0, charts: 0, slides: 0
+            }))
+        }else if(details.order_type === 'Calculations'){
+            setDetails(prevState => ({
+                ...prevState, discipline: 'Enginnering', task_size: 'Small', paper_level: '', subject: '', paper_format: '', academic_year: '', title: '', upgrade: '', programming_category: '', prog_language: '', pages: 0, references: 0, charts: 0, slides: 0
             }))
         }
     },[details.order_type])
@@ -149,38 +155,38 @@ function Review() {
 
     let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle, progStyle;
 
-    if (count < 1 || details.order_type === 'Programming') {
+    if (count < 1 || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         pageStyle = {
             display: 'None'
         }
     }
-    if (count2 < 1 || details.order_type === 'Programming') {
+    if (count2 < 1 || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         chartStyle = {
             display: 'None'
         }
     } 
-    if (count3 < 1 || details.order_type === 'Programming') {
+    if (count3 < 1 || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         slideStyle = {
             display: 'None'
         }
     }
 
-    if (details.title === '' || details.order_type === 'Programming') {
+    if (details.title === '' || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         titleStyle = {
             display: 'None'
         }
     }
-    if (details.paper_type === '' || details.order_type === 'Programming') {
+    if (details.paper_type === '' || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         paperStyle = {
             display: 'None'
         }
     }
-    if (details.subject === '' || details.order_type === 'Programming') {
+    if (details.subject === '' || details.order_type === 'Programming' || details.order_type === 'Calculations') {
         subjectStyle = {
             display: 'None'
         }
     }
-    if (details.paper_level === 'Basic' || details.order_type === 'Programming' || details.paper_level === '') {
+    if (details.paper_level === 'Basic' || details.order_type === 'Programming' || details.paper_level === '' || details.order_type === 'Calculations') {
         paperLevelStyle = {
             display: 'None'
         }
@@ -1574,6 +1580,78 @@ function Review() {
         }
     }
 
+    function calculationsPricing(){
+        if (details.task_size === 'Extra small'){
+            switch(details.task_size === 'Extra small'){
+                case details.deadline === '24h':
+                    return (37.50).toFixed(2)
+                case details.deadline === '2d':
+                    return (32.50).toFixed(2)
+                case details.deadline === '3d':
+                    return (28.75).toFixed(2)
+                case details.deadline === '5d':
+                    return (26.25).toFixed(2)
+                case details.deadline === '7d':
+                    return (25.00).toFixed(2)
+                case details.deadline === '14d':
+                    return (23.75).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if(details.task_size === 'Small'){
+            switch(details.task_size === 'Small'){
+                case details.deadline === '24h':
+                    return (82.5).toFixed(2)
+                case details.deadline === '2d':
+                    return (71.5).toFixed(2)
+                case details.deadline === '3d':
+                    return (63.25).toFixed(2)
+                case details.deadline === '5d':
+                    return (57.75).toFixed(2)
+                case details.deadline === '7d':
+                    return (55.00).toFixed(2)
+                case details.deadline === '14d':
+                    return (52.25).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (details.task_size === 'Medium'){
+            switch(details.task_size === 'Medium'){
+                case details.deadline === '24h':
+                    return (165).toFixed(2)
+                case details.deadline === '2d':
+                    return (143).toFixed(2)
+                case details.deadline === '3d':
+                    return (126.5).toFixed(2)
+                case details.deadline === '5d':
+                    return (115.5).toFixed(2)
+                case details.deadline === '7d':
+                    return (110).toFixed(2)
+                case details.deadline === '14d':
+                    return (104.5).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (details.task_size === 'Large'){
+            switch(details.task_size === 'Large'){
+                case details.deadline === '24h':
+                    return (300).toFixed(2)
+                case details.deadline === '2d':
+                    return (260).toFixed(2)
+                case details.deadline === '3d':
+                    return (230).toFixed(2)
+                case details.deadline === '5d':
+                    return (210).toFixed(2)
+                case details.deadline === '7d':
+                    return (200).toFixed(2)
+                case details.deadline === '14d':
+                    return (190).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
+
     function totalpreferencePrice(){
 
         let pagepreference = pagepreferencePrice()
@@ -1603,6 +1681,7 @@ function Review() {
         let slidePrice = slideSwitch()
         let totalpreference = totalpreferencePrice()
         let totalprog = programmingPricing()
+        let totalcalc = calculationsPricing()
         let totalPrice;
 
         if (details.order_type === 'Academics'){
@@ -1610,6 +1689,9 @@ function Review() {
             return totalPrice.toFixed(2)
         }else if(details.order_type === 'Programming'){
             totalPrice = parseFloat(totalprog)
+            return totalPrice.toFixed(2)
+        }else if(details.order_type === 'Calculations'){
+            totalPrice = parseFloat(totalcalc)
             return totalPrice.toFixed(2)
         }
     }
@@ -1622,7 +1704,6 @@ function Review() {
             setAmount(price)
         }
     }, [price])
-    console.log(amount)
 
     const [ref, setref] = useState('');
 
@@ -2273,14 +2354,14 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="Select one" className='select' onChange={e => setDetails(details => ({
-                                        ...details, paper_type: e.target.value
+                                        ...details, discipline: e.target.value
                                         }))}>
                                 <option className='unselect' style={{color: 'grey'}}>Select one</option>
-                                <option value="Creative Writing">Python</option>
-                                <option value="Essay">C++</option>
-                                <option value="Research Paper">C</option>
-                                <option value="Speech">Java</option>
-                                <option value="Business Plan">JavaScript</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Aviation">Aviation</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Statistics">Statistics</option>
+                                <option value="Chemistry">Chemistry</option>
                                 </Form.Select>
                             </Form.Group>
                         </div>
@@ -2294,13 +2375,13 @@ function Review() {
                         <div className="col-sm-12 col-md-6 mt-3" style={{width: '660px'}}>
                             <Form.Group controlId="formGridState">
                                 <Form.Select defaultValue="Web programming" className='select' onChange={e => setDetails(details => ({
-                                        ...details, subject: e.target.value
+                                        ...details, software: e.target.value
                                         }))}>
-                                <option value="Classic ENglish Literature">Web Programming</option>
-                                <option value="Film & Theatre Studies">Mobile application development</option>
-                                <option value="History">Database design and optimization</option>
-                                <option value="Music">Desktop application development</option>
-                                <option value="Philosophy">Computer science</option>
+                                <option value="Microsoft Excel">Microsoft Excel</option>
+                                <option value="Microsoft Word">Microsoft Word</option>
+                                <option value="SPSS">SPSS</option>
+                                <option value="STATA">STATA</option>
+                                <option value="Other">Other</option>
                                 </Form.Select>
                             </Form.Group>
                         </div>
@@ -2469,6 +2550,7 @@ function Review() {
         job_type = details.programming_category
     }else if(details.order_type === 'Calculations'){
         title = 'Calculation'
+        job_type = details.discipline
     }
 
     return (
