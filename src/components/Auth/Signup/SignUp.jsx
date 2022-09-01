@@ -20,6 +20,16 @@ export default function SignUp() {
         password: ''
     })
 
+    const handleChange = (e) => {
+        setProfile(prevState => ({
+            ...prevState, email: e.target.value, password: e.target. value
+        }))
+
+        setCreds(prevState => ({
+            ...prevState, email: e.target.value, password: e.target. value
+        }))
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         await fetch('https://georgeclientapp.herokuapp.com/profile/register', {
@@ -70,19 +80,11 @@ export default function SignUp() {
 
                     <TextField id="standard-basi" label="Email" type="email" variant="standard" className={style.input1}   required 
                         value={profile.email}
-                        onChange={e => setProfile(profile => ({
-                            ...profile, email: e.target.value
-                        })), setCreds(prevState => ({
-                            ...prevState, email: e.target.value
-                        }))}
+                        onChange={handleChange}
                     />
                     <TextField id="standard-basc" label="Password" type="password" variant="standard" className={style.input} required
                         value={profile.password}
-                        onChange={e => setProfile(profile => ({
-                            ...profile, password: e.target.value
-                        })), setCreds(prevState => ({
-                            ...prevState, password: e.target.value
-                        }))}
+                        onChange={handleChange}
                     />
                     <TextField id="standard-baic" label="Name(optional)" type="text" variant="standard" className={style.input} required
                         value={profile.name}
