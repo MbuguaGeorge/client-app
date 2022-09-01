@@ -22,11 +22,21 @@ export default function SignUp() {
 
     const handleChange = (e) => {
         setProfile(prevState => ({
-            ...prevState, email: e.target.value, password: e.target.value
+            ...prevState, email: e.target.value
         }))
 
         setCreds(prevState => ({
-            ...prevState, email: e.target.value, password: e.target.value
+            ...prevState, email: e.target.value
+        }))
+    }
+
+    const handleChange1 = (e) => {
+        setProfile(prevState => ({
+            ...prevState, password: e.target.value
+        }))
+
+        setCreds(prevState => ({
+            ...prevState, password: e.target.value
         }))
     }
 
@@ -84,7 +94,7 @@ export default function SignUp() {
                     />
                     <TextField id="standard-basc" label="Password" type="password" variant="standard" className={style.input} required
                         value={profile.password}
-                        onChange={handleChange}
+                        onChange={handleChange1}
                     />
                     <TextField id="standard-baic" label="Name(optional)" type="text" variant="standard" className={style.input} required
                         value={profile.name}
