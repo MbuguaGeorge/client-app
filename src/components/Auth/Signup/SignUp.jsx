@@ -51,7 +51,8 @@ export default function SignUp() {
                 console.log(data);
             }
         ).then(
-            await fetch('https://georgeclientapp.herokuapp.com/profile/login', {
+            async () => { 
+                await fetch('https://georgeclientapp.herokuapp.com/profile/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(creds)
@@ -66,7 +67,7 @@ export default function SignUp() {
                         }
                     })
                 }
-            )
+            )}
         ).then(
             () => setRedirect(true)
         ).catch(error => console.log(error))
