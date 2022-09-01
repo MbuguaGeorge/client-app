@@ -17,7 +17,7 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await fetch('http://georgeclientapp.herokuapp.com/profile/register', {
+        await fetch('https://georgeclientapp.herokuapp.com/profile/register', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(profile)
@@ -26,7 +26,7 @@ export default function SignUp() {
                 console.log(data);
             }
         ).then(
-            await fetch('http://georgeclientapp.herokuapp.com/profile/login', {
+            await fetch('https://georgeclientapp.herokuapp.com/profile/login', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(profile)

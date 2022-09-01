@@ -16,7 +16,7 @@ function Info(){
         setId(id)
 
         async function fetchData(){
-            const data = await fetch(`http://georgeclientapp.herokuapp.com/dashboard/recent/${id}`, {
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recent/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1714,7 +1714,7 @@ function Review() {
         // const uploadData = new FormData();
         // uploadData.append('requirement.instruction_file', details.requirement.instruction_file, details.requirement.instruction_file.name)
 
-        fetch('http://georgeclientapp.herokuapp.com/orders/summary', {
+        fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -12,7 +12,7 @@ function Canceled() {
     }, [])
 
     async function fetchData(){
-        const data = await fetch('http://georgeclientapp.herokuapp.com/dashboard/canceled', {
+        const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/canceled', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -43,7 +43,7 @@ function Canceled() {
                     <p>Your order has been canceled.</p>
                     <div className='payment'>
                         <button onClick={async () => {
-                            await fetch(`http://georgeclientapp.herokuapp.com/dashboard/status/${recent.id}`, {
+                            await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${recent.id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': `Token ${localStorage.getItem('token')}`,

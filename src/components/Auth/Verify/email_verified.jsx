@@ -18,7 +18,7 @@ class EmailVerified extends Component{
             this.setState({email_token: token})
         }
 
-        fetch('http://georgeclientapp.herokuapp.com/profile/validate', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/validate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

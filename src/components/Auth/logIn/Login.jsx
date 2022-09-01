@@ -16,7 +16,7 @@ export default function Login() {
         e.preventDefault()
         console.log(details)
 
-        fetch('http://georgeclientapp.herokuapp.com/profile/login', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(details)
