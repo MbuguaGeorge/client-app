@@ -26,7 +26,7 @@ function Payment({style1, style2, style3, pk}){
         const id = field[3]
 
         async function fetchData(){
-            const data = await fetch(`http://127.0.0.1:8000/dashboard/neworder/${id}`, {
+            const data = await fetch(`http://georgeclientapp.herokuapp.com/dashboard/neworder/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application.json',
@@ -57,7 +57,7 @@ function Payment({style1, style2, style3, pk}){
         console.log(card)
 
         async function postData(){
-            const data = await fetch('http://127.0.0.1:8000/card/receive-payment', {
+            const data = await fetch('http://georgeclientapp.herokuapp.com/card/receive-payment', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${localStorage.getItem('token')}`,

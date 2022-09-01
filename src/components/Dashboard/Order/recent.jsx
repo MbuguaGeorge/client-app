@@ -12,7 +12,7 @@ function Recent() {
     }, [])
 
     async function fetchData(){
-        const data = await fetch('http://127.0.0.1:8000/dashboard/list', {
+        const data = await fetch('http://georgeclientapp.herokuapp.com/dashboard/list', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -43,7 +43,7 @@ function Recent() {
                     <p>Your order is unpaid. Please check your email and follow the tips to complete the payment procedure.</p>
                     <div className='payment'>
                         <button onClick={async () => {
-                            await fetch(`http://127.0.0.1:8000/dashboard/status/${recent.id}`, {
+                            await fetch(`http://georgeclientapp.herokuapp.com/dashboard/status/${recent.id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': `Token ${localStorage.getItem('token')}`,
