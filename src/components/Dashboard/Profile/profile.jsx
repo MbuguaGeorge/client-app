@@ -48,7 +48,7 @@ function Profile() {
     let authorization = localStorage.getItem('token');
 
     if(!authorization){
-        return navigate('/', {replace:true})
+        return navigate('/', {replace: true})
     }
  
     return (
