@@ -22,11 +22,11 @@ export default function SignUp() {
 
     const handleChange = (e) => {
         setProfile(prevState => ({
-            ...prevState, email: e.target.value, password: e.target. value
+            ...prevState, email: e.target.value, password: e.target.value
         }))
 
         setCreds(prevState => ({
-            ...prevState, email: e.target.value, password: e.target. value
+            ...prevState, email: e.target.value, password: e.target.value
         }))
     }
 
