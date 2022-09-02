@@ -15,7 +15,7 @@ function MyProfile(){
     }, []);
 
     async function fetchData(){
-        const data = await fetch('https://georgeclientapp.com/profile/cur', {
+        const data = await fetch('https://georgeclientapp.herokuapp.com/profile/cur', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function MyProfile(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch('https://georgeclientapp.com/profile/update', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
