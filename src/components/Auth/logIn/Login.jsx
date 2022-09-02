@@ -26,14 +26,13 @@ export default function Login() {
                 res.json().then(data => {
                     if(data.token){
                         localStorage.setItem('token', data.token)
+                        setRedirect(!redirect)
                     }
                     if(!data.token){
-                        localStorage.setItem('token', data.error)
+                        alert('Wrong credentials')
                     }
                 })
             }
-        ).then(
-            () => setRedirect(!redirect)
         ).catch(error => console.log(error))
     };
 
