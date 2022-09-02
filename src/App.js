@@ -11,6 +11,7 @@ import Review from './components/Dashboard/Review/review';
 import Payment from './components/Payments/payment';
 import Info from './components/Dashboard/Instructions/info';
 import Success from './components/Payments/success';
+import Invalid from './components/Payments/invalid';
 
 function App(){
   return(
@@ -28,6 +29,7 @@ function App(){
         <Route exact path='/order/pay/:id' element={<Payment />} />
         <Route exact path='/info/:id' element={<Info />} />
         <Route exact path='pay/success' element={<Success />} />
+        <Route exact path='pay/invalid' element={<Invalid />} />
       </Routes>
     </Router>
   )

@@ -53,7 +53,7 @@ function Canceled() {
                             })
                             fetchData()
                             }} >Re-order</button> 
-                        <h2>$64.00</h2>
+                        <h2 style={{color: 'black'}}>${recent.amount}</h2>
                     </div>
                 </div>
             </div>

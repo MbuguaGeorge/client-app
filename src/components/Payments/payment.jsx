@@ -5,21 +5,39 @@ import Head from '../Dashboard/Header/Header';
 
 function Payment({style1, style2, style3, pk}){
 
-    const total = localStorage.getItem('amount')
-
     const [card, setCard] = useState({
         card_no: '',
         expiry: '',
         card_cvv: '',
         name: '',
         email: '',
-        amount: total,
+        amount: '',
         ref: ''
     });
 
     const [valid, setValid] = useState(0);
 
     useEffect(() => {
+
+        async function fetchData1(){
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recentorder/${pk}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application.json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+            const res = await data.json()
+            let price = res[0].details.amount
+            setCard(card => ({
+                ...card, ref: pk, amount: price
+            }))
+        }
+
+        if(pk){
+            fetchData1()
+
+        }else{
 
         const url = window.location.pathname
         const field = url.split('/')
@@ -35,19 +53,12 @@ function Payment({style1, style2, style3, pk}){
             })
             const res = await data.json()
             setCard(card => ({
-                ...card, ref: res.id
+                ...card, ref: res.id, amount: res.details.amount
             }))
         }
 
-        if(id){
-            fetchData()
-        }
 
-        if(pk){
-            setCard(card => ({
-                ...card, ref: pk
-            }))
-        };
+        fetchData()}
 
     },[pk])
 
@@ -80,7 +91,9 @@ function Payment({style1, style2, style3, pk}){
 
     if (valid === 1) {
         return navigate('/pay/success', {replace: true})
-    }
+    }else if (valid === 2){
+        return navigate('/pay/invalid', {replace: true})
+    };
 
     return (
         <>
@@ -160,7 +173,7 @@ function Payment({style1, style2, style3, pk}){
             <div>
                 <div className='price' style={style2}>
                     <h1>Total Price</h1>
-                    <h2>${total}</h2>
+                    <h2>${card.amount}</h2>
                 </div>
             </div>
         </div>
