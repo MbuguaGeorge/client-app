@@ -1,0 +1,66 @@
+.myprofile{
+    padding-top: 40px;
+    margin: 50px 50px;
+    width: 60%;
+}
+
+.myprofile h1{
+    font-size: 1.4rem;
+    color: #111;
+    font-weight: 600;
+    padding-bottom: 30px;
+}
+
+.myprofile-form{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+    padding: 40px 20px;
+}
+
+.myprofile-form h2{
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ddd;
+}
+
+.myprofile-form form ul{
+    list-style: none;
+}
+
+.myprofile-form form ul li{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.myprofile-form form ul li h4{
+    color: #111;
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.myprofile-form form ul li input[type='text']{
+    outline: none;
+    font-size: 1rem;
+    padding: 4px 10px;
+    border: 1px solid #1d1d1d;
+    border-radius: 3px;
+    width: 400px;   
+}
+
+.myprofile-form form input[type='submit']{
+    float: right;
+    margin-right: 30px;
+    border: 1px solid skyblue;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    background-color: skyblue;
+    padding: 5px 10px;
+}
+
+.myprofile-form form {
+    padding-bottom: 20px;
+}
