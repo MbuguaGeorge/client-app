@@ -14,7 +14,6 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(details)
 
         fetch('https://georgeclientapp.herokuapp.com/profile/login', {
             method: 'POST',

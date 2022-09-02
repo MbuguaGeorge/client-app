@@ -42,7 +42,7 @@ function Recent() {
                     <h3>progress</h3>
                     <p>Your order is unpaid. Please check your email and follow the tips to complete the payment procedure.</p>
                     <div className='payment'>
-                        <button onClick={async () => {
+                        {recent.complete === false ? <button onClick={async () => {
                             await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${recent.id}`, {
                                 method: 'PUT',
                                 headers: {
@@ -52,7 +52,8 @@ function Recent() {
                                 body: JSON.stringify({status: 'Canceled'})
                             })
                             fetchData()
-                            }} >Cancel order</button> 
+                            }}
+                        >Cancel order</button> : <div></div>}
                         <h2 style={{color: 'black'}}>${recent.details.amount}</h2>
                     </div>
                 </div>
