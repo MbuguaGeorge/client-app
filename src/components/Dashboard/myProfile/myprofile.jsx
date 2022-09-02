@@ -15,7 +15,7 @@ function MyProfile(){
     }, []);
 
     async function fetchData(){
-        const data = await fetch('http://127.0.0.1:8000/profile/cur', {
+        const data = await fetch('https://georgeclientapp.com/profile/cur', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function MyProfile(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://127.0.0.1:8000/profile/update', {
+        fetch('https://georgeclientapp.com/profile/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
