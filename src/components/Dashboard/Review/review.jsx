@@ -1706,13 +1706,16 @@ function Review() {
     }, [price])
 
     const [ref, setref] = useState('');
+    const token_exist = localStorage.getItem('token')
 
     const handleSubmit = (e) => {
-        localStorage.setItem('amount', price)
         e.preventDefault()
-        console.log(details)
         // const uploadData = new FormData();
         // uploadData.append('requirement.instruction_file', details.requirement.instruction_file, details.requirement.instruction_file.name)
+
+        if(!token_exist){
+            alert('create an account or sign in to proceed')
+        }
 
         fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
             method: 'POST',
