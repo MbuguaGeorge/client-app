@@ -1715,9 +1715,7 @@ function Review() {
 
         if(!token_exist){
             alert('create an account or sign in to proceed')
-        }
-
-        fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
+        }else if (token){fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1730,7 +1728,7 @@ function Review() {
             res => setref(res.id)
         ).then(
             () => setRedirect(!redirect)
-        ).catch(err => console.log(err))
+        ).catch(err => console.log(err))}
     };
 
     const navigate = useNavigate();
