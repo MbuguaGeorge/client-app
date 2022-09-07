@@ -84,7 +84,7 @@ export default function SignUp() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className={style.registerForm}>
+                <div className={style.registerForm} >
                     <h2 className={style.mb5}>Sign Up</h2>
                     <h4>Please fill in this form to create an account</h4>
                     <hr />

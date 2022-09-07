@@ -2,7 +2,7 @@
     width: 850px;
 }
 
-.level1, .level4, .level2, .level3, .level5, .level6, .level7, .level8, .level9, .level10, .level12, .level11, .level20, .tasklevel {
+.level1, .level4, .level2, .level3, .level5, .level6, .level7, .level8, .level9, .level10, .level12, .level11, .level20, .tasklevel, .spacing {
     display: flex;
     margin: 20px;
     align-items: center;
@@ -15,7 +15,7 @@
     float: right;
 }
 
-.level1 .input1, .level4 .input1, .level8 .input1, .level9 .input1, .level12 .input1, .level11 .input1, .tasklevel .input1 {
+.level1 .input1, .level4 .input1, .level8 .input1, .level9 .input1, .level12 .input1, .tasklevel .input1, .spacing .input1 {
     margin: 0;
     border: 1px solid #111;
     display: flex;
@@ -23,6 +23,20 @@
     flex-direction: column;
     justify-content: center;
     font-size: 1rem;
+}
+
+.level11 .input1{
+    border: 1px solid #F9F9F9;
+    padding-left: 40px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.level11 .input1 input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 .tasklevel .input1{
@@ -59,29 +73,48 @@
 }
 .level11 .inputs{
     width: 75%;
-    text-align: left;
 }
-.level11 .input1 label{
+.level11 .inputs .input1 label{
     padding: 20px;
+    cursor: pointer;
+}
+.level11 .inputs .input1 label span{
+    text-align: center;
 }
 
 .level12 .input1{
     width: 200px;
 }
 .level12 .input1 label{
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    border-bottom: 1px solid #F9F9F9;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .level1 .input1{
     width: 200px;
 }
 .level1 .input1 label{
-    padding: 30px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.level1 .input1 label span{
+    color: #ddd;
+}
+
+.spacing .input1 label{
+    padding: 8px;
+    width: 100px;
     text-align: center;
 }
 
-.tasklevel .input1 label, .level1 .input1 label, .level4 .input1 label, .level8 .input1 label, .level9 .input1 label, .level12 .input1 label, .level11 .input1 label{
+.tasklevel .input1 label, .level1 .input1 label, .level4 .input1 label, .level8 .input1 label, .level9 .input1 label, .level12 .input1 label, .spacing .input1 label{
     z-index: 90;
     margin-top: 0;
     cursor: pointer;
@@ -98,7 +131,7 @@
     margin-right: 60px;
 }
 
-.level1 .input1 input, .level4 .input1 input, .level8 .input1 input, .level9 .input1 input, .level12 .input1 input, .level11 .input1 input, .tasklevel .input1 input {
+.level1 .input1 input, .level4 .input1 input, .level8 .input1 input, .level9 .input1 input, .level12 .input1 input, .tasklevel .input1 input, .spacing .input1 input {
     width: 100%;
     opacity: 0.01;
     z-index: 100;
@@ -107,11 +140,11 @@
 	color: black;
 }
 
-.level1 .input1:hover, .level4 .input1:hover, .level8 .input1:hover, .level9 .input1:hover, .level12 .input1:hover, .level11 .input1:hover {
+.level1 .input1:hover, .level4 .input1:hover, .level8 .input1:hover, .level9 .input1:hover, .level12 .input1:hover, .level11 .input1:hover, .spacing .input1:hover {
     background-color: skyblue;
 }
 
-.tasklevel .input1 input[type='radio']:checked+label, .Checked+label, .level1 .input1 input[type='radio']:checked+label, .Checked+label, .level4 .input1 input[type='radio']:checked+label, .Checked+label, .level8 .input1 input[type='radio']:checked+label, .Checked+label, .level9 .input1 input[type='radio']:checked+label, .Checked+label, .level12 .input1 input[type='radio']:checked+label, .Checked+label, .level11 .input1 input[type='radio']:checked+label, .Checked+label{
+.tasklevel .input1 input[type='radio']:checked+label, .Checked+label, .level1 .input1 input[type='radio']:checked+label, .Checked+label, .level4 .input1 input[type='radio']:checked+label, .Checked+label, .level8 .input1 input[type='radio']:checked+label, .Checked+label, .level9 .input1 input[type='radio']:checked+label, .Checked+label, .level12 .input1 input[type='radio']:checked+label, .Checked+label, .level11 .input1 input[type='radio']:checked+label, .Checked+label, .spacing .input1 input[type='radio']:checked+label, .Checked+label{
     background-color: skyblue;
 }
 
@@ -229,4 +262,8 @@
     padding-top: 10px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 5px;
+}
+
+.account h4{
+    margin-left: 100px;
 }

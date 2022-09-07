@@ -62,7 +62,7 @@ function Profile() {
                 </ul>
             </div>
 
-            <div className='details'>
+            <div className='details1'>
                 <button onClick={() => setSelected('recentOrders')} style={recentStyle}>RECENT</button>
                 <button onClick={() => setSelected('finishedOrders')} style={finishStyle}>FINISHED</button>
                 <button onClick={() => setSelected('canceledOrders')} style={cancelStyle}>CANCELED</button>

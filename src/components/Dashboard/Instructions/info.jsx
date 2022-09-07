@@ -16,7 +16,7 @@ function Info(){
         setId(id)
 
         async function fetchData(){
-            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recent/${id}`, {
+            const data = await fetch(`http://127.0.0.1:8000/dashboard/recent/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,12 +32,31 @@ function Info(){
         fetchData()
     },[])
 
+    const handleReorder = async() => {
+        await fetch(`http://127.0.0.1:8000/dashboard/status/${id}`, {
+            method: 'PUT',
+            headers: {
+            'Authorization': `Token ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({status: 'Recent'})
+        })
+
+        window.location.reload()
+    };
+
     let checkout;
 
     order.forEach(stat => {
         if (stat.status === 'Recent'){      
             checkout = (
-                <Payment style1={{position: 'relative', left: '70%', top: '50%'}} style2={{display: 'none'}} style3={{marginTop: '50px'}} pk={id}/>
+                <Payment style1={{position: 'relative', left: '70%'}} style2={{display: 'none'}} style3={{marginTop: '105px'}} pk={id}/>
+            )
+        } else if(stat.status === 'Canceled'){
+            checkout = (
+                <div className='reorder_btn'>
+                <button style={{position: 'absolute', left: '70%', top: '60%'}} onClick={handleReorder}>Re-order</button>
+                </div>
             )
         }
     })
@@ -46,6 +65,9 @@ function Info(){
         <>
         <Head />
         <div className='info'>
+        <div className='paper_instructions'>
+        <h1>SEE PAPER INSTRUCTIONS <span>#{id}</span></h1>
+        </div>
             <div className='details'>
                 <button>INFO</button>
                 <button>MESSAGES</button>

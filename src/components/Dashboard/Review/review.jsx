@@ -15,6 +15,7 @@ function Review() {
     const [count1, setCount1] = useState(0);
     const [count2, setCount2] = useState(0);
     const [count3, setCount3] = useState(0);
+    const [spacing, setSpacing] = useState('double')
 
     const [details, setDetails] = useState({
         pages: 0,
@@ -83,6 +84,10 @@ function Review() {
         }))
     };
 
+    const handleSpacing = (e) => {
+        setSpacing(e.target.value)
+    }
+
     const instructionRef = useRef();
     
     const incrementCount = (event) =>{
@@ -132,11 +137,10 @@ function Review() {
     };
 
     const handleTaskChange = (e) => {
+        e.preventDefault()
         setDetails(details => ({
             ...details, task_size: e.target.value
         }))
-
-        console.log(details.task_size)
     }
 
     const handleChange23 = (e) => {
@@ -214,105 +218,305 @@ function Review() {
         if (level2 === 'High School'){
             switch(details.academic_year === 'High School'){
                 case details.deadline === '4h':
-                    return (count * 39).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 39 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 39).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '8h':
-                    return (count * 34).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 34 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 34).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '24h':
-                    return (count * 27).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 27 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 27).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '2d':
-                    return (count * 24).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 24 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 24).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '3d':
-                    return (count * 20).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 20 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 20).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '5d':
-                    return (count * 18).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 18 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 18).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '7d':
-                    return (count * 16).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 16 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 16).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '14d':
-                    return (count * 10).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 10 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 10).toFixed(2)
+                    }
+                    break;
                 default:
                     return 0
             }
         } else if (level2 === 'Undergraduate (years 1-2)'){
             switch(details.academic_year === 'Undergraduate (years 1-2)'){
                 case details.deadline === '4h':
-                    return (count * 43).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 43 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 43).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '8h':
-                    return (count * 39).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 39 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 39).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '24h':
-                    return (count * 30).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 30 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 30).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '2d':
-                    return (count * 26).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 26 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 26).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '3d':
-                    return (count * 24).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 24 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 24).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '5d':
-                    return (count * 19).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 19 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 19).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '7d':
-                    return (count * 17).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 17 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 17).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '14d':
-                    return (count * 15).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 15 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 15).toFixed(2)
+                    }
+                    break;
                 default:
                     return 0
             }
         } else if (level2 === 'Undergraduate (years 3-4)'){
             switch(details.academic_year === 'Undergraduate (years 3-4)'){
                 case details.deadline === '4h':
-                    return (count * 51).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 51 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 51).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '8h':
-                    return (count * 41).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 41 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 41).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '24h':
-                    return (count * 32).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 32 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 32).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '2d':
-                    return (count * 30).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 30 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 30).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '3d':
-                    return (count * 28).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 28 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 28).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '5d':
-                    return (count * 23).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 23 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 23).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '7d':
-                    return (count * 21).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 21 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 21).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '14d':
-                    return (count * 20).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 20 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 20).toFixed(2)
+                    }
+                    break;
                 default:
                     return 0
             }
         } else if (level2 === 'Graduate'){
             switch(details.academic_year === 'Graduate'){
                 case details.deadline === '4h':
-                    return (count * 61).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 61 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 61).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '8h':
-                    return (count * 48).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 48 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 48).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '24h':
-                    return (count * 39).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 39 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 39).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '2d':
-                    return (count * 36).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 36 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 36).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '3d':
-                    return (count * 33).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 33 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 33).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '5d':
-                    return (count * 29).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 29 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 29).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '7d':
-                    return (count * 27).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 27 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 27).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '14d':
-                    return (count * 25).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 25 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 25).toFixed(2)
+                    }
+                    break;
                 default:
                     return 0
             }
         } else if (level2 === 'PhD'){
             switch(details.academic_year === 'PhD'){
                 case details.deadline === '4h':
-                    return (count * 73).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 73 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 73).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '8h':
-                    return (count * 58).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 58 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 58).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '24h':
-                    return (count * 50).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 50 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 50).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '2d':
-                    return (count * 45).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 45 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 45).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '3d':
-                    return (count * 37).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 37 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 37).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '5d':
-                    return (count * 35).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 35 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 35).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '7d':
-                    return (count * 31).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 31 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 31).toFixed(2)
+                    }
+                    break;
                 case details.deadline === '14d':
-                    return (count * 29).toFixed(2)
+                    if(spacing === 'single'){
+                        return (count * 29 * 2).toFixed(2)
+                    }else if(spacing === 'double'){
+                        return (count * 29).toFixed(2)
+                    }
+                    break;
                 default:
                     return 0
             }
@@ -1715,7 +1919,8 @@ function Review() {
 
         if(!token_exist){
             alert('create an account or sign in to proceed')
-        }else if (token){fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
+        }else if (token){
+            fetch('https://georgeclientapp.herokuapp.com/orders/summary', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1728,7 +1933,8 @@ function Review() {
             res => setref(res.id)
         ).then(
             () => setRedirect(!redirect)
-        ).catch(err => console.log(err))}
+        ).catch(err => console.log(err))
+    }
     };
 
     const navigate = useNavigate();
@@ -1794,7 +2000,7 @@ function Review() {
                                 checked={details.academic_year === 'High School'}
                                 onChange={handleChange4}
                             />
-                            <label for='highschool'>High School</label>
+                            <label for='highschool' style={{padding: '21px'}}>High School</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -1824,7 +2030,7 @@ function Review() {
                                 checked={details.academic_year === 'Graduate'}
                                 onChange={handleChange4}
                             />
-                            <label for='graduate'>Graduate</label>
+                            <label for='graduate' style={{padding: '21px'}}>Graduate</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -1834,7 +2040,7 @@ function Review() {
                                 checked={details.academic_year === 'PhD'}
                                 onChange={handleChange4}
                             />
-                            <label for='phd'>PhD</label>
+                            <label for='phd' style={{padding: '21px'}}>PhD</label>
                         </div>
                     </div>
 
@@ -1892,7 +2098,7 @@ function Review() {
                                 checked={details.paper_format === 'MLA'}
                                 onChange={handleChange9}
                             />
-                            <label for='MLA'>MLA</label>
+                            <label for='MLA' style={{padding: '15px'}}>MLA</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -1902,7 +2108,7 @@ function Review() {
                                 checked={details.paper_format === 'APA6'}
                                 onChange={handleChange9}
                             />
-                            <label for='APA6'>APA 6</label>
+                            <label for='APA6' style={{padding: '15px'}}>APA 6</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -1912,7 +2118,7 @@ function Review() {
                                 checked={details.paper_format === 'APA7'}
                                 onChange={handleChange9}
                             />
-                            <label for='APA7'>APA 7</label>
+                            <label for='APA7' style={{padding: '15px'}}>APA 7</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -1942,7 +2148,7 @@ function Review() {
                                 checked={details.paper_format === 'other'}
                                 onChange={handleChange9}
                             />
-                            <label for='other'>Other</label>
+                            <label for='other' style={{padding: '15px'}}>Other</label>
                         </div>
                     </div>
 
@@ -2041,6 +2247,31 @@ function Review() {
                             <input type="text" value={count}/>
                             <button onClick={incrementCount}>+</button>
                         </div>
+                        <div style={{marginLeft: '50px'}}>
+                            <h5>Spacing</h5>
+                        </div>
+                        <div className='spacing'>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='single'
+                                id='single'
+                                checked={spacing === 'single'}
+                                onChange={handleSpacing}
+                            />
+                            <label for='single'>Single</label>
+                        </div>
+                        <div className='input1'>
+                            <input 
+                                type='radio'
+                                value='double'
+                                id='double'
+                                checked={spacing === 'double'}
+                                onChange={handleSpacing}
+                            />
+                            <label for='double'>Double</label>
+                        </div>
+                        </div>
                     </div>
 
                     <div className='level10'>
@@ -2089,6 +2320,7 @@ function Review() {
                                 onChange={handleChange23}
                             />
                             <label for='basic'>Best Available</label>
+                            <label for='basic'>Standard writer</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -2098,7 +2330,8 @@ function Review() {
                                 checked={details.academic_year === 'Standard'}
                                 onChange={handleChange23}
                             />
-                            <label for='standard'>Advanced</label>
+                            <label for='standard'>Advanced<span>+25%</span></label>
+                            <label>Expert writer</label>
                         </div>
                         <div className='input1'>
                             <input 
@@ -2108,7 +2341,8 @@ function Review() {
                                 checked={details.academic_year === 'Advanced'}
                                 onChange={handleChange23}
                             />
-                            <label for='advanced'>Top 10</label>
+                            <label for='advanced'>Top 10<span>+40%</span></label>
+                            <label>Highest ranked</label>
                         </div>
                     </div>
 
@@ -2125,37 +2359,37 @@ function Review() {
                                     checked={details.upgrade === 'Native speaker'}
                                     onChange={handleChange26}
                                 />
-                                <label for='native'>Native speaker</label>
+                                <label for='native'>Native speaker <span>+30%</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
-                                    type='radio'
+                                    type='checkbox'
                                     value='Smart paper'
                                     id='smart'
                                     checked={details.upgrade === 'Smart paper'}
                                     onChange={handleChange26}
                                 />
-                                <label for='smart'>Smart paper</label>
+                                <label for='smart'>Smart paper<span>+20%</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
-                                    type='radio'
+                                    type='checkbox'
                                     value='Writers sample'
                                     id='sample'
                                     checked={details.upgrade === 'Writers sample'}
                                     onChange={handleChange26}
                                 />
-                                <label for='sample'>Writer's samples</label>
+                                <label for='sample'>Writer's samples<span>$5.00</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
-                                    type='radio'
+                                    type='checkbox'
                                     value='Copy of sources'
                                     id='sources'
                                     checked={details.upgrade === 'Copy of sources'}
                                     onChange={handleChange26}
                                 />
-                                <label for='sources'>Copy of sources</label>
+                                <label for='sources'>Copy of sources<span>$14.95</span></label>
                             </div>
                         </div>
                     </div>
@@ -2164,6 +2398,7 @@ function Review() {
     } else if (details.order_type === 'Programming'){
         display = (
             <div>
+            <form>
                 <div className='level2'>
                         <div className='level4-name'>
                             <h5>Programming language</h5>
@@ -2307,6 +2542,7 @@ function Review() {
                                 type='radio'
                                 value='Extra small'
                                 id='extra'
+                                name='task'
                                 checked={details.task_size === 'Extra small'}
                                 onChange={handleTaskChange}
                             />
@@ -2317,6 +2553,7 @@ function Review() {
                                 type='radio'
                                 value='Small'
                                 id='small'
+                                name='task'
                                 checked={details.task_size === 'Small'}
                                 onChange={handleTaskChange}
                             />
@@ -2327,6 +2564,7 @@ function Review() {
                                 type='radio'
                                 value='Medium'
                                 id='medium'
+                                name='task'
                                 checked={details.task_size === 'Medium'}
                                 onChange={handleTaskChange}
                             />
@@ -2343,11 +2581,13 @@ function Review() {
                             <label for='large'>Large</label>
                         </div>
                 </div>
+                </form>
             </div>
         )
     } else if (details.order_type === 'Calculations'){
         display = (
             <div>
+            <form>
                 <div className='level2'>
                         <div className='level4-name'>
                             <h5>Discipline</h5>
@@ -2527,7 +2767,7 @@ function Review() {
                             <label for='large'>Large</label>
                         </div>
                 </div>
-
+                </form>
             </div>
         )
     }
@@ -2536,7 +2776,7 @@ function Review() {
 
     if (!token){
         account = (
-            <Manage />
+            <Manage style={{margin: '0'}}/>
         )    
     }
 
@@ -2554,13 +2794,21 @@ function Review() {
         job_type = details.discipline
     }
 
+    let spacing_value;
+
+    if (spacing === 'double'){
+        spacing_value = '39.00'
+    }else if(spacing === 'single'){
+        spacing_value = '78.00'
+    }
+
     return (
         <>
             <Head />
-            <div className='profile'>
+            <div className='profile' style={{paddingTop: '5px'}}>
                 <div className='nav'>
                     <ul>
-                        <li>My orders</li>
+                        <li>Sign in</li>
                         <li>New order</li>
                     </ul>
                 </div>
@@ -2574,7 +2822,7 @@ function Review() {
                     <h5 style={subjectStyle}>{details.subject}</h5>
                 </div>
                 <div className='pricing'>
-                    <h5 style={pageStyle}>{count} page x $39.00 <span>${pageSwitch()}</span></h5>
+                    <h5 style={pageStyle}>{count} page x ${spacing_value} <span>${pageSwitch()}</span></h5>
                     <h5 style={slideStyle}>{count3} slide x $19.50 <span>${slideSwitch()}</span></h5>
                     <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
                     <h5 style={progStyle}>{job_type} <span>${programmingPricing()}</span></h5>
@@ -2602,7 +2850,8 @@ function Review() {
                                     checked={details.order_type === 'Academics'}
                                     onChange={handleChange1}
                                 />
-                                <label for='academics'>Academic Writing</label>
+                                <label for='academics'>Academic Writing<span> Custom papers</span></label>
+                                
                             </div>
                             <div className='input1'>
                                 <input 
@@ -2612,7 +2861,7 @@ function Review() {
                                     checked={details.order_type === 'Programming'}
                                     onChange={handleChange1}
                                 />
-                                <label for='programming'>Programming</label>
+                                <label for='programming'>Programming<span> Tech assignments</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
@@ -2622,15 +2871,17 @@ function Review() {
                                     checked={details.order_type === 'Calculations'}
                                     onChange={handleChange1}
                                 />
-                                <label for='calculation'>Calculations</label>
-                        </div>
+                                <label for='calculation'>Calculations<span> Problems solving</span></label>
+                                </div>
                         </div>
                     </div>
-
-                    {display}
                 </form>
+                {display}
             </div>
+            <div className='account'>
+            <h4>Account</h4>
             {account}
+            </div>
         </>
     )
 }

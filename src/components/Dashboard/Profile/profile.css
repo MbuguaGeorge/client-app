@@ -1,5 +1,5 @@
 .profile {
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .profile .nav {
@@ -38,11 +38,13 @@
     transition: all .3s;
 }
 
-.details {
-    padding-left: 90px;
+.details1 {
+    margin-left: 90px;
+    border-bottom: 1px solid #ddd;
+    margin-right: 50px;
 }
 
-.details button {
+.details1 button {
     margin-right: 50px;
     border: none;
     outline: none;
@@ -54,7 +56,7 @@
     padding-bottom: 10px;
 }
 
-.details button:hover {
+.details1 button:hover {
     color: skyblue;
     border-bottom: 2px solid skyblue;
     transition: all .2s;

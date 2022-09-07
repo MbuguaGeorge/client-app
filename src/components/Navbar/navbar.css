@@ -9,7 +9,7 @@
    display: flex;
    align-items: center;
    justify-content: space-between;
-   width: 60%;
+   width: 50%;
 }
 .nav ul li{
    padding: 20px;

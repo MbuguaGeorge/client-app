@@ -1,3 +1,9 @@
+.details{
+    border-bottom: 1px solid #ddd;
+    margin-left: 90px;
+    margin-right: 50px;
+}
+
 .details button {
     margin-right: 50px;
     border: none;
@@ -16,9 +22,27 @@
     transition: all .2s;
 }
 
+.paper_instructions {
+    margin-left: 50px;
+    padding-top: 20px;
+    margin-right: 150px;
+    padding-bottom: 20px;
+}
+
+.paper_instructions h1{
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+}
+
 .info{
-    padding-top: 50px;
-    padding-left: 90px;
+    padding-top: 10px;
+    border: 1px solid #F9F9F9;
+    border-radius: 10px;
+    margin: 50px;
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
+}
+.pay{
     width: 50%;
 }
 
@@ -32,7 +56,7 @@
     list-style: none;
     display: flex;
     border-bottom: 1px solid #ddd;
-    padding: 12px;
+    padding: 8px;
     justify-content: space-between;
     width: 100%;
     padding-left: 0;
@@ -46,4 +70,13 @@
 
 .order-info ul li h2{
     font-weight: 400;
+}
+
+.reorder_btn button{
+    padding: 8px 18px;
+    outline: none;
+    border: 1px solid skyblue;
+    background-color: skyblue;
+    color: white;
+    border-radius: 3px;
 }

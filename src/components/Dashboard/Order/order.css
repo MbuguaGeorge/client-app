@@ -7,12 +7,9 @@
     margin: 20px;
     display: flex;
     justify-content: space-between;
-    width: 120%;
+    width: 140%;
     align-items: center;
-}
-
-.recent .recent-details{
-    float: left;
+    box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 }
 
 .recent .recent-details h3 {
@@ -24,6 +21,7 @@
 .recent .recent-details p {
     font-size: .9rem;
     line-height: 10px;
+    padding: 0;
     color: #111;
 }
 
@@ -52,9 +50,10 @@
 }
 
 .recent .recent-progress p {
-    font-size: .8rem;
+    font-size: .9rem;
     color: #111;
     font-weight: 400;
+    padding: 0;
 }
 
 .recent .recent-progress .payment {
