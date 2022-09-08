@@ -3022,18 +3022,25 @@ function Review() {
         job_type = details.discipline
     }
 
+    let dashboard_nav;
+
+    if (token){
+        dashboard_nav = (
+            <div className='profile' style={{paddingTop: '5px'}}>
+            <div className='nav'>
+                <ul>
+                    <li>My orders</li>
+                    <li>New order</li>
+                </ul>
+            </div>
+            </div>
+        )
+    }
+
     return (
         <>
             <Head />
-            <div className='profile' style={{paddingTop: '5px'}}>
-                <div className='nav'>
-                    <ul>
-                        <li>Sign in</li>
-                        <li>New order</li>
-                    </ul>
-                </div>
-            </div>
-
+            {dashboard_nav}
             <div className='container1'>
                 <div className='desc'>
                     <h1 style={titleStyle}>{details.title}</h1>
