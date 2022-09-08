@@ -189,9 +189,14 @@ function Review() {
             display: 'None'
         }
     }
-    if (details.paper_level === 'Basic' || details.order_type === 'Programming' || details.paper_level === '' || details.order_type === 'Calculations') {
+    if (details.paper_level === 'Basic' || details.order_type === 'Programming' || details.paper_level === '' || details.order_type === 'Calculations'){
         paperLevelStyle = {
             display: 'None'
+        }
+    }
+    if(native){
+        paperLevelStyle = {
+            display: 'block'
         }
     }
     if (count < 1 && count2 < 1 && count3 < 1){
@@ -231,6 +236,106 @@ function Review() {
 
     // Perform pricing
     let spacing_value;
+
+    function nativespeakerSwitch(){
+        if (level2 === 'High School'){
+            switch(details.academic_year === 'High School'){
+                case details.deadline === '8h':
+                    return (10.20).toFixed(2)
+                case details.deadline === '24h':
+                    return (8.10).toFixed(2)
+                case details.deadline === '2d':
+                    return (7.20).toFixed(2)
+                case details.deadline === '3d':
+                    return (6.00).toFixed(2)
+                case details.deadline === '5d':
+                    return (5.40).toFixed(2)
+                case details.deadline === '7d':
+                    return (4.80).toFixed(2)
+                case details.deadline === '14d':
+                    return (3.00).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (level2 === 'Undergraduate (years 1-2)'){
+            switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                case details.deadline === '8h':
+                    return (11.70).toFixed(2)
+                case details.deadline === '24h':
+                    return (9.00).toFixed(2)
+                case details.deadline === '2d':
+                    return (7.80).toFixed(2)
+                case details.deadline === '3d':
+                    return (7.20).toFixed(2)
+                case details.deadline === '5d':
+                    return (5.70).toFixed(2)
+                case details.deadline === '7d':
+                    return (5.10).toFixed(2)
+                case details.deadline === '14d':
+                    return (4.50).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 3-4)'){
+            switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                case details.deadline === '8h':
+                    return (12.30).toFixed(2)
+                case details.deadline === '24h':
+                    return (9.60).toFixed(2)
+                case details.deadline === '2d':
+                    return (9.00).toFixed(2)
+                case details.deadline === '3d':
+                    return (8.40).toFixed(2)
+                case details.deadline === '5d':
+                    return (6.90).toFixed(2)
+                case details.deadline === '7d':
+                    return (6.30).toFixed(2)
+                case details.deadline === '14d':
+                    return (6.00).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Graduate'){
+            switch(details.academic_year === 'Graduate'){
+                case details.deadline === '8h':
+                    return (7.50).toFixed(2)
+                case details.deadline === '24h':
+                    return (8.10).toFixed(2)
+                case details.deadline === '2d':
+                    return (8.70).toFixed(2)
+                case details.deadline === '3d':
+                    return (9.90).toFixed(2)
+                case details.deadline === '5d':
+                    return (10.80).toFixed(2)
+                case details.deadline === '7d':
+                    return (11.70).toFixed(2)
+                case details.deadline === '14d':
+                    return (14.40).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'PhD'){
+            switch(details.academic_year === 'PhD'){
+                case details.deadline === '8h':
+                    return (8.70).toFixed(2)
+                case details.deadline === '24h':
+                    return (9.30).toFixed(2)
+                case details.deadline === '2d':
+                    return (10.50).toFixed(2)
+                case details.deadline === '3d':
+                    return (11.10).toFixed(2)
+                case details.deadline === '5d':
+                    return (13.50).toFixed(2)
+                case details.deadline === '7d':
+                    return (15.00).toFixed(2)
+                case details.deadline === '14d':
+                    return (17.40).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
+
 
     function smartpaperSwitch(){
         if (level2 === 'High School'){
@@ -2061,26 +2166,37 @@ function Review() {
         }
     }
 
+    function nativeSwitch(){
+        if(native){
+            return nativespeakerSwitch()
+        }else{
+            return 0
+        }
+    }
+
     function totalpreferencePrice(){
 
         let pagepreference = pagepreferencePrice()
         let chartpreference = chartpreferencePrice()
         let slidepreference = slidepreferencePrice()
+        let nativespeakerprice = nativeSwitch()
 
         if(count && count2 && count3){
-            return (parseFloat(pagepreference) + parseFloat(chartpreference) + parseFloat(slidepreference)).toFixed(2)
+            return (parseFloat(pagepreference) + parseFloat(chartpreference) + parseFloat(slidepreference) + parseFloat(nativespeakerprice)).toFixed(2)
         }else if (count && count2){
-            return (parseFloat(pagepreference) + parseFloat(chartpreference)).toFixed(2)
+            return (parseFloat(pagepreference) + parseFloat(chartpreference) + parseFloat(nativespeakerprice)).toFixed(2)
         } else if(count && count3){
-            return (parseFloat(pagepreference) + parseFloat(slidepreference)).toFixed(2)
+            return (parseFloat(pagepreference) + parseFloat(slidepreference) + parseFloat(nativespeakerprice)).toFixed(2)
         } else if(count2 && count3){
-            return (parseFloat(chartpreference) + parseFloat(slidepreference)).toFixed(2)
+            return (parseFloat(chartpreference) + parseFloat(slidepreference) + parseFloat(nativespeakerprice)).toFixed(2)
         } else if(count){
-            return pagepreference
+            return (parseFloat(pagepreference) + parseFloat(nativespeakerprice)).toFixed(2)
         } else if(count2){
-            return chartpreference
+            return chartpreference + parseFloat(nativespeakerprice)
         } else if (count3){
-            return slidepreference
+            return slidepreference + parseFloat(nativespeakerprice)
+        }else{
+            return nativespeakerprice
         }
     }
 
@@ -3071,7 +3187,7 @@ function Review() {
             </div>
 
             <div className='order'>
-                <h4>Place an order</h4>
+                <h4>PLACE AN ORDER</h4>
                 <form encType="multipart/form-data">
                     <div className='level1'>
                         <div className='level20'>
