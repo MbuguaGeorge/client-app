@@ -3004,7 +3004,10 @@ function Review() {
 
     if (!token){
         account = (
+            <div className='account'>
+            <h4>Account</h4>
             <Manage />
+            </div>
         )    
     }
 
@@ -3108,10 +3111,7 @@ function Review() {
                 </form>
                 {display}
             </div>
-            <div className='account'>
-            <h4>Account</h4>
             {account}
-            </div>
         </>
     )
 }
