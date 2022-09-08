@@ -78,9 +78,6 @@
     padding: 20px;
     cursor: pointer;
 }
-.level11 .inputs .input1 label span{
-    text-align: center;
-}
 
 .level12 .input1{
     width: 200px;
@@ -263,7 +260,9 @@
     border-bottom: 1px solid #ddd;
     padding-bottom: 5px;
 }
-
+.account{
+    padding-bottom: 20px;
+}
 .account h4{
     margin-left: 100px;
 }

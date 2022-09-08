@@ -15,7 +15,12 @@ function Review() {
     const [count1, setCount1] = useState(0);
     const [count2, setCount2] = useState(0);
     const [count3, setCount3] = useState(0);
-    const [spacing, setSpacing] = useState('double')
+    const [spacing, setSpacing] = useState('double');
+
+    const [native, setNative] = useState(false);
+    const [samples, setSamples] = useState(false);
+    const [smartpaper, setSmartpaper] = useState(false);
+    const [sources, setSources] = useState(false);
 
     const [details, setDetails] = useState({
         pages: 0,
@@ -212,64 +217,208 @@ function Review() {
         }
     }
 
+    let smartpaperstyle, samplestyle, sourcestyle;
+
+    if(!smartpaper){
+        smartpaperstyle = {
+            display: 'none'
+        }
+    }
+    if(!sources){
+        sourcestyle = {
+            display: 'none'
+        }
+    }
+    if(!samples){
+        samplestyle = {
+            display: 'none'
+        }
+    }
+
     // Perform pricing
+    let spacing_value;
+
+    function smartpaperSwitch(){
+        if (level2 === 'High School'){
+            switch(details.academic_year === 'High School'){
+                case details.deadline === '4h':
+                    return (15.60).toFixed(2)
+                case details.deadline === '8h':
+                    return (13.60).toFixed(2)
+                case details.deadline === '24h':
+                    return (10.80).toFixed(2)
+                case details.deadline === '2d':
+                    return (9.60).toFixed(2)
+                case details.deadline === '3d':
+                    return (8.00).toFixed(2)
+                case details.deadline === '5d':
+                    return (7.20).toFixed(2)
+                case details.deadline === '7d':
+                    return (6.40).toFixed(2)
+                case details.deadline === '14d':
+                    return (4.00).toFixed(2)
+                default:
+                    return 0
+            }
+        }else if (level2 === 'Undergraduate (years 1-2)'){
+            switch(details.academic_year === 'Undergraduate (years 1-2)'){
+                case details.deadline === '4h':
+                    return (17.20).toFixed(2)
+                case details.deadline === '8h':
+                    return (15.60).toFixed(2)
+                case details.deadline === '24h':
+                    return (12.00).toFixed(2)
+                case details.deadline === '2d':
+                    return (10.40).toFixed(2)
+                case details.deadline === '3d':
+                    return (9.60).toFixed(2)
+                case details.deadline === '5d':
+                    return (7.60).toFixed(2)
+                case details.deadline === '7d':
+                    return (6.80).toFixed(2)
+                case details.deadline === '14d':
+                    return (6.00).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Undergraduate (years 3-4)'){
+            switch(details.academic_year === 'Undergraduate (years 3-4)'){
+                case details.deadline === '4h':
+                    return (20.40).toFixed(2)
+                case details.deadline === '8h':
+                    return (16.40).toFixed(2)
+                case details.deadline === '24h':
+                    return (12.80).toFixed(2)
+                case details.deadline === '2d':
+                    return (12.00).toFixed(2)
+                case details.deadline === '3d':
+                    return (11.20).toFixed(2)
+                case details.deadline === '5d':
+                    return (9.20).toFixed(2)
+                case details.deadline === '7d':
+                    return (8.40).toFixed(2)
+                case details.deadline === '14d':
+                    return (8.00).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'Graduate'){
+            switch(details.academic_year === 'Graduate'){
+                case details.deadline === '4h':
+                    return (24.40).toFixed(2)
+                case details.deadline === '8h':
+                    return (19.20).toFixed(2)
+                case details.deadline === '24h':
+                    return (15.60).toFixed(2)
+                case details.deadline === '2d':
+                    return (14.40).toFixed(2)
+                case details.deadline === '3d':
+                    return (13.20).toFixed(2)
+                case details.deadline === '5d':
+                    return (11.60).toFixed(2)
+                case details.deadline === '7d':
+                    return (10.80).toFixed(2)
+                case details.deadline === '14d':
+                    return (10.00).toFixed(2)
+                default:
+                    return 0
+            }
+        } else if (level2 === 'PhD'){
+            switch(details.academic_year === 'PhD'){
+                case details.deadline === '4h':
+                    return (29.20).toFixed(2)
+                case details.deadline === '8h':
+                    return (23.20).toFixed(2)
+                case details.deadline === '24h':
+                    return (20.00).toFixed(2)
+                case details.deadline === '2d':
+                    return (18.00).toFixed(2)
+                case details.deadline === '3d':
+                    return (14.80).toFixed(2)
+                case details.deadline === '5d':
+                    return (14.00).toFixed(2)
+                case details.deadline === '7d':
+                    return (12.40).toFixed(2)
+                case details.deadline === '14d':
+                    return (11.60).toFixed(2)
+                default:
+                    return 0
+            }
+        }
+    }
 
     function pageSwitch(){
         if (level2 === 'High School'){
             switch(details.academic_year === 'High School'){
                 case details.deadline === '4h':
                     if(spacing === 'single'){
+                        spacing_value = (39 * 2).toFixed(2)
                         return (count * 39 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (39).toFixed(2)
                         return (count * 39).toFixed(2)
                     }
                     break;
                 case details.deadline === '8h':
                     if(spacing === 'single'){
+                        spacing_value = (34 * 2).toFixed(2)
                         return (count * 34 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (34).toFixed(2)
                         return (count * 34).toFixed(2)
                     }
                     break;
                 case details.deadline === '24h':
                     if(spacing === 'single'){
+                        spacing_value = (27 * 2).toFixed(2)
                         return (count * 27 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (27).toFixed(2)
                         return (count * 27).toFixed(2)
                     }
                     break;
                 case details.deadline === '2d':
                     if(spacing === 'single'){
+                        spacing_value = (24 * 2).toFixed(2)
                         return (count * 24 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (24).toFixed(2)
                         return (count * 24).toFixed(2)
                     }
                     break;
                 case details.deadline === '3d':
                     if(spacing === 'single'){
+                        spacing_value = (20 * 2).toFixed(2)
                         return (count * 20 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (20).toFixed(2)
                         return (count * 20).toFixed(2)
                     }
                     break;
                 case details.deadline === '5d':
                     if(spacing === 'single'){
+                        spacing_value = (18 * 2).toFixed(2)
                         return (count * 18 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (18).toFixed(2)
                         return (count * 18).toFixed(2)
                     }
                     break;
                 case details.deadline === '7d':
                     if(spacing === 'single'){
+                        spacing_value = (16 * 2).toFixed(2)
                         return (count * 16 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (16).toFixed(2)
                         return (count * 16).toFixed(2)
                     }
                     break;
                 case details.deadline === '14d':
                     if(spacing === 'single'){
+                        spacing_value = (10 * 2).toFixed(2)
                         return (count * 10 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (10).toFixed(2)
                         return (count * 10).toFixed(2)
                     }
                     break;
@@ -280,57 +429,73 @@ function Review() {
             switch(details.academic_year === 'Undergraduate (years 1-2)'){
                 case details.deadline === '4h':
                     if(spacing === 'single'){
+                        spacing_value = (43 * 2).toFixed(2)
                         return (count * 43 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (43).toFixed(2)
                         return (count * 43).toFixed(2)
                     }
                     break;
                 case details.deadline === '8h':
                     if(spacing === 'single'){
+                        spacing_value = (39 * 2).toFixed(2)
                         return (count * 39 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (39).toFixed(2)
                         return (count * 39).toFixed(2)
                     }
                     break;
                 case details.deadline === '24h':
                     if(spacing === 'single'){
+                        spacing_value = (30 * 2).toFixed(2)
                         return (count * 30 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (30).toFixed(2)
                         return (count * 30).toFixed(2)
                     }
                     break;
                 case details.deadline === '2d':
                     if(spacing === 'single'){
+                        spacing_value = (26 * 2).toFixed(2)
                         return (count * 26 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (26).toFixed(2)
                         return (count * 26).toFixed(2)
                     }
                     break;
                 case details.deadline === '3d':
                     if(spacing === 'single'){
+                        spacing_value = (24 * 2).toFixed(2)
                         return (count * 24 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (24).toFixed(2)
                         return (count * 24).toFixed(2)
                     }
                     break;
                 case details.deadline === '5d':
                     if(spacing === 'single'){
+                        spacing_value = (19 * 2).toFixed(2)
                         return (count * 19 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (19).toFixed(2)
                         return (count * 19).toFixed(2)
                     }
                     break;
                 case details.deadline === '7d':
                     if(spacing === 'single'){
+                        spacing_value = (17 * 2).toFixed(2)
                         return (count * 17 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (17).toFixed(2)
                         return (count * 17).toFixed(2)
                     }
                     break;
                 case details.deadline === '14d':
                     if(spacing === 'single'){
+                        spacing_value = (15 * 2).toFixed(2)
                         return (count * 15 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (15).toFixed(2)
                         return (count * 15).toFixed(2)
                     }
                     break;
@@ -341,57 +506,73 @@ function Review() {
             switch(details.academic_year === 'Undergraduate (years 3-4)'){
                 case details.deadline === '4h':
                     if(spacing === 'single'){
+                        spacing_value = (51 * 2).toFixed(2)
                         return (count * 51 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (51).toFixed(2)
                         return (count * 51).toFixed(2)
                     }
                     break;
                 case details.deadline === '8h':
                     if(spacing === 'single'){
+                        spacing_value = (41 * 2).toFixed(2)
                         return (count * 41 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (41).toFixed(2)
                         return (count * 41).toFixed(2)
                     }
                     break;
                 case details.deadline === '24h':
                     if(spacing === 'single'){
+                        spacing_value = (32 * 2).toFixed(2)
                         return (count * 32 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (32).toFixed(2)
                         return (count * 32).toFixed(2)
                     }
                     break;
                 case details.deadline === '2d':
                     if(spacing === 'single'){
+                        spacing_value = (30 * 2).toFixed(2)
                         return (count * 30 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (30).toFixed(2)
                         return (count * 30).toFixed(2)
                     }
                     break;
                 case details.deadline === '3d':
                     if(spacing === 'single'){
+                        spacing_value = (28 * 2).toFixed(2)
                         return (count * 28 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (28).toFixed(2)
                         return (count * 28).toFixed(2)
                     }
                     break;
                 case details.deadline === '5d':
                     if(spacing === 'single'){
+                        spacing_value = (23 * 2).toFixed(2)
                         return (count * 23 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (23).toFixed(2)
                         return (count * 23).toFixed(2)
                     }
                     break;
                 case details.deadline === '7d':
                     if(spacing === 'single'){
+                        spacing_value = (21 * 2).toFixed(2)
                         return (count * 21 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (21).toFixed(2)
                         return (count * 21).toFixed(2)
                     }
                     break;
                 case details.deadline === '14d':
                     if(spacing === 'single'){
+                        spacing_value = (20 * 2).toFixed(2)
                         return (count * 20 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (20).toFixed(2)
                         return (count * 20).toFixed(2)
                     }
                     break;
@@ -402,36 +583,46 @@ function Review() {
             switch(details.academic_year === 'Graduate'){
                 case details.deadline === '4h':
                     if(spacing === 'single'){
+                        spacing_value = (61 * 2).toFixed(2)
                         return (count * 61 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (61).toFixed(2)
                         return (count * 61).toFixed(2)
                     }
                     break;
                 case details.deadline === '8h':
                     if(spacing === 'single'){
+                        spacing_value = (48 * 2).toFixed(2)
                         return (count * 48 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (48).toFixed(2)
                         return (count * 48).toFixed(2)
                     }
                     break;
                 case details.deadline === '24h':
                     if(spacing === 'single'){
+                        spacing_value = (39 * 2).toFixed(2)
                         return (count * 39 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (39).toFixed(2)
                         return (count * 39).toFixed(2)
                     }
                     break;
                 case details.deadline === '2d':
                     if(spacing === 'single'){
+                        spacing_value = (36 * 2).toFixed(2)
                         return (count * 36 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (36).toFixed(2)
                         return (count * 36).toFixed(2)
                     }
                     break;
                 case details.deadline === '3d':
                     if(spacing === 'single'){
+                        spacing_value = (33 * 2).toFixed(2)
                         return (count * 33 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (33).toFixed(2)
                         return (count * 33).toFixed(2)
                     }
                     break;
@@ -444,15 +635,19 @@ function Review() {
                     break;
                 case details.deadline === '7d':
                     if(spacing === 'single'){
+                        spacing_value = (27 * 2).toFixed(2)
                         return (count * 27 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (27).toFixed(2)
                         return (count * 27).toFixed(2)
                     }
                     break;
                 case details.deadline === '14d':
                     if(spacing === 'single'){
+                        spacing_value = (25 * 2).toFixed(2)
                         return (count * 25 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (25).toFixed(2)
                         return (count * 25).toFixed(2)
                     }
                     break;
@@ -463,57 +658,73 @@ function Review() {
             switch(details.academic_year === 'PhD'){
                 case details.deadline === '4h':
                     if(spacing === 'single'){
+                        spacing_value = (73 * 2).toFixed(2)
                         return (count * 73 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (73).toFixed(2)
                         return (count * 73).toFixed(2)
                     }
                     break;
                 case details.deadline === '8h':
                     if(spacing === 'single'){
+                        spacing_value = (58 * 2).toFixed(2)
                         return (count * 58 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (58).toFixed(2)
                         return (count * 58).toFixed(2)
                     }
                     break;
                 case details.deadline === '24h':
                     if(spacing === 'single'){
+                        spacing_value = (50 * 2).toFixed(2)
                         return (count * 50 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (50).toFixed(2)
                         return (count * 50).toFixed(2)
                     }
                     break;
                 case details.deadline === '2d':
                     if(spacing === 'single'){
+                        spacing_value = (45 * 2).toFixed(2)
                         return (count * 45 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (45).toFixed(2)
                         return (count * 45).toFixed(2)
                     }
                     break;
                 case details.deadline === '3d':
                     if(spacing === 'single'){
+                        spacing_value = (37 * 2).toFixed(2)
                         return (count * 37 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (37).toFixed(2)
                         return (count * 37).toFixed(2)
                     }
                     break;
                 case details.deadline === '5d':
                     if(spacing === 'single'){
+                        spacing_value = (35 * 2).toFixed(2)
                         return (count * 35 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (35).toFixed(2)
                         return (count * 35).toFixed(2)
                     }
                     break;
                 case details.deadline === '7d':
                     if(spacing === 'single'){
+                        spacing_value = (31 * 2).toFixed(2)
                         return (count * 31 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (31).toFixed(2)
                         return (count * 31).toFixed(2)
                     }
                     break;
                 case details.deadline === '14d':
                     if(spacing === 'single'){
+                        spacing_value = (29 * 2).toFixed(2)
                         return (count * 29 * 2).toFixed(2)
                     }else if(spacing === 'double'){
+                        spacing_value = (29).toFixed(2)
                         return (count * 29).toFixed(2)
                     }
                     break;
@@ -1879,6 +2090,30 @@ function Review() {
         }
     }
 
+    function sourceSwitch(){
+        if(sources){
+            return (14.95).toFixed(2)
+        }else{
+            return 0
+        }
+    }
+
+    function sampleSwitch(){
+        if(samples){
+            return (5.00).toFixed(2)
+        }else{
+            return 0
+        }
+    }
+
+    function smartSwitch(){
+        if(smartpaper){
+            return smartpaperSwitch()
+        }else{
+            return 0
+        }
+    }
+
     function totalPrice(){
         let pagePrice = pageSwitch()
         let chartPrice = chartSwitch()
@@ -1886,10 +2121,13 @@ function Review() {
         let totalpreference = totalpreferencePrice()
         let totalprog = programmingPricing()
         let totalcalc = calculationsPricing()
+        let smartpaperprice = smartSwitch()
+        let sourceprice = sourceSwitch()
+        let samplesprice = sampleSwitch()
         let totalPrice;
 
         if (details.order_type === 'Academics'){
-            totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference)
+            totalPrice = parseFloat(pagePrice) + parseFloat(chartPrice) + parseFloat(slidePrice) + parseFloat(totalpreference) + parseFloat(smartpaperprice) + parseFloat(sourceprice) + parseFloat(samplesprice)
             return totalPrice.toFixed(2)
         }else if(details.order_type === 'Programming'){
             totalPrice = parseFloat(totalprog)
@@ -2356,40 +2594,36 @@ function Review() {
                                     type='checkbox'
                                     value='Native speaker'
                                     id='native'
-                                    checked={details.upgrade === 'Native speaker'}
-                                    onChange={handleChange26}
+                                    onChange={() => setNative(!native)}
                                 />
-                                <label for='native'>Native speaker <span>+30%</span></label>
+                                <label for='native'>Native speaker <span style={{marginLeft: '330px'}}>+30%</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
                                     type='checkbox'
                                     value='Smart paper'
                                     id='smart'
-                                    checked={details.upgrade === 'Smart paper'}
-                                    onChange={handleChange26}
+                                    onChange={() => setSmartpaper(!smartpaper)}
                                 />
-                                <label for='smart'>Smart paper<span>+20%</span></label>
+                                <label for='smart'>Smart paper<span style={{marginLeft: '350px'}}>+20%</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
                                     type='checkbox'
                                     value='Writers sample'
                                     id='sample'
-                                    checked={details.upgrade === 'Writers sample'}
-                                    onChange={handleChange26}
+                                    onChange={() => setSamples(!samples)}
                                 />
-                                <label for='sample'>Writer's samples<span>$5.00</span></label>
+                                <label for='sample'>Writer's samples<span style={{marginLeft: '325px'}}>$5.00</span></label>
                             </div>
                             <div className='input1'>
                                 <input 
                                     type='checkbox'
                                     value='Copy of sources'
                                     id='sources'
-                                    checked={details.upgrade === 'Copy of sources'}
-                                    onChange={handleChange26}
+                                    onChange={() => setSources(!sources)}
                                 />
-                                <label for='sources'>Copy of sources<span>$14.95</span></label>
+                                <label for='sources'>Copy of sources<span style={{marginLeft: '325px'}}>$14.95</span></label>
                             </div>
                         </div>
                     </div>
@@ -2794,14 +3028,6 @@ function Review() {
         job_type = details.discipline
     }
 
-    let spacing_value;
-
-    if (spacing === 'double'){
-        spacing_value = '39.00'
-    }else if(spacing === 'single'){
-        spacing_value = '78.00'
-    }
-
     return (
         <>
             <Head />
@@ -2827,6 +3053,9 @@ function Review() {
                     <h5 style={chartStyle}>{count2} chart x $19.50 <span>${chartSwitch()}</span></h5>
                     <h5 style={progStyle}>{job_type} <span>${programmingPricing()}</span></h5>
                     <h5 style={paperLevelStyle}>Writer's preferences <span>${totalpreferencePrice()}</span></h5>
+                    <h5 style={smartpaperstyle}>Smart paper <span>${smartSwitch()}</span></h5>
+                    <h5 style={samplestyle}>Order writer's samples <span>${sampleSwitch()}</span></h5>
+                    <h5 style={sourcestyle}>Copy of sources used <span>${sourceSwitch()}</span></h5>
                 </div>
                 <div className='total-price'>
                     <h3 style={totalStyle}>Total price</h3>
