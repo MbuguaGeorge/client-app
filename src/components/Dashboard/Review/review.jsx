@@ -154,12 +154,6 @@ function Review() {
         }))
     };
 
-    const handleChange26 = (e) => {
-        setDetails(details => ({
-            ...details, upgrade: e.target.value
-        }))
-    };
-
     const [redirect, setRedirect] = useState(false);
 
     let pageStyle, chartStyle, slideStyle, levelStyle, titleStyle, paperStyle, subjectStyle, paperLevelStyle, totalStyle, progStyle;
