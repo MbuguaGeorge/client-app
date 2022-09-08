@@ -16,7 +16,7 @@ function Info(){
         setId(id)
 
         async function fetchData(){
-            const data = await fetch(`http://127.0.0.1:8000/dashboard/recent/${id}`, {
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recent/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function Info(){
     },[])
 
     const handleReorder = async() => {
-        await fetch(`http://127.0.0.1:8000/dashboard/status/${id}`, {
+        await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${id}`, {
             method: 'PUT',
             headers: {
             'Authorization': `Token ${localStorage.getItem('token')}`,
