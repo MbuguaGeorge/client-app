@@ -21,7 +21,6 @@ export default function Navbar() {
     return (
       <div>
         <nav className='nav'>
-            <div>Logo</div>
             <ul>
                 <li><Link to ="/">Home</Link></li>
                 <li><Link to = "/services">Our services</Link></li>
