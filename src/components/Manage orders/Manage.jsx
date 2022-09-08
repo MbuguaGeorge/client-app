@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import SignUp from "../Auth/Signup/SignUp";
 import Login from "../Auth/logIn/Login";
 import style from "./manage.module.css";
+import Head from '../Navbar/Navbar';
 
 export default function Manage() {
     const [selected, setSelected] = useState("signup");
@@ -15,6 +16,7 @@ export default function Manage() {
     }
     return (
         <>
+            <Head />
             <div className={style.container}>
                 <h2 className={style.intro}>Login to continue</h2>
                 <div className={style.btns}>
