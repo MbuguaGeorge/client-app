@@ -3004,7 +3004,7 @@ function Review() {
 
     if (!token){
         account = (
-            <Manage style={{margin: '0'}}/>
+            <Manage style={{display: 'none'}}/>
         )    
     }
 

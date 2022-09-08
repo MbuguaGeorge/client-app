@@ -4,7 +4,7 @@ import Login from "../Auth/logIn/Login";
 import style from "./manage.module.css";
 import Head from '../Navbar/Navbar';
 
-export default function Manage() {
+export default function Manage({style}) {
     const [selected, setSelected] = useState("signup");
     const showForm = () => {
         if (selected === "login") {
@@ -16,7 +16,7 @@ export default function Manage() {
     }
     return (
         <>
-            <Head />
+            <Head style={style}/>
             <div className={style.container}>
                 <h2 className={style.intro}>Login to continue</h2>
                 <div className={style.btns}>
