@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Home from './components/Home/home';
+// import Home from './components/Home/home';
 import Order from './components/Order/Main/order';
 import Profile from './components/Dashboard/Profile/profile';
 import Services from './components/Our services/Services';
@@ -13,6 +13,7 @@ import Info from './components/Dashboard/Instructions/info';
 import Success from './components/Payments/success';
 import Invalid from './components/Payments/invalid';
 import MyProfile from './components/Dashboard/myProfile/myprofile';
+import Home from './components/Pages/home';
 
 function App(){
   return(
