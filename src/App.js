@@ -18,7 +18,9 @@ import Home from './components/Pages/home';
 import Log from './components/Auth/logIn/log';
 import Register from './components/Auth/Signup/register';
 
+// Dashboard imports
 import Prof from './components/Dashboard/Profile/prof';
+import Settings from './components/Dashboard/Settings/settings';
 
 function App(){
   return(
@@ -41,7 +43,9 @@ function App(){
         <Route exact path='/log' element={<Log />} />
         <Route exact path='/register' element={<Register />} />
 
-        <Route exact path='/side' element={<Prof />} />
+        {/* Dashboard paths */}
+        <Route exact path='/dashboard/orders' element={<Prof />} />
+        <Route exact path='/dashboard/settings' element={<Settings />} />
 
       </Routes>
     </Router>

@@ -16,14 +16,14 @@ export default function SideBar() {
 
             <div className="sidebar-top">
                 <h1>Elency.</h1>
-                <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '220px'}} >Place order</Button>
+                <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '180px'}} >Place order</Button>
             </div>
 
             <div className="sidebar-mid">
                 <ul>
                     <li>
                         <AccountBoxOutlinedIcon style={{fontSize: '20px'}} />
-                        <h5>123422 <span style={{paddingLeft: '100px'}}>&gt;</span></h5>
+                        <h5>123422 <span style={{paddingLeft: '40px'}}>&gt;</span></h5>
                     </li>
                     <li>
                         <AccountBalanceWalletOutlinedIcon style={{fontSize: '20px'}} />
@@ -40,7 +40,7 @@ export default function SideBar() {
                 <ul>
                     <li>
                         <CardGiftcardOutlinedIcon style={{fontSize: '20px'}} />
-                        <h5>My orders</h5>
+                        <h5>My orders <span>9</span></h5>
                     </li>
                     <li>
                         <ChatOutlinedIcon style={{fontSize: '20px'}} />
