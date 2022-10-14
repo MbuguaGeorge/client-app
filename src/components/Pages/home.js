@@ -4,7 +4,7 @@ export default function Home() {
 
     useEffect(() => {
         const script = document.createElement('script');
-        script.src = "public/assets/js/main.js";
+        script.src = "public/assets/js/owl.carousel.min.js";
         script.async = true;
         document.body.appendChild(script);
 

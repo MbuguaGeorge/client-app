@@ -15,9 +15,13 @@ import Invalid from './components/Payments/invalid';
 import MyProfile from './components/Dashboard/myProfile/myprofile';
 import Home from './components/Pages/home';
 
+import Log from './components/Auth/logIn/log';
+import Register from './components/Auth/Signup/register';
+
+import Prof from './components/Dashboard/Profile/prof';
+
 function App(){
   return(
-    //<Header />
     <Router>
       <Routes>
         <Route exact path='/' element={<Home/>} />
@@ -33,6 +37,12 @@ function App(){
         <Route exact path='pay/success' element={<Success />} />
         <Route exact path='pay/invalid' element={<Invalid />} />
         <Route exact path='/myprofile' element={<MyProfile />} />
+
+        <Route exact path='/log' element={<Log />} />
+        <Route exact path='/register' element={<Register />} />
+
+        <Route exact path='/side' element={<Prof />} />
+
       </Routes>
     </Router>
   )

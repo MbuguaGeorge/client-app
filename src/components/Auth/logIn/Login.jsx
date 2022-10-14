@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import TextField from '@mui/material/TextField';
-import style from "./login.module.css";
+import style from "./login.css";
 import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
