@@ -21,6 +21,7 @@ import Register from './components/Auth/Signup/register';
 // Dashboard imports
 import Prof from './components/Dashboard/Profile/prof';
 import Settings from './components/Dashboard/Settings/settings';
+import SideBar from './components/Dashboard/Header/sidebar';
 
 function App(){
   return(
@@ -44,8 +45,10 @@ function App(){
         <Route exact path='/register' element={<Register />} />
 
         {/* Dashboard paths */}
-        <Route exact path='/dashboard/orders' element={<Prof />} />
+        <Route exact path='/dashboard/order' element={<Prof />} />
         <Route exact path='/dashboard/settings' element={<Settings />} />
+
+        <Route exact path='/dashboard/orders' element={<SideBar />} />
 
       </Routes>
     </Router>

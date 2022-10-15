@@ -1,3 +1,173 @@
 .settings{
     display: flex;
+    background-color: #292B3A;
+    width: 100%;
+}
+
+.settings-page{
+    padding: 20px 120px;
+    width: 100%;
+}
+
+.settings-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings-options ul{
+    padding: 20px 0;
+    display: flex;
+    padding-bottom: 0;
+    border-bottom: 1px solid gray;
+}
+
+.settings-options ul li{
+    list-style: none;
+    margin: 0 15px;
+    padding-bottom: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    display: flex;
+}
+
+.settings-options ul li:hover{
+    border-bottom: 3px solid #3367d6;
+}
+
+.settings-options ul li h5{
+    color: #fff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-left: 5px;
+}
+
+.email-setting{
+    margin: 15px 0;
+}
+
+.account-settings, .email-setting{
+    border: 1px solid #262730;
+    border-radius: 5px;
+}
+
+.account-settings h3, .email-setting h3, .add-phone{
+    color: #fff;
+    font-size: 1rem;
+    border-bottom: 1px solid #262730;
+    padding: 15px 25px;
+    font-weight: 500;
+    background-color: #31333f;
+    border-radius: 5px;
+    margin-bottom: 0;
+}
+
+.account-settings form{
+    background-color: #262730;
+}
+
+.account-settings .name{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+}
+
+.account-settings .name .first-name, .name .last-name{
+    display: flex;
+    flex-direction: column;
+}
+
+.account-settings form .name input[type='text']{
+    background-color: transparent;
+    width: 300px;
+    padding: 5px 15px;
+    outline: none;
+    border: 1px solid #292B3A;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.account-settings form .name label{
+    color: #fff;
+    padding-bottom: 5px;
+}
+
+.account-settings form .save-btn{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.account-settings form .save-btn input[type='submit']{
+    margin: 20px 25px;
+    padding: 3px 18px;
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.email-setting .view-emails{
+    display: flex;
+    padding: 15px 25px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #262730;
+}
+
+.email-setting .view-emails button, .add-phone button{
+    padding: 3px 18px;
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.view-emails h5{
+    color: #ddd;
+    font-size: .9rem;
+    font-weight: 300;
+}
+
+.view-emails h4{
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 300;
+    padding: 2px 8px;
+    background-color: #20B2AA;
+    border-radius: 3px;
+}
+
+.add-phone{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-phone h3{
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.no-phone{
+    background-color: #262730;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.no-phone h4{
+    color: #fff;
+    font-size: 1rem;
+}
+
+.no-phone p{
+    color: #ddd;
+    font-size: 1rem;
 }

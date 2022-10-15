@@ -11,11 +11,17 @@
     align-items: center;
 }
 
+.user-dashboard{
+    display: flex;
+    width: 100%;
+}
+
 .sidebar{
-    width: 220px;
+    width: 260px;
     height: 100vh;
     border-right: 1px solid #292B3A;
     background-color: #262730;
+    position: sticky;
 }
 
 .sidebar-top{
