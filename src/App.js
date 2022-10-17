@@ -17,10 +17,8 @@ import Home from './components/Pages/home';
 
 import Log from './components/Auth/logIn/log';
 import Register from './components/Auth/Signup/register';
+import EmailVerifyLogin from './components/Auth/Verify/email_verify_login';
 
-// Dashboard imports
-import Prof from './components/Dashboard/Profile/prof';
-import Settings from './components/Dashboard/Settings/settings';
 import SideBar from './components/Dashboard/Header/sidebar';
 
 function App(){
@@ -44,9 +42,7 @@ function App(){
         <Route exact path='/log' element={<Log />} />
         <Route exact path='/register' element={<Register />} />
 
-        {/* Dashboard paths */}
-        <Route exact path='/dashboard/order' element={<Prof />} />
-        <Route exact path='/dashboard/settings' element={<Settings />} />
+        <Route exact path='/verified/:token' element={<EmailVerifyLogin />} />
 
         <Route exact path='/dashboard/orders' element={<SideBar />} />
 

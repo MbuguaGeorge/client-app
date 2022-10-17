@@ -1,28 +1,30 @@
 /* Recent */
 
 .recent {
-    border: 2px solid #F9F9F9;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 20px;
-    display: flex;
-    justify-content: space-between;
-    width: 140%;
-    align-items: center;
+    border: 1px solid #262730;
+    border-radius: 3px;
+    margin: 20px 0;
+    background-color: #262730;
     box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 }
 
-.recent .recent-details h3 {
+.recent .recent-details h4 {
+    color: #fff;
     font-size: 1rem;
-    color: skyblue;
-    padding-bottom: 10px;
+    border-bottom: 1px solid #262730;
+    padding: 15px 25px;
+    font-weight: 500;
+    background-color: #31333f;
+    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .recent .recent-details p {
-    font-size: .9rem;
+    font-size: 1rem;
     line-height: 10px;
-    padding: 0;
-    color: #111;
+    padding: 0 25px;
+    color: #F9F9F9;
+    text-align: left;
 }
 
 .recent .recent-details p span {
@@ -49,29 +51,32 @@
     background-color: #F9F9F9;
 }
 
-.recent .recent-progress p {
-    font-size: .9rem;
-    color: #111;
-    font-weight: 400;
-    padding: 0;
-}
-
 .recent .recent-progress .payment {
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
+    padding: 17px 0;
 }
 
 .recent .recent-progress .payment button {
     margin-right: 20px;
     outline: none;
-    border: 2px solid #ddd;
+    border: 1px solid #20B2AA;
     padding: 2px 10px;
-    background-color: rgb(245, 226, 230);
-    color: #111;
+    background-color: #20B2AA;
+    color: #fff;
     font-size: 1rem;
     font-weight: 400;
     border-radius: 5px;
+}
+
+.recent .recent-progress .payment button:hover{
+    background-color: #0a8680;
+    border: 1px solid #0a8680;
+}
+
+.recent .recent-progress .payment button span{
+    font-weight: 700;
 }
 
 .recent .recent-progress .payment h2 {

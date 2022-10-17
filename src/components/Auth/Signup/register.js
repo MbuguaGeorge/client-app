@@ -1,18 +1,60 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../logIn/login.css';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 export default function Register() {
+
+    const [profile, setProfile] = useState({
+        email: '',
+        password: '',
+        name: '',
+        phone: ''
+    });
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await fetch('http://127.0.0.1:8000/profile/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(profile)
+        }).then(
+            data => {
+                console.log(data);
+            }
+        ).then(
+            () => {
+                setRedirect(true)
+                localStorage.setItem('email', profile.email)
+            }
+        ).catch(error => console.log(error))
+    }
+
+    const [redirect, setRedirect] = useState(false);
+
+    const navigate = useNavigate();
+
+    if (redirect) {
+        return navigate('/verify', {replace: true})
+    }
+
     return (
         <div className='login__container'>
             <div className="login-form">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <h2>Register an account</h2>
                     <input type='email' required 
                         placeholder='Email'
+                        value={profile.email}
+                        onChange={e => setProfile(profile => ({
+                            ...profile, email: e.target.value
+                        }))}
                     />
                     <input type='password' required 
                         placeholder='Password'
+                        value={profile.password}
+                        onChange={e => setProfile(profile => ({
+                            ...profile, password: e.target.value
+                        }))}
                     />
                     <div className="forgot-password" style={{display: 'block'}}>
                         <div className="check-btn" style={{display: 'flex', alignItems: 'center', paddingBottom: '10px'}}>

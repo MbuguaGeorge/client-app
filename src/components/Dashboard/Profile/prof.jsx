@@ -2,11 +2,23 @@ import React, {useState} from 'react';
 import './profile.css';
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import box from '../../images/open-box.png'
+import Recent from '../Order/recent';
+import Finished from '../Order/finished';
+import Canceled from '../Order/canceled';
 
 export default function Prof() {
 
     const [selected, setSelected] = useState('Active');
+
+    const selectedOption = () => {
+        if (selected === 'Active') {
+            return <Recent />;
+        } else if (selected === 'Finished') {
+            return <Finished />;
+        } else if (selected === 'Canceled') {
+            return <Canceled />
+        }
+    };
 
     let activeStyle, revisedStyle, canceledStyle, finishedStyle;
 
@@ -43,11 +55,9 @@ export default function Prof() {
                         <li onClick={() => setSelected('Finished')} style={finishedStyle}>Finished</li>
                     </ul>
                 </div>
-                <div className="active-order">
-                    <img src={box} alt="open-box" />
-                    <h3>You have no active orders</h3>
-                    <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />}>Place order</Button>
-                </div>
+                
+                <>{selectedOption()}</>
+
             </div>
         </div>
     )

@@ -3,11 +3,14 @@ import '../logIn/login.css';
 import {Link} from 'react-router-dom';
 
 export default function Verify() {
+
+    const email = localStorage.getItem('email')
+
     return (
         <div className='login__container'>
             <div className="verification-content">
                 <h3>Check your inbox</h3>
-                <h5>Verification link has been sent to your <br/> email <span>mbuguageorge026@gmail.com</span>. Click the <br/> link to activate your account.</h5>
+                <h5>Verification link has been sent to your <br/> email <span>{email}</span>. Click the <br/> link to activate your account.</h5>
                 <button>Re-send link to my email</button>
 
                 <div className="change-email">

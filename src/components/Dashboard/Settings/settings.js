@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './settings.css';
+import {Modal} from '@mui/material';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 
 export default function Settings() {
+
+    const [open, setOpen] = useState(false);
+
     return (
         <div className="settings">
             <div className="settings-page">
+
+                <Modal
+                    open={open}
+                    onClose={() => setOpen(false)}
+                >
+                    <div>hey</div>
+                </Modal>
 
                 <div className="settings-title">
                     <h2>Settings</h2>
@@ -58,7 +69,7 @@ export default function Settings() {
                     <div className="view-emails">
                         <h5>mbuguag026@gmail.com</h5>
                         <h4>Verified</h4>
-                        <button>Change</button>
+                        <button onClick={() => setOpen(true)}>Change</button>
                     </div>
                 </div>
 

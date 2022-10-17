@@ -39,7 +39,7 @@
     padding-left: 0;
 }
 
-.sidebar-mid ul li, .sidebar-bottom ul li{
+.sidebar-mid ul li, .sidebar-bottom ul li, .my-profile ul li{
     list-style: none;
     display: flex;
     align-items: center;
@@ -52,13 +52,13 @@
     padding-left: 15px;
 }
 
-.sidebar-mid ul li:hover, .sidebar-bottom ul li:hover{
+.sidebar-mid ul li:hover, .sidebar-bottom ul li:hover, .my-profile ul li:hover{
     background-color: #292B3A;
     border-right: 3px solid #3367d6;
     color: #fff;
 }
 
-.sidebar-mid ul li h5, .sidebar-bottom ul li h5{
+.sidebar-mid ul li h5, .sidebar-bottom ul li h5, .my-profile ul li h5{
     padding-left: 10px;
     font-size: 1rem;
     font-weight: 400;
@@ -81,4 +81,23 @@
     font-size: .9rem;
     padding: 3px 8px;
     text-align: center;
+}
+
+/* modal */
+.my-profile-container{
+    position: relative;
+    left: 17%;
+}
+.my-profile{
+    width: 150px;
+    position: absolute;
+    top: 25%;
+    border: 1px solid #262838;
+    background-color: #262838;
+    z-index: 3;
+    border-radius: 5px;
+}
+
+.my-profile ul{
+    padding-left: 0;
 }
