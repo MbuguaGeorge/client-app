@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function placeOrder(){
+export default function PlaceOrder(){
     return (
         <div>Place Order</div>
     )

@@ -19,7 +19,7 @@ import EmailVerifyLogin from './components/Auth/Verify/email_verify_login';
 
 import SideBar from './components/Dashboard/Header/sidebar';
 
-import placeOrder from './components/Dashboard/makeOrder/placeOrder';
+import PlaceOrder from './components/Dashboard/makeOrder/placeOrder';
 
 function App(){
   return(
@@ -45,7 +45,7 @@ function App(){
 
         <Route exact path='/dashboard/orders' element={<SideBar />} />
 
-        <Route exact path='/dashboard/placeorder' element={<placeOrder />} />
+        <Route exact path='/dashboard/placeorder' element={<PlaceOrder />} />
 
       </Routes>
     </Router>
