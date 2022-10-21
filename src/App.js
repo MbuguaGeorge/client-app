@@ -1,7 +1,5 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-// import Home from './components/Home/home';
-import Order from './components/Order/Main/order';
 import Profile from './components/Dashboard/Profile/profile';
 import Services from './components/Our services/Services';
 import Manage from './components/Manage orders/Manage';
@@ -21,12 +19,13 @@ import EmailVerifyLogin from './components/Auth/Verify/email_verify_login';
 
 import SideBar from './components/Dashboard/Header/sidebar';
 
+import placeOrder from './components/Dashboard/makeOrder/placeOrder';
+
 function App(){
   return(
     <Router>
       <Routes>
         <Route exact path='/' element={<Home/>} />
-        <Route exact path='/order' element={<Order/>} />
         <Route exact path='/profile' element={<Profile/>} />
         <Route exact path='/services' element={<Services />} />
         <Route exact path='/manage' element={<Manage />} />
@@ -45,6 +44,8 @@ function App(){
         <Route exact path='/verified/:token' element={<EmailVerifyLogin />} />
 
         <Route exact path='/dashboard/orders' element={<SideBar />} />
+
+        <Route exact path='/dashboard/placeorder' element={<placeOrder />} />
 
       </Routes>
     </Router>

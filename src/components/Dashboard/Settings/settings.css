@@ -171,3 +171,18 @@
     color: #ddd;
     font-size: 1rem;
 }
+
+@media all and (max-width: 480px){
+    .settings-page{
+        padding: 20px 20px;
+    }
+    .account-settings .name{
+        display: block;
+    }
+    .account-settings .name .last-name{
+        margin: 20px 0;
+    }
+    .settings-options ul li h5{
+        font-size: .9rem;
+    }
+}

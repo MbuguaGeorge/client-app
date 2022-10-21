@@ -23,6 +23,11 @@ export default function SideBar() {
 
     const [redirect, setRedirect] = useState(false);
 
+    // handle slide nav
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    console.log(profile)
+
     // profile modal
     const [open, setOpen] = useState(false);
 
@@ -103,14 +108,24 @@ export default function SideBar() {
             <div className="my-profile-container">
                 {profileModal}
             </div>
-            <div className='sidebar'>
+            <div className={isExpanded ? "sidebar expanded" : "sidebar"}>
+
+                <div className="hamburger" onClick={() =>  setIsExpanded(!isExpanded)}>
+                    <span className="h-top"></span>
+                    <span className="h-mid"></span>
+                    <span className="h-bottom"></span>
+                </div>
+
+                <div className={isExpanded ? "sidebar-top-slide expanded" : "sidebar-top-slide"}>
+                    <button><AddCircleOutlineIcon style={{fontSize: '20px', paddingBottom: '5px'}} /><h5>Place Order</h5></button>
+                </div>
 
                 <div className="sidebar-top">
                     <h1>Elency.</h1>
                     <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '180px'}} >Place order</Button>
                 </div>
 
-                <div className="sidebar-mid">
+                <div className={isExpanded ? "sidebar-mid expanded" : "sidebar-mid"}>
                     <ul>
                         <li onClick={handleOpen}>
                             <AccountBoxOutlinedIcon style={{fontSize: '20px'}} />
@@ -118,7 +133,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <AccountBalanceWalletOutlinedIcon style={{fontSize: '20px'}} />
-                            <h5>Balance <span>$0.00</span></h5>
+                            <h5>Balance <span style={{paddingLeft: '10px'}}>$0.00</span></h5>
                         </li>
                         <li>
                             <NotificationsOutlinedIcon style={{fontSize: '20px'}} />
@@ -127,7 +142,7 @@ export default function SideBar() {
                     </ul>
                 </div>
 
-                <div className="sidebar-bottom">
+                <div className={isExpanded ? "sidebar-bottom expanded" : "sidebar-bottom"}>
                     <ul>
                         <li onClick={handleOrder} style={orderActiveOptionStyle}>
                             <CardGiftcardOutlinedIcon style={{fontSize: '20px'}} />
@@ -150,7 +165,9 @@ export default function SideBar() {
 
             </div>
 
-            {display}
+            <div className="user-option-dashboard">
+                {display}
+            </div>
 
         </div>
     )

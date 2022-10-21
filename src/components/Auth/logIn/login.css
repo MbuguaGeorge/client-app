@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 100px;
+    background-color: #292B3A;
 }
 
 .login-form form {
@@ -171,7 +172,7 @@
     font-size: .9rem;
     font-weight: 200;
     color: #ddd;
-    padding-top: 40px;
+    padding-top: 30px;
     text-align: center;
 }
 
@@ -276,4 +277,25 @@
     color: #3367d6;
     text-decoration: underline;
     cursor: pointer;
+}
+
+/* responsiveness */
+
+@media all and (max-width: 480px){
+    .login__container{
+        display: block;
+    }
+    .login-hero{
+        display: none;
+    }
+    .login-form{
+        width: 100%;
+        margin-top: 0;
+        padding-top: 50px;
+    }
+    .verification-content{
+        width: 100%;
+        margin-top: 0;
+        padding-top: 80px;
+    }
 }
