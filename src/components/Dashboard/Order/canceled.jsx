@@ -5,7 +5,7 @@ import {Button} from '@mui/material';
 import box from '../../images/open-box.png';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-function Canceled() {
+function Canceled({handleInfo}) {
 
     const [canceledOrders, setCanceledOrders] = useState([]);
 
@@ -49,7 +49,7 @@ function Canceled() {
                             fetchData()
                             }} >Re-order</button>
                         <div className='verify'>
-                            <Link to={`/info/${recent.id}`}><button>Review <span>${recent.details.amount}</span></button></Link>
+                            <button onClick={() => handleInfo(recent.id)}>Review <span>${recent.details.amount}</span></button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function Canceled() {
                 <div className="active-order">
                     <img src={box} alt="open-box" />
                     <h3>You have no active orders</h3>
-                    <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />}>Place order</Button>
+                    <Link to="/dashboard/placeorder" style={{textDecoration: 'none'}}><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />}>Place order</Button></Link>
                 </div>
              }
 

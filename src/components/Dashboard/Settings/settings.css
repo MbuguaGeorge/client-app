@@ -15,6 +15,11 @@
     align-items: center;
 }
 
+.settings-title h2{
+    color: #fff;
+    font-weight: 600;
+}
+
 .settings-options ul{
     padding: 20px 0;
     display: flex;
@@ -184,5 +189,14 @@
     }
     .settings-options ul li h5{
         font-size: .9rem;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .settings-page{
+        padding: 20px 30px;
+    }
+    .account-settings form .name input[type='text']{
+        width: 250px;
     }
 }

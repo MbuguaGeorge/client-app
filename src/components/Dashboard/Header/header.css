@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .sidebar{
@@ -73,17 +73,25 @@
     color: #fff;
 }
 
+.sidebar-bottom ul li h5{
+    display: flex;
+}
+
 .sidebar-mid ul li h5 span{
     margin-left: 50px;
 }
 
 .sidebar-bottom ul li h5 span{
-    margin-left: 60px;
+    margin-left: 40px;
     border-radius: 50%;
     background-color: #3367d6;
-    font-size: .9rem;
-    padding: 3px 8px;
+    font-size: .8rem;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    justify-content: center;
     text-align: center;
+    padding: 3px 2px;
 }
 
 /* modal */
@@ -108,6 +116,7 @@
 
 .user-option-dashboard{
     width: 84%;
+    background-color: #262838;
 }
 
 .sidebar .hamburger{
@@ -189,6 +198,59 @@
     }
     .user-option-dashboard{
         width: 88%;
+    }
+    .sidebar .hamburger{
+        display: block;
+        position: absolute;
+        left: 20%;
+        top: 4%;
+    }
+    .sidebar-top{
+        display: none;
+    }
+    .sidebar-top-slide{
+        display: block;
+    }
+    .sidebar-top-slide.expanded button{
+        width: 200px;
+        transition: width .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sidebar-top-slide.expanded button h5{
+        display: block;
+        padding-top: 3px;
+        padding-left: 5px;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .sidebar{
+        width: 8%;
+        height: 100%;
+    }
+    .sidebar.expanded{
+        width: 33%;
+        transition: width .4s;
+    }
+    .sidebar-mid.expanded ul li h5, .sidebar-bottom.expanded ul li h5{
+        display: block;
+    }
+    .sidebar-mid.expanded ul li, .sidebar-bottom.expanded ul li{
+        padding: 0 20px;
+    }
+    .sidebar-top{
+        padding-left: 5px;
+    }
+    .sidebar-mid ul li, .sidebar-bottom ul li{
+        padding: 10px 20px;
+    }
+    .sidebar-mid ul li h5, .sidebar-bottom ul li h5{
+        display: none;
+    }
+    .user-option-dashboard{
+        width: 92%;
     }
     .sidebar .hamburger{
         display: block;

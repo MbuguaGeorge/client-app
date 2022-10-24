@@ -337,7 +337,7 @@ export default function Home(){
                 <div className="order-cta-container">
                     <div className="overlay"></div>
                     <div className="order-cta">
-                        <h1>Do You Have A Project In <br/> Mind</h1>
+                        <h1>Do You Have A Project In <br className='hide-breakline'/> Mind</h1>
                         <div className="order-cta-links">
                             <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '10px 3px'}} >Order now</Button></li></Link>
                             <Link to="/" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" style={{width: '130px', padding: '10px 3px'}} >Contact Us</Button></li></Link>
@@ -410,6 +410,7 @@ export default function Home(){
                                     <h4>Learn More</h4>
                                 </div>
                             </div>
+                        
                             <div className="blog">
                                 <img src={blogimg2} alt="blog" />
                                 <div className="blog-content">
@@ -433,26 +434,29 @@ export default function Home(){
                             <p>We provide only the best services. We hire only the to notch experts . Hiring a professional expert will provide you with time qualified and unique assistance.</p>
                         </div>
 
-                        <div className="footer2">
-                            <h1>Explore</h1>
-                            <ul>
-                                <li>Our Services</li>
-                                <li>About Us</li>
-                                <li>Meet Our Team</li>
-                                <li>Our Services</li>
-                                <li>Our Blog</li>
-                            </ul>
+                        <div className="footer-centre">
+                            <div className="footer2">
+                                <h1>Explore</h1>
+                                <ul>
+                                    <li>Our Services</li>
+                                    <li>About Us</li>
+                                    <li>Meet Our Team</li>
+                                    <li>Our Services</li>
+                                    <li>Our Blog</li>
+                                </ul>
+                            </div>
+
+                            <div className="footer3">
+                                <h1>Contact Us</h1>
+                                <ul>
+                                    <li>+1234 0055 8049</li>
+                                    <li>[Email Protected]</li>
+                                    <li>3102 Bartlett Avenue <br/>
+                                    Southfield, MI 48075</li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <div className="footer3">
-                            <h1>Contact Us</h1>
-                            <ul>
-                                <li>+1234 0055 8049</li>
-                                <li>[Email Protected]</li>
-                                <li>3102 Bartlett Avenue <br/>
-                                Southfield, MI 48075</li>
-                            </ul>
-                        </div>
 
                         <div className="footer4">
                             <h1>Newsletter</h1>

@@ -6,7 +6,7 @@ import Finished from '../Order/finished';
 import Canceled from '../Order/canceled';
 import Head from '../Header/Header';
 
-function Profile() {
+function Profile({handleInfo}) {
 
     const [selected, setSelected] = useState('recentOrders');
 
@@ -16,7 +16,7 @@ function Profile() {
 
     const selectedOption = () => {
         if (selected === 'recentOrders') {
-            return <Recent />;
+            return <Recent handleInfo={handleInfo} />;
         } else if (selected === 'finishedOrders') {
             return <Finished />;
         } else if (selected === 'canceledOrders') {

@@ -1,22 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import './info.css';
-import Head from '../Header/Header';
-import Payment from '../../Payments/payment';
 
-function Info(){
+function Info({pk}){
     
     const [order, setOrder] = useState([]);
-    const [id, setId] = useState('')
+    const [ref, setRef] = useState([]);
 
-    // TODO:payment
     useEffect(() => {
-        const url = window.location.pathname
-        const field = url.split('/')
-        const id = field[2]
-        setId(id)
-
         async function fetchData(){
-            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recent/${id}`, {
+            const data = await fetch(`http://127.0.0.1:8000/dashboard/recent/${pk}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,11 +22,26 @@ function Info(){
             setOrder(res)
         }
 
+        async function fetchOrder(){
+            const data = await fetch(`http://127.0.0.1:8000/dashboard/recentorder/${pk}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                }
+            })
+
+            const res = await data.json()
+            let id = res[0].details.id
+            setRef(id)
+        }
+        fetchOrder()
         fetchData()
-    },[])
+    },[pk])
 
     const handleReorder = async() => {
-        await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${id}`, {
+        await fetch(`http://127.0.0.1:8000/dashboard/status/${pk}`, {
             method: 'PUT',
             headers: {
             'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -50,30 +58,26 @@ function Info(){
     order.forEach(stat => {
         if (stat.status === 'Recent'){      
             checkout = (
-                <Payment style1={{position: 'relative', left: '70%'}} style2={{display: 'none'}} style3={{marginTop: '105px'}} pk={id}/>
+                <>
+                    <Link to={`/order/pay/${ref}`} style={{textDecoration: 'none'}}><button>Proceed to Checkout</button></Link>
+                </>
             )
         } else if(stat.status === 'Canceled'){
             checkout = (
-                <div className='reorder_btn'>
-                <button style={{position: 'absolute', left: '70%', top: '60%'}} onClick={handleReorder}>Re-order</button>
-                </div>
+                <>
+                    <button onClick={handleReorder}>Re-order</button>
+                </>
             )
         }
-    })
+    });
 
     return (
         <>
-        <Head />
         <div className='info'>
         <div className='paper_instructions'>
-        <h1>SEE PAPER INSTRUCTIONS <span>#{id}</span></h1>
+        <h1>ORDER <span style={{paddingLeft: '10px'}}>#{pk}</span></h1>
+        {checkout}
         </div>
-            <div className='details'>
-                <button>INFO</button>
-                <button>MESSAGES</button>
-                <button>FILES</button>
-            </div>
-
             <div className='pay'>
             {order.map(new_order => (
                 <div className='order-info' key={new_order.id}>
@@ -90,34 +94,38 @@ function Info(){
                         <h1>Discipline</h1>
                         <h2>{new_order.details.subject}</h2>
                     </li>
-                    <li>
+                    <li style={{display: new_order.details.title.length < 1 ? 'none' : 'flex'}}>
                         <h1>Title</h1>
-                        <h2>See paper Instructions</h2>
+                        <h2>{new_order.details.title}</h2>
                     </li>
                     <li>
                         <h1>Paper format</h1>
                         <h2>{new_order.details.paper_format}</h2>
                     </li>
-                    <li>
-                        <h1>Canceled</h1>
-                        <h2>Aug 17, 2022 at 11.00 AM</h2>
-                    </li>
-                    <li>
+
+                    <li style={{display: new_order.details.references < 1 ? 'none' : 'flex'}}>
                         <h1>Number of Sources</h1>
                         <h2>{new_order.details.references}</h2>
                     </li>
-                    <li>
-                        <h1>2 pages x $32.00</h1>
+                    <li style={{display: new_order.details.pages < 1 ? 'none' : 'flex'}}>
+                        <h1>{new_order.details.pages} page(s) x $32.00</h1>
+                        <h2>$64.00</h2>
+                    </li>
+                    <li style={{display: new_order.details.slides < 1 ? 'none' : 'flex'}}>
+                        <h1>{new_order.details.slides} slide(s) x $32.00</h1>
+                        <h2>$64.00</h2>
+                    </li>
+                    <li style={{display: new_order.details.charts < 1 ? 'none' : 'flex'}}>
+                        <h1>{new_order.details.charts} chart(s) x $32.00</h1>
                         <h2>$64.00</h2>
                     </li>
                     <li>
                         <h1>Grand total price</h1>
-                        <h2>$64.00</h2>
+                        <h2>${new_order.details.amount}</h2>
                     </li>
                 </ul>
             </div>
             ))}
-            {checkout}
             </div>
         </div>
         </>

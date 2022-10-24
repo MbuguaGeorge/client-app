@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useNavigate, Link} from 'react-router-dom';
 import './header.css';
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -14,25 +14,52 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Prof from '../Profile/prof';
 import Settings from '../Settings/settings';
+import Info from '../Instructions/info';
 
 export default function SideBar() {
+
+    const [activeOrders, setActiveOrders] = useState([]);
 
     const [order, setOrder] = useState(true);
     const [setting, setSetting] = useState(false);
     const [profile, setProfile] = useState(false);
+    const [info, setInfo] = useState(false);
+    const [infoId, setInfoId] = useState(null);
 
     const [redirect, setRedirect] = useState(false);
 
     // handle slide nav
     const [isExpanded, setIsExpanded] = useState(false);
 
-    console.log(profile)
-
     // profile modal
     const [open, setOpen] = useState(false);
 
+    useEffect(() => {
+        async function fetchData(){
+            const data = await fetch('http://127.0.0.1:8000/dashboard/list', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`,
+                }
+            })
+            const res = await data.json()
+            setActiveOrders(res)
+        }
+
+        fetchData()
+    }, []);
+
     const handleOpen = () => {
         setOpen(!open)
+    };
+
+    const handleInfo = (id) => {
+        setInfo(true)
+        setProfile(false)
+        setOrder(false)
+        setSetting(false)
+        setInfoId(id)
     };
 
     const handleProfile = () => {
@@ -59,6 +86,17 @@ export default function SideBar() {
     let display, orderActiveOptionStyle, settingActiveOptionStyle;
     let profileModal;
     let navigate = useNavigate();
+    let no_of_orders;
+
+    if (activeOrders.length < 1){
+        no_of_orders = (
+            <h5>My orders </h5>
+        )
+    }else{
+        no_of_orders = (
+            <h5>My orders <span>{activeOrders.length}</span></h5>
+        )
+    }
 
     if (redirect){
         return navigate('/', {replace: true})
@@ -83,7 +121,7 @@ export default function SideBar() {
 
     if (order === true){
         display = (
-            <Prof />
+            <Prof handleInfo={handleInfo} />
         );
 
         orderActiveOptionStyle = {
@@ -101,6 +139,10 @@ export default function SideBar() {
             borderRight: '3px solid #3367d6',
             color: '#fff'
         }
+    }else if (info === true){
+        display = (
+            <Info pk={infoId} />
+        )
     }
 
     return (
@@ -117,12 +159,12 @@ export default function SideBar() {
                 </div>
 
                 <div className={isExpanded ? "sidebar-top-slide expanded" : "sidebar-top-slide"}>
-                    <button><AddCircleOutlineIcon style={{fontSize: '20px', paddingBottom: '5px'}} /><h5>Place Order</h5></button>
+                    <Link to='/dashboard/placeorder' style={{textDecoration: 'none'}}><button><AddCircleOutlineIcon style={{fontSize: '20px', paddingBottom: '5px'}} /><h5>Place Order</h5></button></Link>
                 </div>
 
                 <div className="sidebar-top">
                     <h1>Elency.</h1>
-                    <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '180px'}} >Place order</Button>
+                    <Link to="/dashboard/placeorder" style={{textDecoration: 'none'}}><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '180px'}} >Place order</Button></Link>
                 </div>
 
                 <div className={isExpanded ? "sidebar-mid expanded" : "sidebar-mid"}>
@@ -146,7 +188,7 @@ export default function SideBar() {
                     <ul>
                         <li onClick={handleOrder} style={orderActiveOptionStyle}>
                             <CardGiftcardOutlinedIcon style={{fontSize: '20px'}} />
-                            <h5>My orders <span>9</span></h5>
+                            {no_of_orders}
                         </li>
                         <li>
                             <ChatOutlinedIcon style={{fontSize: '20px'}} />

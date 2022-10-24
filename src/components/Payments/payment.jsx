@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import './payment.css';
 import {useNavigate} from 'react-router-dom';
-import Head from '../Dashboard/Header/Header';
+import creditcard from '../images/debit-cards.png';
 
-function Payment({style1, style2, style3, pk}){
+function Payment(){
 
     const [card, setCard] = useState({
         card_no: '',
@@ -14,37 +15,17 @@ function Payment({style1, style2, style3, pk}){
         amount: '',
         ref: ''
     });
-
+ 
     const [valid, setValid] = useState(0);
 
     useEffect(() => {
-
-        async function fetchData1(){
-            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recentorder/${pk}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application.json',
-                    'Authorization': `Token ${localStorage.getItem('token')}`
-                }
-            })
-            const res = await data.json()
-            let price = res[0].details.amount
-            setCard(card => ({
-                ...card, ref: pk, amount: price
-            }))
-        }
-
-        if(pk){
-            fetchData1()
-
-        }else{
 
         const url = window.location.pathname
         const field = url.split('/')
         const id = field[3]
 
         async function fetchData(){
-            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/neworder/${id}`, {
+            const data = await fetch(`http://127.0.0.1:8000/dashboard/neworder/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application.json',
@@ -57,10 +38,9 @@ function Payment({style1, style2, style3, pk}){
             }))
         }
 
+        fetchData()
 
-        fetchData()}
-
-    },[pk])
+    },[])
 
     const handleSubmit = (e) => {
         localStorage.removeItem('amount')
@@ -96,10 +76,12 @@ function Payment({style1, style2, style3, pk}){
     };
 
     return (
-        <>
-        <div style={style2}><Head /></div>
-        <div className='pay-form' style={style3}>
-            <div className='payment' style={style1}> 
+        <div className="pay-form-container">
+        <div className="proceed">
+            <Link to="/dashboard/orders" style={{textDecoration: 'none'}}><button>Return to dashboard</button></Link>
+        </div>
+        <div className='pay-form'>
+            <div className='payment'> 
                 <form onSubmit={handleSubmit}>
                     <div className='card-info'>
                         <h3>Card Information</h3>
@@ -117,7 +99,7 @@ function Payment({style1, style2, style3, pk}){
                     <div className='expiry'>
                         <input 
                             type='number' required
-                            placeholder='MM/YYYY'
+                            placeholder='MM/YY'
                             value={card.expiry}
                             onChange={(e) => {
                                 setCard(prevState => ({
@@ -163,21 +145,20 @@ function Payment({style1, style2, style3, pk}){
                         />
                     </div>
                     <div className='pay'>
-                        <input 
-                            type='submit'
-                            placeholder='Pay $25.00'
-                        />
+                        <button>Pay Now ${card.amount}</button>
                     </div>
                 </form>
             </div>
-            <div>
-                <div className='price' style={style2}>
-                    <h1>Total Price</h1>
-                    <h2>${card.amount}</h2>
+            <div className='price'>
+                <img src={creditcard} alt="credit cards" />
+                <div className="card-content">
+                    <h2>Enter Card Details</h2>
+                    <p>Enter card details to proceed with this payment</p>
+                    <p>Add your phone number to receive important SMS notifications <br/> about your order(s) and account.</p>
                 </div>
             </div>
         </div>
-        </>
+        </div>
     )
 }
 

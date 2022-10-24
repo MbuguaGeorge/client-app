@@ -23,53 +23,53 @@
 }
 
 .paper_instructions {
-    margin-left: 50px;
-    padding-top: 20px;
-    margin-right: 150px;
-    padding-bottom: 20px;
-}
-
-.paper_instructions h1{
-    font-size: 1.4rem;
+    padding: 20px 40px;
+    background-color: #31333f;
     display: flex;
     justify-content: space-between;
 }
 
+.paper_instructions h1{
+    font-size: 1.4rem;
+    color: #fff;
+}
+
 .info{
     padding-top: 10px;
-    border: 1px solid #F9F9F9;
+    border: 1px solid #262838;
     border-radius: 10px;
     margin: 50px;
     box-shadow: rgba(0,0,0,0.1) 0px 4px 12px;
 }
 .pay{
-    width: 50%;
+    width: 100%;
 }
 
 .order-info{
-    margin-left: 50px;
-    padding-top: 30px;
-    background-color: #F9F9F9;
+    padding: 20px 20px;
+    background-color: #262730;
 }
 
 .order-info ul li{
     list-style: none;
     display: flex;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #292B3A;
     padding: 8px;
     justify-content: space-between;
-    width: 100%;
-    padding-left: 0;
+    width: 80%;
     padding-right: 20px;
+    text-align: left;
 }
 
-.order-info ul li h1, ul li h2{
+.order-info ul li h1{
     font-size: .9rem;
-    color: #1d1d1d;
+    color: #fff;
 }
 
 .order-info ul li h2{
     font-weight: 400;
+    font-size: .9rem;
+    color: #fff;
 }
 
 .reorder_btn button{
@@ -79,4 +79,33 @@
     background-color: skyblue;
     color: white;
     border-radius: 3px;
+}
+
+.paper_instructions button{
+    color: #fff;
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    padding: 3px 10px;
+    border-radius: 3px;
+}
+
+@media all and (max-width: 480px){
+    .info{
+        margin: 10px;
+    }
+    .order-info{
+        padding: 10px 10px;
+    }
+    .order-info ul li{
+        width: 100%;
+    }
+    .paper_instructions{
+        padding: 15px 15px;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .order-info ul li{
+        width: 100%;
+    }
 }

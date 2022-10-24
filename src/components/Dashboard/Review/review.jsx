@@ -32,7 +32,7 @@ function Review() {
         paper_format: '',
         references: 0,
         order_type: 'Academics',
-        academic_year: '',
+        academic_year: 'High School',
         title: '',
         deadline: '24h',
         paper_level: '',
@@ -335,7 +335,6 @@ function Review() {
             }
         }
     }
-
 
     function smartpaperSwitch(){
         if (level2 === 'High School'){

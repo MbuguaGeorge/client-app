@@ -1,30 +1,71 @@
-.pay-form {
+.pay-form-container {
+    background-color: #262838;
+    height: 100vh;
+    padding: 30px 150px;
+}
+
+.proceed{
+    float: right;
+    padding: 15px 0;
+}
+
+.proceed button{
+    color: #ddd;
+    border: 1px solid #383a47;
+    background-color: #383a47;
+    padding: 3px 10px;
+    border-radius: 5px;
+}
+
+.proceed button:hover{
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    color: #fff;
+}
+
+.pay-form{
     display: flex;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    border: 1px solid #383a47;
+    width: 100%;
 }
 
 .pay-form .price {
-    border: 1px solid #ddd;
+    width: 50%;
+    background-color: #292B3A;
     display: flex;
-    justify-content: space-between;
-    border-radius: 3px;
-    width: 220px;
-    padding: 15px 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-.pay-form .price h1, .price h2{
+.pay-form .price img{
+    width: 200px;
+}
+
+.card-content{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.pay-form .price h2{
+    font-size: 1.3rem;
+    color: #ddd;
+    font-weight: 600;
+}
+
+.pay-form .price p{
     font-size: 1rem;
-    color: #111;
+    color: #ddd;
+    padding-top: 10px;
 }
 
 .pay-form .payment {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-right: 50px;
-    border-radius: 3px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0;
 }
 
 form .card-info{
@@ -43,17 +84,18 @@ form .email{
 
 form .card-info h3, .card-name h3, .email h3{
     font-size: .9rem;
-    color: #111;
+    color: #fff;
 }
 
 form .expiry input[type='number']{
     width: 175px;
     font-size: 1rem;
     padding: 5px 15px;
-    color: #1d1d1d;
+    color: #fff;
     border-radius: 3px;
     outline: none;
-    border: 1px solid #111;
+    border: 1px solid #383a47;
+    background-color: transparent;
     margin: 3px;
 }
 
@@ -61,18 +103,19 @@ form .card-info input[type='number'], .card-name input[type='text'], .email inpu
     width: 360px;
     font-size: 1rem;
     padding: 5px 15px;
-    color: #1d1d1d;
+    color: #fff;
+    background-color: transparent;
     border-radius: 3px;
     outline: none;
-    border: 1px solid #111;
+    border: 1px solid #383a47;
 }
 
-form .pay input[type='submit']{
+form .pay button{
     width: 360px;
     text-align: center;
-    border: 1px solid skyblue;
-    background-color: skyblue;
-    color: white;
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    color: #fff;
     font-weight: 600;
     padding: 5px 10px;
     cursor: pointer;
@@ -110,4 +153,36 @@ form .pay input[type='submit']{
     background-color: skyblue;
     color: white;
     cursor: pointer;
+}
+
+/* responsive */
+
+@media all and (max-width: 480px){
+    .pay-form-container{
+        padding: 20px 20px;
+    }
+    .pay-form{
+        display: block;
+        border: none;
+    }
+    .pay-form .price{
+        display: none;
+    }
+    .pay-form .payment{
+        width: 100%;
+        padding: 20px 0;
+        border: 1px solid #383a47;
+    }   
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .pay-form-container{
+        padding: 20px 20px;
+    }
+    .pay-form .price img{
+        width: 140px;
+    }
+    .pay-form .payment{
+        padding: 20px 10px;
+    }
 }

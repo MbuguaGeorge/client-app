@@ -1,0 +1,472 @@
+.placeorder-container{
+    padding: 20px 30px;
+    width: 100%;
+    background-color: #262838;
+    display: flex;
+    min-height: 100vh;
+}
+
+.place-order-requirements-container h1{
+    text-align: left;
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+.placeorder-sidebar{
+    width: 20%;
+    padding-top: 117px;
+}
+
+.placeorder-sidebar .order-requirements{
+    color: #fff;
+    display: flex;
+}
+
+.placeorder-sidebar .order-requirements ul{
+    padding-left: 10px;
+}
+
+.placeorder-sidebar .order-requirements ul li{
+    list-style: none;
+}
+
+.placeorder-sidebar .order-requirements ul li h3{
+    font-size: 1rem;
+}
+
+.placeorder-sidebar .order-requirements h2{
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #292B3A;
+}
+
+.placeorder-sidebar .order-requirements p{
+    text-align: left;
+    color: #ddd;
+}
+
+.place-order-requirements-container{
+    width: 75%;
+    margin-right: 50px;
+}
+
+.place-order-requirements-container .place-order-requirements, .order-details-container{
+    border: 1px solid #383a47;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #292B3A;
+    padding: 0 10px;
+}
+
+.place-order-requirements .top, .order-details-container .top{
+    padding: 0 20px;
+    display: flex;
+    padding-top: 10px;
+}
+
+.summary-container{
+    padding: 20px 0;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.summary-container .top{
+    padding: 0 20px;
+    padding-top: 10px;
+}
+
+.summary-container .top ul{
+    padding-left: 0;
+    display: flex;
+    padding-top: 30px;
+}
+
+.summary-container .top ol{
+    padding-left: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #292B3A;
+    padding: 10px 15px;
+    margin-top: 30px;
+}
+
+.summary-container .top ol li{
+    list-style: none;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.summary-container .top ul li{
+    list-style: none;
+    color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 25px;
+    background-color: #292B3A;
+    padding: 2px 8px;
+    font-weight: 600;
+}
+
+.place-order-requirements .mid{
+    padding: 0 20px;
+    padding-top: 10px;
+    display: flex;
+}
+
+.order-details-container .mid{
+    padding: 0 20px;
+    padding-top: 10px;
+}
+
+.place-order-requirements .bottom, .order-details-container .bottom{
+    padding: 0 20px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    display: flex;
+}
+
+.place-order-requirements .top .assignment-type, .place-order-requirements .mid .assignment-details, .place-order-requirements .mid .deadline, .place-order-requirements .bottom .size, .place-order-requirements .bottom .charts-slides, .order-details-container .top .title, .order-details-container .top .format{
+    background-color: #383a47;
+    width: 50%;
+    padding: 15px 20px;
+    margin: 0 10px;
+}
+
+.summary-container .top{
+    background-color: #383a47;
+    width: 40%;
+    padding: 15px 20px;
+    margin: 0 10px;
+}
+
+.order-details-container .bottom form{
+    background-color: #383a47;
+    width: 68%;
+    padding: 15px 10px;
+    margin: 0 10px;
+}
+
+.order-details-container .bottom .files{
+    background-color: #383a47;
+    width: 30%;
+    padding: 15px 20px;
+    margin: 0 10px;
+    height: 110px;
+}
+
+.order-details-container .mid{
+    background-color: #383a47;
+    width: 94%;
+    padding: 15px 20px;
+    margin: 10px 20px;
+    margin-left: 30px;
+}
+
+.place-order-requirements .top .assignment-type h4, .place-order-requirements .mid .assignment-details h4, .place-order-requirements .mid .deadline h4, .place-order-requirements .bottom .size h4, .place-order-requirements .bottom .charts-slides h4, .order-details-container .top h4, .order-details-container .mid h4, .order-details-container .bottom h4, .order-details-container .bottom form h4, .summary-container .top h4{
+    color: #fff;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.summary-container .top h4{
+    border-bottom: 1px solid #292B3A;
+    padding: 7px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary-container .top h2{
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select, .line-spacing .form-select, .order-details-container .top .format .form-select{
+    background-color: transparent;
+    color: #fff;
+}
+
+.place-order-requirements .top .assignment-type .form-select option, .place-order-requirements .mid .assignment-details option, .place-order-requirements .mid .deadline option, .line-spacing option, .order-details-container .top .format option{
+    background-color: #383a47;
+}
+
+.bottom .size .pages{
+    display: flex;
+}
+
+.ref{
+    border: 1px solid #ced4da;
+    width: 120px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.ref input[type='text']{
+    outline: none;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: transparent;
+    padding: 8px 8px;
+    border: none;
+    width: 50px;
+}
+
+.ref button {
+    text-align: center;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #3367d6;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.page-ref h4, .words h4, .line-spacing h4{
+    color: #ddd;
+    font-weight: 200;
+    padding-top: 10px;
+    font-size: .9rem;
+}
+
+.words h4{
+    padding-bottom: 8px;
+}
+
+.page-ref h4{
+    padding-bottom: 5px;
+}
+
+.pages .words{
+    margin: 0 20px;
+}
+
+.pages .words button{
+    outline: none;
+    border: 1px solid #ced4da;
+    background-color: transparent;
+    padding: 8px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.line-spacing .form-select{
+    margin-top: 0;
+    padding: 8px 10px;
+}
+
+.charts-slides .chart-ref{
+    display: flex;
+}
+
+.next-step{
+    position: absolute;
+    left: 75%;
+    top: 88%;
+}
+
+.prev-step{
+    position: absolute;
+    left: 25%;
+    top: 88%;
+}
+
+.next-step button, .prev-step button{
+    outline: none;
+    border: 1px solid #3367d6;
+    background-color: #3367d6;
+    padding: 5px 16px;
+    color: #fff;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.title input[type="text"]{
+    padding: 6px 14px;
+    outline: none;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+    width: 350px;
+}
+
+.order-details-container .mid textarea{
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: #fff;
+    padding: 6px 15px;
+    height: 100px;
+    outline: none;
+}
+
+.order-details-container .bottom form{
+    display: block;
+}
+
+.summary-container .top button{
+    background-color: #3367d6;
+    border: 1px solid #3367d6;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    padding: 5px 13px;
+    width: 100%;
+}
+
+/* responsive */
+
+@media all and (max-width: 480px){
+    .placeorder-container{
+        display: block;
+        padding: 20px 15px;
+    }
+    .placeorder-sidebar{
+        width: 100%;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .place-order-requirements-container{
+        width: 100%;
+        margin-right: 0;
+    }
+    .place-order-requirements-container .place-order-requirements, .order-details-container{
+        padding: 0 0;
+        padding-right: 10px;
+    }
+    .place-order-requirements .top, .place-order-requirements .bottom, .place-order-requirements .mid, .order-details-container .top, .order-details-container .bottom{
+        display: block;
+        padding: 10px 10px;
+    }
+    .place-order-requirements .top .assignment-type, .place-order-requirements .mid .assignment-details, .place-order-requirements .mid .deadline, .place-order-requirements .bottom .size, .place-order-requirements .bottom .charts-slides, .order-details-container .top .title, .order-details-container .top .format{
+        width: 100%;
+        padding: 10px 10px;
+    }
+    .next-step{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .next-step button, .prev-step button{
+        width: 130px;
+    }
+    .order-details-container .bottom form{
+        width: 100%;
+    }
+    .order-details-container .bottom .files{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .prev-step{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .summarybtn{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding-top: 15px;
+    }
+    .order-details-container .mid{
+        margin-left: 20px;
+    }
+    .summary-container .top{
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .placeorder-container{
+        display: block;
+        padding: 20px 15px;
+    }
+    .placeorder-sidebar{
+        width: 100%;
+        padding-top: 20px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .place-order-requirements-container{
+        width: 100%;
+        margin-right: 0;
+    }
+    .place-order-requirements-container .place-order-requirements, .order-details-container{
+        padding: 0 0;
+        padding-right: 10px;
+    }
+    .place-order-requirements .top, .place-order-requirements .mid, .order-details-container .top{
+        display: flex;
+        padding: 10px 10px;
+    }
+    .place-order-requirements .bottom{
+        display: block;
+        padding-left: 10px;
+    }
+    .order-details-container .bottom{
+        display: block;
+        padding: 10px 0;
+        padding-right: 30px;
+        padding-left: 10px;
+    }
+    .place-order-requirements .bottom .size, .place-order-requirements .bottom .charts-slides, .order-details-container .top .title, .order-details-container .top .format{
+        width: 100%;
+        padding: 10px 10px;
+    }
+    .place-order-requirements .bottom .size{
+        margin-bottom: 20px;
+    }
+    .place-order-requirements .top .assignment-type, .place-order-requirements .mid .assignment-details, .place-order-requirements .mid .deadline{
+        width: 48%;
+        padding: 10px 10px;
+    }
+    .next-step{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .next-step button, .prev-step button{
+        width: 130px;
+    }
+    .order-details-container .bottom form{
+        width: 100%;
+    }
+    .order-details-container .bottom .files{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .prev-step{
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .summarybtn{
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding-top: 15px;
+    }
+    .order-details-container .mid{
+        margin-left: 20px;
+    }
+    .summary-container .top{
+        width: 100%;
+    }
+    .place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select{
+        width: 300px;
+    }
+}

@@ -68,8 +68,8 @@
     display: flex;
     background-color: #292B3A;
     width: 100%;
-    height: 100%;
     z-index: 2;
+    min-height: 100vh;
 }
 
 .orders-view{
@@ -138,5 +138,11 @@
 @media all and (max-width: 480px){
     .orders-view{
         padding: 20px 20px;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px){
+    .orders-view{
+        padding: 20px 30px;
     }
 }

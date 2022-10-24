@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import './profile.css';
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -6,17 +7,17 @@ import Recent from '../Order/recent';
 import Finished from '../Order/finished';
 import Canceled from '../Order/canceled';
 
-export default function Prof() {
+export default function Prof({handleInfo}) {
 
     const [selected, setSelected] = useState('Active');
 
     const selectedOption = () => {
         if (selected === 'Active') {
-            return <Recent />;
+            return <Recent handleInfo={handleInfo} />;
         } else if (selected === 'Finished') {
-            return <Finished />;
+            return <Finished handleInfo={handleInfo} />;
         } else if (selected === 'Canceled') {
-            return <Canceled />
+            return <Canceled handleInfo={handleInfo} />
         }
     };
 
@@ -45,7 +46,7 @@ export default function Prof() {
             <div className="orders-view">
                 <div className="orders-view-title">
                     <h2>My orders</h2>
-                    <Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />}>Place order</Button>
+                    <Link to="/dashboard/placeorder" style={{textDecoration: 'none'}}><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />}>Place order</Button></Link>
                 </div>
                 <div className="order-status">
                     <ul>
