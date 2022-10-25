@@ -50,6 +50,8 @@ export default function SideBar() {
         fetchData()
     }, []);
 
+    console.log(profile)
+
     const handleOpen = () => {
         setOpen(!open)
     };
