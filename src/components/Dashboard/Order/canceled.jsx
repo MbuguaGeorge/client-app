@@ -14,7 +14,7 @@ function Canceled({handleInfo}) {
     }, [])
 
     async function fetchData(){
-        const data = await fetch('http://127.0.0.1:8000/dashboard/canceled', {
+        const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/canceled', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
@@ -38,7 +38,7 @@ function Canceled({handleInfo}) {
                 <div className='recent-progress'>
                     <div className='payment'>
                         <button onClick={async () => {
-                            await fetch(`http://127.0.0.1:8000/dashboard/status/${recent.id}`, {
+                            await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${recent.id}`, {
                                 method: 'PUT',
                                 headers: {
                                     'Authorization': `Token ${localStorage.getItem('token')}`,

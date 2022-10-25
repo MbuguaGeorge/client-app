@@ -14,7 +14,7 @@ function Finished({handleInfo}) {
     }, [])
 
     async function fetchData(){
-        const data = await fetch('http://127.0.0.1:8000/dashboard/finished', {
+        const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/finished', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,

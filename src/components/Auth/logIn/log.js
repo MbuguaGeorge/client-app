@@ -14,7 +14,7 @@ export default function Log() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch('http://127.0.0.1:8000/profile/login', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(details)

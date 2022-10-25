@@ -1,9 +1,13 @@
+.make-container{
+    background-color: #262838;
+    min-height: 115vh;
+    width: 100%;
+}
+
 .placeorder-container{
     padding: 20px 30px;
     width: 100%;
-    background-color: #262838;
     display: flex;
-    min-height: 100vh;
 }
 
 .place-order-requirements-container h1{
@@ -158,7 +162,6 @@
 
 .order-details-container .bottom .files{
     background-color: #383a47;
-    width: 30%;
     padding: 15px 20px;
     margin: 0 10px;
     height: 110px;
@@ -270,16 +273,17 @@
     display: flex;
 }
 
-.next-step{
-    position: absolute;
-    left: 75%;
-    top: 88%;
+.summarybtn{
+    padding: 5px 100px;
+    padding-left: 300px;
 }
 
 .prev-step{
-    position: absolute;
-    left: 25%;
-    top: 88%;
+    float: left;
+}
+
+.next-step{
+    float: right;
 }
 
 .next-step button, .prev-step button{
@@ -356,11 +360,6 @@
         width: 100%;
         padding: 10px 10px;
     }
-    .next-step{
-        position: relative;
-        top: 0;
-        left: 0;
-    }
     .next-step button, .prev-step button{
         width: 130px;
     }
@@ -371,16 +370,14 @@
         width: 100%;
         margin-bottom: 15px;
     }
-    .prev-step{
-        position: relative;
-        top: 0;
-        left: 0;
-    }
     .summarybtn{
         display: flex;
         justify-content: space-between;
         position: relative;
+        padding: 0 0;
         padding-top: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .order-details-container .mid{
         margin-left: 20px;
@@ -434,11 +431,6 @@
         width: 48%;
         padding: 10px 10px;
     }
-    .next-step{
-        position: relative;
-        top: 0;
-        left: 0;
-    }
     .next-step button, .prev-step button{
         width: 130px;
     }
@@ -449,16 +441,14 @@
         width: 100%;
         margin-bottom: 15px;
     }
-    .prev-step{
-        position: relative;
-        top: 0;
-        left: 0;
-    }
     .summarybtn{
         display: flex;
         justify-content: space-between;
         position: relative;
+        padding: 0 0;
         padding-top: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .order-details-container .mid{
         margin-left: 20px;

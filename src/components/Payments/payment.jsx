@@ -25,7 +25,7 @@ function Payment(){
         const id = field[3]
 
         async function fetchData(){
-            const data = await fetch(`http://127.0.0.1:8000/dashboard/neworder/${id}`, {
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/neworder/${id}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application.json',

@@ -178,7 +178,7 @@
         height: 100%;
     }
     .sidebar.expanded{
-        width: 50%;
+        width: 60%;
         transition: width .4s;
     }
     .sidebar-mid.expanded ul li h5, .sidebar-bottom.expanded ul li h5{

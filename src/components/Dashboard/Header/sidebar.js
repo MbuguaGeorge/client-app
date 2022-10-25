@@ -36,7 +36,7 @@ export default function SideBar() {
 
     useEffect(() => {
         async function fetchData(){
-            const data = await fetch('http://127.0.0.1:8000/dashboard/list', {
+            const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/list', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

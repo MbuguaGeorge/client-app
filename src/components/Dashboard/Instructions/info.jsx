@@ -9,7 +9,7 @@ function Info({pk}){
 
     useEffect(() => {
         async function fetchData(){
-            const data = await fetch(`http://127.0.0.1:8000/dashboard/recent/${pk}`, {
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recent/${pk}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ function Info({pk}){
         }
 
         async function fetchOrder(){
-            const data = await fetch(`http://127.0.0.1:8000/dashboard/recentorder/${pk}`, {
+            const data = await fetch(`https://georgeclientapp.herokuapp.com/dashboard/recentorder/${pk}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function Info({pk}){
     },[pk])
 
     const handleReorder = async() => {
-        await fetch(`http://127.0.0.1:8000/dashboard/status/${pk}`, {
+        await fetch(`https://georgeclientapp.herokuapp.com/dashboard/status/${pk}`, {
             method: 'PUT',
             headers: {
             'Authorization': `Token ${localStorage.getItem('token')}`,
