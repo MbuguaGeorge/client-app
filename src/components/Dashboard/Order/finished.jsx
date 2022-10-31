@@ -19,10 +19,9 @@ function Finished({handleInfo}) {
             headers: {
                 'Authorization': `Token ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
-            }
+            } 
         })
         const res = await data.json()
-        console.log(res)
         setFinishedOrders(res)
     }
 
