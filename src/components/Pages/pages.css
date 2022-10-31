@@ -123,6 +123,16 @@
     display: none;
 }
 
+
+.mini_links{
+    display: none;
+}
+
+.mini_links li{
+    font-size: .9rem;
+    font-weight: 600;
+}
+
 @media all and (max-width: 480px){
     .navigation{
         padding: 20px 0;
@@ -175,6 +185,9 @@
     .services-options ul li{
         padding: 0;
     }
+    .mini_links{
+        display: block;
+    }
 }
 
 @media all and (min-width: 481px) and (max-width: 768px){
@@ -220,6 +233,9 @@
     }
     .services-container{
         display: none;
+    }
+    .mini_links{
+        display: block;
     }
 }
 

@@ -63,7 +63,7 @@ export default function Home(){
         setOpen(false)
     };
 
-    let displayOptions, displayIcon, displaySamples, sampleIcon;
+    let displayOptions, displayIcon, displaySamples, sampleIcon, miniOptions, miniSamples;
 
     if(open === true){
         displayOptions = (
@@ -79,6 +79,14 @@ export default function Home(){
         )
         displayIcon = (
             <ExpandLessIcon />
+        )
+
+        miniOptions = (
+            <ol className="mini_links">
+                <li>Academic Writing</li>
+                <li>Programming Assignments</li>
+                <li>Calculations Assignments</li>
+            </ol>
         )
     } else if(open === false) {
         displayIcon = (
@@ -110,6 +118,23 @@ export default function Home(){
         sampleIcon = (
             <ExpandLessIcon />
         )
+
+        miniSamples = (
+            <ol className="mini_links">
+                <li>Business Plan</li>
+                <li>Dissertation</li>
+                <li>Creative Writing</li>
+                <li>Research paper</li>
+                <li>Term Paper</li>
+                <li>Article Review</li>
+                <li>Statistics</li>
+                <li>Engineering</li>
+                <li>Mathematics</li>
+                <li>Web Programming</li>
+                <li>Database Design and Optimization</li>
+                <li>Mobile Application Development</li>
+            </ol>
+        )
     } else if(samples === false) {
         sampleIcon = (
             <ExpandMoreIcon />
@@ -123,8 +148,10 @@ export default function Home(){
                 <div className={isExpanded ? "navlinks expanded" : "navlinks"}>
                     <ul>
                         <li onClick={handleOpenOptions}>Our Services <span>{displayIcon}</span></li>
+                        {miniOptions}
                         <li>How to Order</li>
                         <li onClick={handleOpenSamples}>Sample Work {sampleIcon}</li>
+                        {miniSamples}
                         <li>Blog</li>
                         <li>Latest Reviews</li>
                         <li>Pricing</li>

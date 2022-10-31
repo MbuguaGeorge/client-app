@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import {Button} from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-function Recent({handleInfo}) {
+function Revised({handleInfo}) {
 
     const [recentOrders, setRecentOrders] = useState([]);
 
@@ -68,4 +68,4 @@ function Recent({handleInfo}) {
     )
 }
 
-export default Recent;
+export default Revised;

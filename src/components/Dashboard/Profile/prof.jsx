@@ -6,6 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Recent from '../Order/recent';
 import Finished from '../Order/finished';
 import Canceled from '../Order/canceled';
+import Revised from '../Order/revised';
 
 export default function Prof({handleInfo}) {
 
@@ -18,6 +19,8 @@ export default function Prof({handleInfo}) {
             return <Finished handleInfo={handleInfo} />;
         } else if (selected === 'Canceled') {
             return <Canceled handleInfo={handleInfo} />
+        } else if (selected === 'Revised') {
+            return <Revised handleInfo={handleInfo} />
         }
     };
 

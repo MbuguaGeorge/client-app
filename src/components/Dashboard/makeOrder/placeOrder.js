@@ -39,7 +39,7 @@ export default function PlaceOrder(){
         instructions: '',
         paper_format: '',
         references: 0,
-        order_type: '',
+        order_type: 'Academic Writing',
         academic_year: '',
         title: '',
         deadline: '',
@@ -64,11 +64,12 @@ export default function PlaceOrder(){
     useEffect(() => {
         if(orderType === 'Academic Writing'){
             setDetails(prevState => ({
-                ...prevState, paper_level: 'Basic', software: '', subject: '', programming_category: '', prog_language: '', task_size: ''
+                ...prevState, paper_level: 'Basic', software: '', subject: '', programming_category: '', prog_language: '', task_size: '', paper_type: 'Essay', paper_format: 'MLA', academic_year: 'High School', spacing: 'Double',  discipline: 'Philosophy', deadline: '4 Hours'
             }))
+            setPages(1)
         }else if(orderType === 'Programming Assignment'){
             setDetails(prevState => ({
-                ...prevState, paper_level: '', subject: '', paper_format: '', academic_year: '', spacing: '', title: '', paper_type: '', upgrade: '', discipline: '', software: '', pages: 0, references: 0, charts: 0, slides: 0
+                ...prevState, paper_level: '', subject: '', paper_format: '', academic_year: '', spacing: '', title: '', paper_type: '', upgrade: '', discipline: '', deadline: '24 Hours', size: 'Extra Small', software: '', pages: 0, references: 0, charts: 0, slides: 0
             }))
             setPages(0)
             setCharts(0)
@@ -76,14 +77,16 @@ export default function PlaceOrder(){
             setReferences(0)
         }else if(orderType === 'Calculations Assignment'){
             setDetails(prevState => ({
-                ...prevState, discipline: '', paper_level: '', paper_format: '', academic_year: '', title: '', upgrade: '', paper_type: '', programming_category: '', prog_language: '', spacing: '', pages: 0, references: 0, charts: 0, slides: 0
+                ...prevState, discipline: '', paper_level: '', paper_format: '', academic_year: '', title: '', upgrade: '', paper_type: '', programming_category: '', prog_language: '', deadline: '24 Hours', size: 'Extra Small', spacing: '', pages: 0, references: 0, charts: 0, slides: 0
             }))
             setPages(0)
             setCharts(0)
             setSlides(0)
             setReferences(0)
         }
-    },[orderType])
+    },[orderType]);
+
+    
 
     const incrementPages = (event) =>{
         event.preventDefault()
@@ -100,6 +103,11 @@ export default function PlaceOrder(){
         setSlides(slides => slides + 1,)
     };
 
+    const incrementReferences = (event) =>{
+        event.preventDefault()
+        setReferences(references => references + 1,)
+    };
+
     const decrementPages = (event) =>{
         event.preventDefault()
         setPages(pages => Math.max(pages - 1, 0))
@@ -113,6 +121,11 @@ export default function PlaceOrder(){
     const decrementSlides = (event) =>{
         event.preventDefault()
         setSlides(slides => Math.max(slides - 1, 0))
+    };
+
+    const decrementReferences = (event) =>{
+        event.preventDefault()
+        setReferences(references => Math.max(references - 1, 0))
     };
 
     // Summary display
@@ -2008,17 +2021,17 @@ export default function PlaceOrder(){
         if (orderType === 'Academic Writing') {
             if (details.order_type.length < 1){
                 order_typeError = 'Select order type'
-            }else{
+            }else if (details.order_type.length > 0){
                 order_typeError = ''
             }
             if (details.paper_type.length < 1){
                 paper_typeError = 'Select paper type'
-            }else{
+            }else if (details.paper_type.length > 0){
                 paper_typeError = ''
             }
             if (details.discipline.length < 1){
                 disciplineError = 'Select discipline'
-            }else{
+            }else if (details.discipline.length > 0){
                 disciplineError = ''
             }
             if (details.academic_year.length < 1){
@@ -2043,13 +2056,14 @@ export default function PlaceOrder(){
             }
             if (order_typeError || paper_typeError || deadlineError || spacingError || pagesError || academic_yearError || disciplineError){
 
-                setValidators({order_typeError, paper_typeError, deadlineError, spacingError, pagesError, academic_yearError, disciplineError})
+                setValidators({order_typeError, paper_typeError, deadlineError, spacingError, pagesError, academic_yearError, disciplineError}) 
                 setError(true)
                 return false
             }
             setError(false)
             return true
         }
+
         return true
     };
 
@@ -2076,13 +2090,12 @@ export default function PlaceOrder(){
                             <h4>Assignment type:</h4>
                             <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue={details.order_type.length > 1 ? details.order_type : "Select assignment"} className='select' onChange={(e) => {
+                                    <Form.Select defaultValue={details.order_type.length > 1 ? details.order_type : "Academic Writing"} className='select' onChange={(e) => {
                                         setOrderType(e.target.value)
                                         setDetails(prevState => ({
                                             ...prevState, order_type:e.target.value
                                         }))
                                     }}>
-                                    <option className='unselect'>Select assignment*</option>
                                     <option value="Academic Writing">Academic Writing</option>
                                     <option value="Programming Assignment">Programming Assignment</option>
                                     <option value="Calculations Assignment">Calculations Assignment</option>
@@ -2097,10 +2110,9 @@ export default function PlaceOrder(){
                                     <h4>Type of Paper:</h4>
                                     <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={details.paper_type.length > 1 ? details.paper_type : "E.g. Essay"} className='select' onChange={(e) => setDetails(prevState => ({
+                                            <Form.Select defaultValue={details.paper_type.length > 1 ? details.paper_type : "Essay"} className='select' onChange={(e) => setDetails(prevState => ({
                                                 ...prevState, paper_type: e.target.value
                                             }))}>
-                                            <option className='unselect'>E.g. Essay*</option>
                                             <option value="Creative Writing">Creative Writing</option>
                                             <option value="Essay">Essay</option>
                                             <option value="Research Paper">Research Paper</option>
@@ -2117,10 +2129,9 @@ export default function PlaceOrder(){
                                     <h4>Programming Language:</h4>
                                     <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={details.prog_language.length > 1 ? details.prog_language : "Select one"} className='select' onChange={(e) => setDetails(prevState => ({
+                                            <Form.Select defaultValue={details.prog_language.length > 1 ? details.prog_language : "Python"} className='select' onChange={(e) => setDetails(prevState => ({
                                                 ...prevState, prog_language: e.target.value
                                             }))}>
-                                            <option className='unselect'>Select one*</option>
                                             <option value="Python">Python</option>
                                             <option value="JavaScript">JavaScript</option>
                                             <option value="C">C</option>
@@ -2137,10 +2148,9 @@ export default function PlaceOrder(){
                                     <h4>Subject:</h4>
                                     <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={details.subject.length > 1 ? details.subject : "Select one"} className='select' onChange={(e) => setDetails(prevState => ({
+                                            <Form.Select defaultValue={details.subject.length > 1 ? details.subject : "Engineering"} className='select' onChange={(e) => setDetails(prevState => ({
                                                 ...prevState, subject: e.target.value
                                             }))}>
-                                            <option className='unselect'>Select one*</option>
                                             <option value="Engineering">Engineering</option>
                                             <option value="Aviation">Aviation</option>
                                             <option value="Mathematics">Mathematics</option>
@@ -2161,10 +2171,9 @@ export default function PlaceOrder(){
                             {orderType === 'Academic Writing' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.discipline.length > 1 ? details.discipline : "Discipline"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.discipline.length > 1 ? details.discipline : "Philosophy"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, discipline: e.target.value
                                         }))}>
-                                        <option className='unselect'>Discipline*</option>
                                         <option value="Economics">Economics</option>
                                         <option value="History">History</option>
                                         <option value="Classic English Literature">Classic English Literature</option>
@@ -2177,10 +2186,9 @@ export default function PlaceOrder(){
                             {orderType === 'Programming Assignment' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.programming_category.length > 1 ? details.programming_category : "Programming Category"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.programming_category.length > 1 ? details.programming_category : "Software Development"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, programming_category: e.target.value
                                         }))}>
-                                        <option className='unselect'>Programming Category*</option>
                                         <option value="Web Programming">Web Programming</option>
                                         <option value="Computer Science">Computer Science</option>
                                         <option value="Software Development">Software Development</option>
@@ -2193,10 +2201,9 @@ export default function PlaceOrder(){
                             {orderType === 'Calculations Assignment' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.software.length > 1 ? details.software : "Software"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.software.length > 1 ? details.software : "Microsoft Excel"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, software: e.target.value
                                         }))}>
-                                        <option className='unselect'>Software*</option>
                                         <option value="Microsoft Excel">Microsoft Excel</option>
                                         <option value="Microsoft Word">Microsoft Word</option>
                                         <option value="STATA">STATA</option>
@@ -2210,8 +2217,7 @@ export default function PlaceOrder(){
                             {orderType === 'Academic Writing' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.academic_year.length > 1 ? details.academic_year : "Academic level"} className='select' onChange={handleChange}>
-                                        <option className='unselect'>Academic level*</option>
+                                        <Form.Select defaultValue={details.academic_year.length > 1 ? details.academic_year : "High School"} className='select' onChange={handleChange}>
                                         <option value="High School">High School</option>
                                         <option value="Undergraduate years(1-2)">Undergarduate (years 1-2)</option>
                                         <option value="Undergraduate years(3-4)">Undergarduate (years 3-4)</option>
@@ -2224,10 +2230,9 @@ export default function PlaceOrder(){
                             {orderType === 'Programming Assignment' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.task_size.length > 1 ? details.task_size : "Task size"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.task_size.length > 1 ? details.task_size : "Extra Small"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, task_size: e.target.value
                                         }))}>
-                                        <option className='unselect'>Task size*</option>
                                         <option value="Extra small">Extra small</option>
                                         <option value="Small">Small</option>
                                         <option value="Medium">Medium</option>
@@ -2239,10 +2244,9 @@ export default function PlaceOrder(){
                             {orderType === 'Calculations Assignment' &&
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.task_size.length > 1 ? details.task_size : "Task size"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.task_size.length > 1 ? details.task_size : "Extra Small"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, task_size: e.target.value
                                         }))}>
-                                        <option className='unselect'>Task size*</option>
                                         <option value="Extra small">Extra small</option>
                                         <option value="Small">Small</option>
                                         <option value="Medium">Medium</option>
@@ -2258,10 +2262,9 @@ export default function PlaceOrder(){
                                 <h4>Deadline:</h4>
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "Your deadline"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "4 Hours"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, deadline: e.target.value
                                         }))}>
-                                        <option className='unselect'>Your deadline*</option>
                                         <option value="4 Hours">4 Hours</option>
                                         <option value="8 Hours">8 Hours</option>
                                         <option value="24 Hours">24 Hours</option>
@@ -2281,10 +2284,9 @@ export default function PlaceOrder(){
                                 <h4>Deadline:</h4>
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "Your deadline"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "24 Hours"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, deadline: e.target.value
                                         }))}>
-                                        <option className='unselect'>Your deadline*</option>
                                         <option value="24 Hours">24 Hours</option>
                                         <option value="2 Days">2 Days</option>
                                         <option value="3 Days">3 Days</option>
@@ -2302,10 +2304,9 @@ export default function PlaceOrder(){
                                 <h4>Deadline:</h4>
                                 <div className="col-sm-12 col-md-6 mt-3" style={{width: '390px'}}>
                                     <Form.Group controlId="formGridState">
-                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "Your deadline"} className='select' onChange={(e) => setDetails(prevState => ({
+                                        <Form.Select defaultValue={details.deadline.length > 1 ? details.deadline : "24 Hours"} className='select' onChange={(e) => setDetails(prevState => ({
                                             ...prevState, deadline: e.target.value
                                         }))}>
-                                        <option className='unselect'>Your deadline*</option>
                                         <option value="24 Hours">24 Hours</option>
                                         <option value="2 Days">2 Days</option>
                                         <option value="3 Days">3 Days</option>
@@ -2342,8 +2343,7 @@ export default function PlaceOrder(){
                                     <h4>Line spacing:</h4>
                                     <div className="col-sm-12 col-md-6 mt-3" style={{width: '160px'}}>
                                         <Form.Group controlId="formGridState">
-                                            <Form.Select defaultValue={details.spacing.length > 1 ? details.spacing : "Choose"} className='select' onChange={handleSpacing}>
-                                            <option className="unselect">Choose*</option>
+                                            <Form.Select defaultValue={details.spacing.length > 1 ? details.spacing : "Double"} className='select' onChange={handleSpacing}>
                                             <option value="Double">Double</option>
                                             <option value="Single">Single</option>
                                             </Form.Select>
@@ -2376,9 +2376,9 @@ export default function PlaceOrder(){
                                 <div className="page-ref" style={{marginLeft: '20px'}}>
                                     <h4>References:</h4>
                                     <div className="ref">
-                                        <button onClick={decrementCharts} >-</button>
-                                        <input type="text" value={charts}/>
-                                        <button onClick={incrementCharts}>+</button>
+                                        <button onClick={decrementReferences} >-</button>
+                                        <input type="text" value={references}/>
+                                        <button onClick={incrementReferences}>+</button>
                                     </div>
                                 </div>
                             </div>
@@ -2453,10 +2453,9 @@ export default function PlaceOrder(){
                             <h4>Paper format:</h4>
                             <div className="col-sm-12 col-md-6 mt-3" style={{width: '250px'}}>
                                 <Form.Group controlId="formGridState">
-                                    <Form.Select defaultValue="Paper format" className='select' onChange={(e) => setDetails(prevState => ({
+                                    <Form.Select defaultValue="MLA" className='select' onChange={(e) => setDetails(prevState => ({
                                         ...prevState, paper_format: e.target.value
                                     }))}>
-                                    <option className='unselect'>Paper format*</option>
                                     <option value="MLA">MLA</option>
                                     <option value="APA 6">APA 6</option>
                                     <option value="APA 7">APA 7</option>
