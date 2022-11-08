@@ -12,6 +12,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import SendIcon from '@mui/icons-material/Send';
 import Prof from '../Profile/prof';
 import Settings from '../Settings/settings';
 import Info from '../Instructions/info';
@@ -25,6 +26,8 @@ export default function SideBar() {
     const [profile, setProfile] = useState(false);
     const [info, setInfo] = useState(false);
     const [infoId, setInfoId] = useState(null);
+
+    const [flapChat, setFlapChat] = useState(false);
 
     const [redirect, setRedirect] = useState(false);
 
@@ -207,6 +210,64 @@ export default function SideBar() {
                     </ul>
                 </div>
 
+            </div>
+
+            <div className={flapChat === true ? "chat-container" : "msg-container"}>
+                <div className="msg-box">
+                    <div className="msg-header" onClick={() => setFlapChat(!flapChat)}>
+                        <h1>Messages</h1>
+                    </div> 
+
+                    <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
+                        <div className="row no-gutters">
+                            <div className="col-md-3">
+                                <div className="chat-bubble chat-bubble--left">
+                                    <div className="msg-cont">
+                                        Hey, dude!
+                                    </div>
+                                    <div className="time">
+                                        <p>20:02</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row no-gutters">
+                            <div className="col-md-3 offset-md-9">
+                                <div className="chat-bubble chat-bubble--blue chat-bubble--right">
+                                    <div className="msg-cont">
+                                        Hey, is the project done! The deadline is nearing and I have to show a prototype before the end of the month. Thank you
+                                    </div>
+                                    <div className="time">
+                                        <p>21:10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row no-gutters">
+                            <div className="col-md-3 offset-md-9">
+                                <div className="chat-bubble chat-bubble--blue chat-bubble--right">
+                                    <div className="msg-cont">
+                                        Hey, is the project done! The deadline is nearing and I have to show a prototype before the end of the month. Thank you
+                                    </div>
+                                    <div className="time">
+                                        <p>21:10</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={flapChat === true ? "hide-msg-input" : "msg-input"}>
+                        <div className="chat-box-input">
+                            <input type="text" required 
+                                placeholder="New message"
+                            />
+                            <div className="i"><SendIcon /></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div className="user-option-dashboard">
