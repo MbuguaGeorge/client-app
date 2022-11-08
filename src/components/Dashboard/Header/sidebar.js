@@ -17,8 +17,21 @@ import Prof from '../Profile/prof';
 import Settings from '../Settings/settings';
 import Info from '../Instructions/info';
 
+import {io} from "socket.io-client";
+
 export default function SideBar() {
 
+    // messaging states
+    const [email, setEmail] = useState(null);
+    const [userSenderID, setUserSenderID] = useState(null);
+    const [userReceiverID, setUserReceiverID] = useState(null);
+    const [customers, setCustomers] = useState([]);
+    const [socket, setSocket] = useState(null);
+
+    const [curMessage, setCurMessage] = useState('');   
+    const [messages, setMessages] = useState([]);
+
+    // Sidebar states
     const [activeOrders, setActiveOrders] = useState([]);
 
     const [order, setOrder] = useState(true);
@@ -37,6 +50,8 @@ export default function SideBar() {
     // profile modal
     const [open, setOpen] = useState(false);
 
+    console.log(profile)
+
     useEffect(() => {
         async function fetchData(){
             const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/list', {
@@ -53,7 +68,94 @@ export default function SideBar() {
         fetchData()
     }, []);
 
-    console.log(profile)
+    // socket consigurations
+    useEffect(() => {
+        async function fetchUsers(){
+            const users = await fetch('https://georgeclientapp.herokuapp.com/profile/users', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `token ${localStorage.getItem('token')}`
+                }
+            })
+
+            const res = await users.json()
+            const supportEmail = res.find(user => user.email === 'mbuguag026@gmail.com')
+            setCustomers(res)
+            setUserReceiverID(supportEmail.id)
+        };
+
+        async function fetchData(){
+            const data = await fetch('https://georgeclientapp.herokuapp.com/profile/cur', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `token ${localStorage.getItem('token')}`
+                }
+            })
+
+            const res = await data.json()
+            const useremail = res.map(em => em.email)
+            setEmail(useremail[0])
+        };
+
+        fetchUsers();
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if(email){
+            const pk = customers.find(id => {
+                return id.email === email
+            })
+            setUserSenderID(pk)
+        }
+
+    },[email, customers]);
+
+    useEffect(() => {
+        const URL = "http://localhost:5000/";
+        if (socket === null){
+            setSocket(io(URL, {transports: ['websocket']}))
+        };
+
+        if(socket){
+            if (userSenderID !== null && userSenderID !== undefined){
+                socket.emit("addUser", userSenderID.id);
+            }
+
+            socket.on("getUsers", users => {
+                console.log(users)
+            });
+        };
+
+    
+    }, [socket, userSenderID]);
+
+    useEffect(() => {
+        if(socket){
+            socket.on('received_message', (content) => {
+                console.log(content)
+                setMessages((msgs) => [...msgs, content]);
+            });
+        }
+
+    }, [socket]);
+
+    const sendMessage = async (event) => {
+        event.preventDefault()
+
+        if (curMessage !== ''){
+            const messageData = {
+                content: curMessage,
+                receiverID: userReceiverID,
+                senderID: userSenderID,
+            };
+            await socket.emit('sendMessage', messageData);
+            setMessages((msgs) => [...msgs, messageData]);
+            setCurMessage("")
+        }
+    };
 
     const handleOpen = () => {
         setOpen(!open)
@@ -218,51 +320,31 @@ export default function SideBar() {
                         <h1>Messages</h1>
                     </div> 
 
-                    <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
-                        <div className="row no-gutters">
-                            <div className="col-md-3">
-                                <div className="chat-bubble chat-bubble--left">
-                                    <div className="msg-cont">
-                                        Hey, dude!
-                                    </div>
-                                    <div className="time">
-                                        <p>20:02</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row no-gutters">
-                            <div className="col-md-3 offset-md-9">
-                                <div className="chat-bubble chat-bubble--blue chat-bubble--right">
-                                    <div className="msg-cont">
-                                        Hey, is the project done! The deadline is nearing and I have to show a prototype before the end of the month. Thank you
-                                    </div>
-                                    <div className="time">
-                                        <p>21:10</p>
+                    {messages.map((content, i) => {
+                        return (
+                        <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
+                            <div className="row no-gutters">
+                                <div className={userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
+                                    <div className={userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
+                                        <div className="msg-cont">
+                                            Hey, dude!
+                                        </div>
+                                        <div className="time">
+                                            <p>20:02</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="row no-gutters">
-                            <div className="col-md-3 offset-md-9">
-                                <div className="chat-bubble chat-bubble--blue chat-bubble--right">
-                                    <div className="msg-cont">
-                                        Hey, is the project done! The deadline is nearing and I have to show a prototype before the end of the month. Thank you
-                                    </div>
-                                    <div className="time">
-                                        <p>21:10</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    )})}
 
                     <div className={flapChat === true ? "hide-msg-input" : "msg-input"}>
                         <div className="chat-box-input">
                             <input type="text" required 
                                 placeholder="New message"
+                                value = {curMessage}
+                                onChange = {(event) => setCurMessage(event.target.value)}
+                                onKeyPress = {event => event.key === 'Enter' ? sendMessage(event) : null}
                             />
                             <div className="i"><SendIcon /></div>
                         </div>
