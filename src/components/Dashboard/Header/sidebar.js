@@ -318,16 +318,16 @@ export default function SideBar() {
                 <div className="msg-box">
                     <div className="msg-header" onClick={() => setFlapChat(!flapChat)}>
                         <h1>Messages</h1>
-                    </div> 
+                    </div>
 
+                    <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
                     {messages.map((content, i) => {
                         return (
-                        <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
-                            <div className="row no-gutters">
+                            <div className="row no-gutters" key={i}>
                                 <div className={userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
                                     <div className={userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
                                         <div className="msg-cont">
-                                            Hey, dude!
+                                            {content.content}
                                         </div>
                                         <div className="time">
                                             <p>20:02</p>
@@ -335,8 +335,8 @@ export default function SideBar() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     )})}
+                    </div>
 
                     <div className={flapChat === true ? "hide-msg-input" : "msg-input"}>
                         <div className="chat-box-input">
