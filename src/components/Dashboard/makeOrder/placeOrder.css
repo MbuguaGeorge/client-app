@@ -196,6 +196,7 @@
 .place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select, .line-spacing .form-select, .order-details-container .top .format .form-select{
     background-color: transparent;
     color: #fff;
+    background-image: url(../../images/down.png);
 }
 
 .place-order-requirements .top .assignment-type .form-select option, .place-order-requirements .mid .assignment-details option, .place-order-requirements .mid .deadline option, .line-spacing option, .order-details-container .top .format option{

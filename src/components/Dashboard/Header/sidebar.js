@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useNavigate, Link} from 'react-router-dom';
 import './header.css';
 import Button from '@mui/material/Button';
@@ -29,7 +29,10 @@ export default function SideBar() {
     const [socket, setSocket] = useState(null);
 
     const [curMessage, setCurMessage] = useState('');   
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(null);
+    const [conversation, setConversation] = useState([]);
+    const [oldMessages, setOldMessages] = useState([]);
+    const [curChat, setCurChat] = useState(null);
 
     // Sidebar states
     const [activeOrders, setActiveOrders] = useState([]);
@@ -50,6 +53,8 @@ export default function SideBar() {
     // profile modal
     const [open, setOpen] = useState(false);
 
+    const scrollRef = useRef();
+
     console.log(profile)
 
     useEffect(() => {
@@ -67,6 +72,66 @@ export default function SideBar() {
 
         fetchData()
     }, []);
+
+    
+    // get conversations of user
+    useEffect(() => {
+        async function getConversation(){
+            try{
+                const data = await fetch(`http://localhost:5000/conversations/${userReceiverID}`, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+                });
+
+                const res = await data.json()
+                setConversation(res)
+            }catch(err){
+                console.log(err)
+            }
+        };
+
+        if(userReceiverID !== null){
+            getConversation()
+        }
+    },[userReceiverID]);
+
+    // get conversation messages
+    useEffect(() => {
+        const conversationId = conversation.map(conv => conv._id)
+        async function getMessages(){
+            try {
+                const data = await fetch(`http://localhost:5000/messages/${conversationId[0]}`, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+                });
+
+                const res = await data.json()
+                return setOldMessages(res)
+
+            }catch(err){
+                console.log(err)
+            }
+        };
+        if(conversationId !== null && conversationId !== undefined){
+            getMessages()
+        }
+    }, [conversation]);
+
+    useEffect(() => {
+
+        conversation.map((c) => setCurChat(c))
+    },[conversation])
+
+    useEffect(() => {
+        messages &&
+            curChat?.member.includes(messages.senderId) &&
+                setOldMessages((prev) => [...prev, messages])
+    }, [messages, curChat]);
+
+    // smooth scroll
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth"});
+    },[oldMessages]);
 
     // socket consigurations
     useEffect(() => {
@@ -135,8 +200,11 @@ export default function SideBar() {
     useEffect(() => {
         if(socket){
             socket.on('received_message', (content) => {
-                console.log(content)
-                setMessages((msgs) => [...msgs, content]);
+                setMessages({
+                    senderID: content.senderID.id,
+                    content: content.content,
+                    createdAt: Date.now(),
+                });
             });
         }
 
@@ -152,7 +220,7 @@ export default function SideBar() {
                 senderID: userSenderID,
             };
             await socket.emit('sendMessage', messageData);
-            setMessages((msgs) => [...msgs, messageData]);
+            setOldMessages([...oldMessages, messageData]);
             setCurMessage("")
         }
     };
@@ -321,11 +389,11 @@ export default function SideBar() {
                     </div>
 
                     <div className={flapChat === true ? "hide-chat-panel" : "chat-panel"}>
-                    {messages.map((content, i) => {
+                    {oldMessages.map((content, i) => {
                         return (
-                            <div className="row no-gutters" key={i}>
-                                <div className={userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
-                                    <div className={userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
+                            <div className="row no-gutters" key={i} ref={scrollRef}>
+                                <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
+                                    <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
                                         <div className="msg-cont">
                                             {content.content}
                                         </div>
