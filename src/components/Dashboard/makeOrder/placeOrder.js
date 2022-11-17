@@ -11,7 +11,7 @@ const initialState = {
     deadlineError: '',
     spacingError: '',
     disciplineError: '',
-    pagesError: ''
+    chartsSlidesPagesError: ''
 }
 
 export default function PlaceOrder(){
@@ -69,7 +69,7 @@ export default function PlaceOrder(){
             setPages(1)
         }else if(orderType === 'Programming Assignment'){
             setDetails(prevState => ({
-                ...prevState, paper_level: '', subject: '', paper_format: '', academic_year: '', spacing: '', title: '', paper_type: '', upgrade: '', discipline: '', deadline: '24 Hours', size: 'Extra Small', software: '', pages: 0, references: 0, charts: 0, slides: 0
+                ...prevState, paper_level: '', subject: '', paper_format: '', academic_year: '', spacing: '', title: '', paper_type: '', upgrade: '', discipline: '', deadline: '24 Hours', task_size: 'Extra small', software: '', pages: 0, references: 0, charts: 0, slides: 0
             }))
             setPages(0)
             setCharts(0)
@@ -77,7 +77,7 @@ export default function PlaceOrder(){
             setReferences(0)
         }else if(orderType === 'Calculations Assignment'){
             setDetails(prevState => ({
-                ...prevState, discipline: '', paper_level: '', paper_format: '', academic_year: '', title: '', upgrade: '', paper_type: '', programming_category: '', prog_language: '', deadline: '24 Hours', size: 'Extra Small', spacing: '', pages: 0, references: 0, charts: 0, slides: 0
+                ...prevState, discipline: '', paper_level: '', paper_format: '', academic_year: '', title: '', upgrade: '', paper_type: '', programming_category: '', prog_language: '', deadline: '24 Hours', task_size: 'Extra small', spacing: '', pages: 0, references: 0, charts: 0, slides: 0
             }))
             setPages(0)
             setCharts(0)
@@ -85,8 +85,6 @@ export default function PlaceOrder(){
             setReferences(0)
         }
     },[orderType]);
-
-    
 
     const incrementPages = (event) =>{
         event.preventDefault()
@@ -2016,7 +2014,7 @@ export default function PlaceOrder(){
         let deadlineError = ''
         let spacingError = ''
         let disciplineError = ''
-        let pagesError = ''
+        let chartsSlidesPagesError = ''
 
         if (orderType === 'Academic Writing') {
             if (details.order_type.length < 1){
@@ -2044,19 +2042,17 @@ export default function PlaceOrder(){
             }else{
                 deadlineError = ''
             }
-            if (pages < 1){
-                pagesError = 'number of pages is required'
-            }else{
-                pagesError = ''
+            if (pages < 1 && charts < 1 && slides < 1){
+                chartsSlidesPagesError = 'Cannot be zero'
             }
             if (details.spacing.length < 1){
                 spacingError = 'Select spacing'
             }else{
                 spacingError = ''
             }
-            if (order_typeError || paper_typeError || deadlineError || spacingError || pagesError || academic_yearError || disciplineError){
+            if (order_typeError || paper_typeError || deadlineError || spacingError || academic_yearError || disciplineError || chartsSlidesPagesError){
 
-                setValidators({order_typeError, paper_typeError, deadlineError, spacingError, pagesError, academic_yearError, disciplineError}) 
+                setValidators({order_typeError, paper_typeError, deadlineError, spacingError, academic_yearError, disciplineError, chartsSlidesPagesError}) 
                 setError(true)
                 return false
             }
@@ -2219,8 +2215,8 @@ export default function PlaceOrder(){
                                     <Form.Group controlId="formGridState">
                                         <Form.Select defaultValue={details.academic_year.length > 1 ? details.academic_year : "High School"} className='select' onChange={handleChange}>
                                         <option value="High School">High School</option>
-                                        <option value="Undergraduate years(1-2)">Undergarduate (years 1-2)</option>
-                                        <option value="Undergraduate years(3-4)">Undergarduate (years 3-4)</option>
+                                        <option value="Undergraduate (years 1-2)">Undergarduate (years 1-2)</option>
+                                        <option value="Undergraduate (years 3-4)">Undergarduate (years 3-4)</option>
                                         <option value="Graduate">Graduate</option>
                                         <option value="PhD">PhD</option>
                                         </Form.Select>
@@ -2333,7 +2329,7 @@ export default function PlaceOrder(){
                                         <input type="text" value={pages}/>
                                         <button onClick={incrementPages}>+</button>
                                     </div>
-                                    <h5 style={errorStyle}>{validators.pagesError}</h5>
+                                    <h5 style={errorStyle}>{validators.chartsSlidesPagesError}</h5>
                                 </div>
                                 <div className="words">
                                     <h4>Words:</h4>
@@ -2364,6 +2360,7 @@ export default function PlaceOrder(){
                                         <input type="text" value={slides}/>
                                         <button onClick={incrementSlides}>+</button>
                                     </div>
+                                    <h5 style={errorStyle}>{validators.chartsSlidesPagesError}</h5>
                                 </div>
                                 <div className="page-ref" style={{marginLeft: '20px'}}>
                                     <h4>Charts:</h4>
@@ -2372,6 +2369,7 @@ export default function PlaceOrder(){
                                         <input type="text" value={charts}/>
                                         <button onClick={incrementCharts}>+</button>
                                     </div>
+                                    <h5 style={errorStyle}>{validators.chartsSlidesPagesError}</h5>
                                 </div>
                                 <div className="page-ref" style={{marginLeft: '20px'}}>
                                     <h4>References:</h4>

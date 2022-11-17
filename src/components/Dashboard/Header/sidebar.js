@@ -15,6 +15,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import SendIcon from '@mui/icons-material/Send';
 import Prof from '../Profile/prof';
 import Settings from '../Settings/settings';
+import Messaging from '../Message/messaging';
 import Info from '../Instructions/info';
 
 import {io} from "socket.io-client";
@@ -28,7 +29,7 @@ export default function SideBar() {
     const [customers, setCustomers] = useState([]);
     const [socket, setSocket] = useState(null);
 
-    const [curMessage, setCurMessage] = useState('');   
+    const [curMessage, setCurMessage] = useState(''); 
     const [messages, setMessages] = useState(null);
     const [conversation, setConversation] = useState([]);
     const [oldMessages, setOldMessages] = useState([]);
@@ -41,6 +42,7 @@ export default function SideBar() {
     const [setting, setSetting] = useState(false);
     const [profile, setProfile] = useState(false);
     const [info, setInfo] = useState(false);
+    const [messaging, setMessaging] = useState(false);
     const [infoId, setInfoId] = useState(null);
 
     const [flapChat, setFlapChat] = useState(false);
@@ -73,7 +75,6 @@ export default function SideBar() {
         fetchData()
     }, []);
 
-    
     // get conversations of user
     useEffect(() => {
         async function getConversation(){
@@ -118,7 +119,6 @@ export default function SideBar() {
     }, [conversation]);
 
     useEffect(() => {
-
         conversation.map((c) => setCurChat(c))
     },[conversation])
 
@@ -241,16 +241,25 @@ export default function SideBar() {
         setProfile(true)
         setOrder(false)
         setSetting(false)
+        setMessaging(false)
     };
 
     const handleOrder = () => {
         setOrder(true)
         setSetting(false)
+        setMessaging(false)
     };
 
     const handleSetting = () => {
         setOrder(false)
+        setMessaging(false)
         setSetting(true)
+    };
+
+    const handleMessaging = () => {
+        setMessaging(true)
+        setOrder(false)
+        setSetting(false)
     };
 
     const handleLogout = () => {
@@ -258,7 +267,7 @@ export default function SideBar() {
         setRedirect(true)
     };
 
-    let display, orderActiveOptionStyle, settingActiveOptionStyle;
+    let display, orderActiveOptionStyle, settingActiveOptionStyle, messagingActiveStyle;
     let profileModal;
     let navigate = useNavigate();
     let no_of_orders;
@@ -304,7 +313,17 @@ export default function SideBar() {
             borderRight: '3px solid #3367d6',
             color: '#fff'
         }
-    }else if (setting === true){
+    }else if(messaging === true){
+        display = (
+            <Messaging />
+        )
+
+        messagingActiveStyle  = {
+            backgroundColor: '#292B3A',
+            borderRight: '3px solid #3367d6',
+            color: '#fff'
+        }
+    } else if (setting === true){
         display = (
             <Settings />
         )
@@ -365,9 +384,9 @@ export default function SideBar() {
                             <CardGiftcardOutlinedIcon style={{fontSize: '20px'}} />
                             {no_of_orders}
                         </li>
-                        <li>
+                        <li onClick={handleMessaging} className="messaging-small-screen" style={messagingActiveStyle}>
                             <ChatOutlinedIcon style={{fontSize: '20px'}} />
-                            <h5>Chats</h5>
+                            <h5>Messages</h5>
                         </li>
                         <li onClick={handleSetting} style={settingActiveOptionStyle}>
                             <SettingsOutlinedIcon style={{fontSize: '20px'}} />

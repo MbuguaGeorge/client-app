@@ -16,6 +16,9 @@ import Home from './components/Pages/home';
 import Log from './components/Auth/logIn/log';
 import Register from './components/Auth/Signup/register';
 import EmailVerifyLogin from './components/Auth/Verify/email_verify_login';
+import ForgotPassword from './components/Auth/ForgotPassword/forgotPassword';
+import EmailVerification from './components/Auth/ForgotPassword/emailVerification';
+import PasswordChange from './components/Auth/ForgotPassword/passwordChange';
 
 import SideBar from './components/Dashboard/Header/sidebar';
 
@@ -40,8 +43,10 @@ function App(){
 
         <Route exact path='/log' element={<Log />} />
         <Route exact path='/register' element={<Register />} />
-
         <Route exact path='/verified/:token' element={<EmailVerifyLogin />} />
+        <Route exact path='/forgot-password' element={<ForgotPassword />} />
+        <Route exact path='/email-verification' element={<EmailVerification />} />
+        <Route exact path='/password-change/:token' element={<PasswordChange />} />
 
         <Route exact path='/dashboard/orders' element={<SideBar />} />
 

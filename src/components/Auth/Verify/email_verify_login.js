@@ -23,7 +23,7 @@ export default function EmailVerifyLogin() {
             setEmailToken(token)
         }
 
-        fetch('http://127.0.0.1:8000/profile/validate', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/validate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function EmailVerifyLogin() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch('http://127.0.0.1:8000/profile/login', {
+        fetch('https://georgeclientapp.herokuapp.com/profile/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(details)
@@ -74,45 +74,72 @@ export default function EmailVerifyLogin() {
 
     return (
         <div className='login__container'>
-            { valid === 1 && ( <div className="login-form">
-                <form onSubmit={handleSubmit}>
-                    <h2>Login to your account</h2>
-                    <input type='email' required 
-                        placeholder='Email'
-                        value={details.email}
-                        onChange={e => setDetails(details => ({
-                            ...details, email: e.target.value
-                        }))}
-                    />
-                    <input type='password' required 
-                        placeholder='Password'
-                        value={details.password}
-                        onChange={e => setDetails(details => ({
-                            ...details, password: e.target.value
-                        }))}
-                    />
-                    <div className="forgot-password">
-                        <div className="check-btn">
-                            <input type='checkbox' />
-                            <label>Remember me</label>
+            { valid === 1 && 
+                (
+                    <>
+                        <div className="login-form">
+                            <form onSubmit={handleSubmit}>
+                                <h2>Login to your account</h2>
+                                <input type='email' required 
+                                    placeholder='Email'
+                                    value={details.email}
+                                    onChange={e => setDetails(details => ({
+                                        ...details, email: e.target.value
+                                    }))}
+                                />
+                                <input type='password' required 
+                                    placeholder='Password'
+                                    value={details.password}
+                                    onChange={e => setDetails(details => ({
+                                        ...details, password: e.target.value
+                                    }))}
+                                />
+                                <div className="forgot-password">
+                                    <div className="check-btn">
+                                        <input type='checkbox' />
+                                        <label>Remember me</label>
+                                    </div>
+                                    <p>Forgot password?</p>
+                                </div>
+                                <input type='submit' value='Log in' />
+
+                            </form>
                         </div>
-                        <p>Forgot password?</p>
-                    </div>
-                    <input type='submit' value='Log in' />
 
-                </form>
-            </div>
-        )}
+                        <div className='login-hero'>
+                            <div className="login-hero-content">
+                                <div className='logo'>
+                                    <h1>ELENCY.</h1>
+                                </div>
 
-            <div className='login-hero'>
-                <div className="login-hero-content">
-                    <div className='logo'>
-                        <h1>ELENCY.</h1>
-                    </div>
+                                <div className='content-container'>
+                                    <h4>WRITING SERVICE AT YOUR CONVENIENCE</h4>
+                                    <h2>Top Essay Writing Service <br/> with Professional Essay Writers</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
 
-                    <div className='content-container'>
-                        <h4>WRITING SERVICE AT YOUR CONVENIENCE</h4>
-                        <h2>Top Essay Writing Service <br/> with Professional Essay Writers</h2>
+
+            <div className='login__container'>
+                <div className="verification-content">
+                    <h3>Email Verification Failed!</h3>
+                    <h5>Email may be already verified or the link is broken.</h5>
+                    <button>Re-send link to my email</button>
+                </div>
+
+                <div className='login-hero'>
+                    <div className="login-hero-content">
+                        <div className='logo'>
+                            <h1>ELENCY.</h1>
+                        </div>
+
+                        <div className='content-container'>
+                            <h4>WRITING SERVICE AT YOUR CONVENIENCE</h4>
+                            <h2>Top Essay Writing Service <br/> with Professional Essay Writers</h2>
+                        </div>
                     </div>
                 </div>
             </div>

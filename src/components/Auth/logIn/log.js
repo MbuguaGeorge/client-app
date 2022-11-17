@@ -14,7 +14,7 @@ export default function Log() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch('https://georgeclientapp.herokuapp.com/profile/login', {
+        fetch('http://127.0.0.1:8000/profile/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(details)
@@ -64,7 +64,7 @@ export default function Log() {
                             <input type='checkbox' />
                             <label>Remember me</label>
                         </div>
-                        <p>Forgot password?</p>
+                        <Link to="/forgot-password"><p>Forgot password?</p></Link>
                     </div>
                     <input type='submit' value='Log in' />
                     <div className='line1'>

@@ -235,7 +235,14 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 80px;
+}
+
+.verification-content h4{
+    color: #ddd;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding: 15px 0;
 }
 
 .verification-content h5{
@@ -260,6 +267,37 @@
     border-radius: 4px;
     color: white;
     width: 250px;
+}
+
+.verification-content form{
+    display: flex;
+    flex-direction: column;
+}
+
+.verification-content form input[type="email"], .verification-content form input[type="password"]{
+    padding: 6px 14px;
+    margin: 12px 0;
+    border: 1px solid #fff;
+    background-color: #292B3A;
+    color: white;
+    border-radius: 4px;
+    width: 300px;
+    outline: none;
+}
+
+.verification-content form input[type="submit"]{
+    padding: 6px 14px;
+    background-color: #2979FF;
+    color: #fff;
+    border-radius: 4px;
+    border: 1px solid #2979FF;
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.verification-content form input[type="submit"]:hover{
+    background-color: #3367d6;
+    transition: all .3s;
 }
 
 .change-email{
