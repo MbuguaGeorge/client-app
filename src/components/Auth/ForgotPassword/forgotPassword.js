@@ -9,7 +9,7 @@ export default function ForgotPassword(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch('http://127.0.0.1:8000/profile/password_reset', {
+        fetch('http://127.0.0.1:8000/password_reset/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email: email})

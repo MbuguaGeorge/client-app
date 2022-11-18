@@ -238,6 +238,17 @@
     margin-top: 80px;
 }
 
+.verification-content .error-box{
+    border: 1px solid #2979FF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 300px;
+}
+
+.verification-content .error-box h3{
+    font-size: 1rem;
+}
+
 .verification-content h4{
     color: #ddd;
     font-size: 1.3rem;
