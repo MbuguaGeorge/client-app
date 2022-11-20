@@ -79,7 +79,7 @@ export default function SideBar() {
     useEffect(() => {
         async function getConversation(){
             try{
-                const data = await fetch(`https://tothemoonexperts.herokuapp/conversations/${userReceiverID}`, {
+                const data = await fetch(`https://tothemoonexperts.herokuapp.com/conversations/${userReceiverID}`, {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
                 });
@@ -101,7 +101,7 @@ export default function SideBar() {
         const conversationId = conversation.map(conv => conv._id)
         async function getMessages(){
             try {
-                const data = await fetch(`https://tothemoonexperts.herokuapp/messages/${conversationId[0]}`, {
+                const data = await fetch(`https://tothemoonexperts.herokuapp.com/messages/${conversationId[0]}`, {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
                 });
@@ -179,7 +179,7 @@ export default function SideBar() {
     },[email, customers]);
 
     useEffect(() => {
-        const URL = "https://tothemoonexperts.herokuapp/";
+        const URL = "https://tothemoonexperts.herokuapp.com/";
         if (socket === null){
             setSocket(io(URL, {transports: ['websocket']}))
         };
