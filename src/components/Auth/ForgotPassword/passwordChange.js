@@ -43,7 +43,7 @@ export default function PasswordChange(){
         const isValid = handleErrors()
 
         if (isValid){
-            fetch("http://127.0.0.1:8000/password_reset/confirm/", {
+            fetch("https://georgeclientapp.herokuapp.com/password_reset/confirm/", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
