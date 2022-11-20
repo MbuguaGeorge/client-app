@@ -16,6 +16,15 @@ import hero2 from '../images/hero-bg-img-2.png';
 import testimonial1 from '../images/testimonial-img-3.png';
 import testimonial2 from '../images/testimonial-img-2.png';
 import testimonial3 from '../images/testimonial-img-5.png';
+import team5 from '../images/team-img-5.png';
+import team2 from '../images/team-img-2.png';
+import team6 from '../images/team-img-6.png';
+import team7 from '../images/team-img-7.png';
+import logo1 from '../images/logo1.png';
+import logo2 from '../images/logo2.png';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 
 export default function Home(){
 
@@ -146,31 +155,30 @@ export default function Home(){
             <div className={navbarClasses.join(" ")}>
 
                 <div className={isExpanded ? "navlinks expanded" : "navlinks"}>
-                    <ul>
-                        <li onClick={handleOpenOptions}>Our Services <span>{displayIcon}</span></li>
-                        {miniOptions}
-                        <li>How to Order</li>
-                        <li onClick={handleOpenSamples}>Sample Work {sampleIcon}</li>
-                        {miniSamples}
-                        <li>Blog</li>
-                        <li>Latest Reviews</li>
-                        <li>Pricing</li>
-                    <div className="order-slidebar">
+                    <ul className="navbars">
+                        <li>
+                            <img src={logo1} alt="logo" />
+                        </li>
+                        <ul>
+                            <li onClick={handleOpenOptions}>Our Services <span>{displayIcon}</span></li>
+                            {miniOptions}
+                            <li>How to Order</li>
+                            <li onClick={handleOpenSamples}>Sample Work {sampleIcon}</li>
+                            {miniSamples}
+                            <li>Blog</li>
+                            <li>Latest Reviews</li>
+                            <li>Pricing</li>
+                            <div className="order-slidebar">
+                                <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
+                            </div>
+                        </ul>
                         <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
-                    </div>
                     </ul>
                 </div>
 
                 {displayOptions}
 
                 {displaySamples}
-
-                <div className="logo">
-                    <ul>
-                        <li>Elency</li>
-                        <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
-                    </ul>
-                </div>
 
                 <div className="hamburger">
                     <h1>Elency</h1>
@@ -188,7 +196,7 @@ export default function Home(){
                     <Carousel.Item>
                         <div className="carousel1">
                             <div className="caption">
-                                <h1>We Provide Only <br className="hide-breakline"/> The Best Services</h1>
+                                <h1>We Provide Only The<br className="hide-breakline"/> Best Services</h1>
                                 <p>Our company is designed to deliver only the best work. We only hire the top notch experts. Hiring a professional expert will provide you with qualified and unique paper assistance.</p>
                                 <div className="carousel-links">
                                     <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '150px', padding: '8px 5px'}} >Place Order</Button></li></Link>
@@ -361,6 +369,43 @@ export default function Home(){
                     </div>
                 </div>
 
+                <div className="team-section-container">
+                    <div className="team-section">
+                        <h1>Our Team</h1>
+                        <h2>Meet some of the team members</h2>
+                        <ul>
+                            <li>
+                                <img src={team5} alt="team5" />
+                                <div className="team-desc">
+                                    <h3>Emily Chen</h3>
+                                    <h4>Technical writer</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <img src={team2} alt="team5" />
+                                <div className="team-desc">
+                                    <h3>Emily Chen</h3>
+                                    <h4>Project manager</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <img src={team6} alt="team5" />
+                                <div className="team-desc">
+                                    <h3>Emily Chen</h3>
+                                    <h4>App developer</h4>
+                                </div>
+                            </li>
+                            <li>
+                                <img src={team7} alt="team5" />
+                                <div className="team-desc">
+                                    <h3>Emily Chen</h3>
+                                    <h4>Team lead</h4>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div className="order-cta-container">
                     <div className="overlay"></div>
                     <div className="order-cta">
@@ -421,7 +466,7 @@ export default function Home(){
                     <div className="blog-section">
                         <div className="blog-content">
                             <h1>Our Blog</h1>
-                            <h2>Check Our <br className='hide-breakline'/> Recent Blogs</h2>
+                            <h2>Check Our Recent<br className='hide-breakline'/> Blogs</h2>
                             <p>Our blog helps keep you with up to date news, technology and other areas related to our services. Please subscribe so that you may never miss our newly written pieces</p>
                             <Link to="/" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" style={{width: '130px', padding: '10px 3px'}} >Explore More</Button></li></Link>
                         </div>
@@ -457,7 +502,7 @@ export default function Home(){
                     <div className="overlay"></div>
                     <div className="footer-section">
                         <div className="footer1">
-                            <h1>Elency</h1>
+                            <img src={logo2} alt="footer-logo" />
                             <p>We provide only the best services. We hire only the to notch experts . Hiring a professional expert will provide you with time qualified and unique assistance.</p>
                         </div>
 
@@ -476,10 +521,18 @@ export default function Home(){
                             <div className="footer3">
                                 <h1>Contact Us</h1>
                                 <ul>
-                                    <li>+1234 0055 8049</li>
-                                    <li>[Email Protected]</li>
-                                    <li>3102 Bartlett Avenue <br/>
-                                    Southfield, MI 48075</li>
+                                    <li>
+                                        <LocalPhoneOutlinedIcon style={{fontSize: '26px'}}/>
+                                        +1234 0055 8049
+                                    </li>
+                                    <li>
+                                        <EmailOutlinedIcon style={{fontSize: '26px'}}/>
+                                        [Email Protected]
+                                    </li>
+                                    <li>
+                                        <LocationOnOutlinedIcon style={{fontSize: '26px'}}/>
+                                        3102 Bartlett Avenue Southfield, MI 48075
+                                    </li>
                                 </ul>
                             </div>
                         </div>
