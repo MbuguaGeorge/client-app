@@ -1,6 +1,7 @@
 import React from 'react';
 import '../logIn/login.css';
 import {Link} from 'react-router-dom';
+import logo from '../../images/logo2.png';
 
 export default function Verify() {
 
@@ -21,7 +22,7 @@ export default function Verify() {
             <div className='login-hero'>
                 <div className="login-hero-content">
                     <div className='logo'>
-                        <h1>ELENCY.</h1>
+                        <img src={logo} alt="logo" />
                     </div>
 
                     <div className='content-container'>

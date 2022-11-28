@@ -31,7 +31,7 @@ function Recent({handleInfo}) {
             {recentOrders.length >= 1 ? recentOrders.map(recent => (
                 <div className='recent' key={recent.details.id}>
                 <div className='recent-details'>
-                    <h4>{recent.discipline} / See paper instructions</h4>
+                    <h4>{recent.details.discipline} / See paper instructions</h4>
                     <p>#{recent.id} / {recent.details.pages} pages / {recent.details.academic_year}</p>
                     <p>Deadline: <span>Aug 18, 2022 at 8.25 AM (If you pay right now)</span></p>
                 </div>

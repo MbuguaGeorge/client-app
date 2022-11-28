@@ -28,7 +28,7 @@
 }
 
 .sidebar-top{
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 15px;
 }
@@ -102,8 +102,8 @@
 }
 .my-profile{
     width: 150px;
-    position: absolute;
-    top: 25%;
+    position: fixed;
+    top: 28%;
     border: 1px solid #262838;
     background-color: #262838;
     z-index: 3;
@@ -381,8 +381,8 @@
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 52.5vh;
-    min-height: 52.5vh;
+    height: 51vh;
+    min-height: 51vh;
 }
 
 .hide-chat-panel{
@@ -400,6 +400,14 @@
     position: relative;
     animation: fadeIn 1s ease-in;
     width: 200%;
+}
+
+.chat-panel h5{
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #fff;
+    font-weight: 600;
 }
 
 .chat-panel .chat-bubble .time{

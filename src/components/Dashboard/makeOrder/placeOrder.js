@@ -55,6 +55,10 @@ export default function PlaceOrder(){
     });
 
     useEffect(() => {
+        document.title = 'To The Moon Experts - Order'
+    },[]);
+
+    useEffect(() => {
         setDetails(details => ({
             ...details, pages: pages, charts: charts, slides: slides, references: references
         }))

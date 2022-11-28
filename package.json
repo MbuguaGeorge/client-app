@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.0",
     "flaticon": "^0.1.0",
+    "frames-react": "^1.0.13",
+    "javascript-time-ago": "^2.5.9",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -21,6 +23,7 @@
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.3",
     "styled-components": "^5.3.5",
+    "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

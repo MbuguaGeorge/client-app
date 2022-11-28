@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../logIn/login.css';
+import logo from '../../images/logo2.png';
 
 const initialError = {
     passwordError: null,
@@ -93,7 +94,7 @@ export default function PasswordChange(){
             <div className='login-hero'>
                 <div className="login-hero-content">
                     <div className='logo'>
-                        <h1>ELENCY.</h1>
+                        <img src={logo} alt="logo" />
                     </div>
 
                     <div className='content-container'>

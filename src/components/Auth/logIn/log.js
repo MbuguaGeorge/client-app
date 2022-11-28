@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './login.css';
 import {Link, useNavigate} from 'react-router-dom';
+import logo from '../../images/logo2.png';
 
 export default function Log() {
 
@@ -9,7 +10,11 @@ export default function Log() {
         password: ''
     });
 
-    const [redirect, setRedirect] = useState(false)
+    const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        document.title = 'To The Moon Experts - Login'
+    },[]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -106,7 +111,7 @@ export default function Log() {
             <div className='login-hero'>
                 <div className="login-hero-content">
                     <div className='logo'>
-                        <h1>ELENCY.</h1>
+                        <img src={logo} alt="logo" />
                     </div>
 
                     <div className='content-container'>

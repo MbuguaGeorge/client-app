@@ -206,11 +206,11 @@
 .login-hero-content .logo{
     margin-left: 0;
     height: 10vh;
-    padding-top: 80px;
+    padding-top: 30px;
 }
 
-.login-hero-content .logo h1{
-    color: #2979FF;
+.login-hero-content .logo img{
+    width: 120px;
 }
 
 .content-container{

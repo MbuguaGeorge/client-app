@@ -22,9 +22,15 @@ import team6 from '../images/team-img-6.png';
 import team7 from '../images/team-img-7.png';
 import logo1 from '../images/logo1.png';
 import logo2 from '../images/logo2.png';
+import twitter from '../images/twitter.png';
+import facebook from '../images/facebook.png';
+import linkedin from '../images/linkedin.png';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+
+let token = localStorage.getItem('token');
 
 export default function Home(){
 
@@ -169,10 +175,18 @@ export default function Home(){
                             <li>Latest Reviews</li>
                             <li>Pricing</li>
                             <div className="order-slidebar">
-                                <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
+                                {token ?
+                                <Link to="/dashboard/orders" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Dashboard</Button></li></Link>
+                                :
+                                <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<PersonOutlineOutlinedIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
+                                }
                             </div>
                         </ul>
-                        <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
+                        {token ?
+                                <Link to="/dashboard/orders" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '130px', padding: '8px 0'}} >Dashboard</Button></li></Link>
+                                :
+                                <Link to="/log" style={{textDecoration: 'none'}}><li><Button variant="contained" size="small" startIcon={<PersonOutlineOutlinedIcon />} style={{width: '130px', padding: '8px 0'}} >Order now</Button></li></Link>
+                        }
                     </ul>
                 </div>
 
@@ -504,6 +518,11 @@ export default function Home(){
                         <div className="footer1">
                             <img src={logo2} alt="footer-logo" />
                             <p>We provide only the best services. We hire only the to notch experts . Hiring a professional expert will provide you with time qualified and unique assistance.</p>
+                            <div className="social-links">
+                                <img src={twitter} alt="twitter" />
+                                <img src={facebook} alt="facebook" />
+                                <img src={linkedin} alt="linkedin" />
+                            </div>
                         </div>
 
                         <div className="footer-centre">
@@ -553,7 +572,6 @@ export default function Home(){
                         <h5>Copyright 2022 Klaus | Design By Klaus Lab</h5>
                     </div>
                 </div>
-
         </div>
     )
 }

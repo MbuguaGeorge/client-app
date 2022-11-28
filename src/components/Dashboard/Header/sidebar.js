@@ -17,6 +17,7 @@ import Prof from '../Profile/prof';
 import Settings from '../Settings/settings';
 import Messaging from '../Message/messaging';
 import Info from '../Instructions/info';
+import logo from '../../images/logo2.png';
 
 import {io} from "socket.io-client";
 
@@ -60,6 +61,8 @@ export default function SideBar() {
     console.log(profile)
 
     useEffect(() => {
+        document.title = 'To The Moon Experts - Dashboard'
+
         async function fetchData(){
             const data = await fetch('https://georgeclientapp.herokuapp.com/dashboard/list', {
                 method: 'GET',
@@ -79,7 +82,7 @@ export default function SideBar() {
     useEffect(() => {
         async function getConversation(){
             try{
-                const data = await fetch(`https://tothemoonexperts.herokuapp.com/conversations/${userReceiverID}`, {
+                const data = await fetch(`https://tothemoonexperts.herokuapp.com/conversations/${userSenderID.id}`, {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json'}
                 });
@@ -91,10 +94,10 @@ export default function SideBar() {
             }
         };
 
-        if(userReceiverID !== null){
+        if(userSenderID !== null){
             getConversation()
         }
-    },[userReceiverID]);
+    },[userSenderID]);
 
     // get conversation messages
     useEffect(() => {
@@ -203,7 +206,7 @@ export default function SideBar() {
                 setMessages({
                     senderID: content.senderID.id,
                     content: content.content,
-                    createdAt: Date.now(),
+                    createdAt: new Date().toISOString(),
                 });
             });
         }
@@ -218,6 +221,7 @@ export default function SideBar() {
                 content: curMessage,
                 receiverID: userReceiverID,
                 senderID: userSenderID,
+                createdAt: new Date().toISOString(),
             };
             await socket.emit('sendMessage', messageData);
             setOldMessages([...oldMessages, messageData]);
@@ -339,6 +343,19 @@ export default function SideBar() {
         )
     }
 
+    // format messages dates
+    function formatDate(date){
+        const msgDate = date.toString().split('T')
+        return msgDate[0]
+    };
+
+    function formatTime(date){
+        const msgDate = date.toString().split('T')
+        const msgTime = msgDate[1].split(':')
+        return msgTime[0] + ":" + msgTime[1]
+    };
+    console.log(oldMessages)
+
     return (
         <div className="user-dashboard">
             <div className="my-profile-container">
@@ -357,7 +374,7 @@ export default function SideBar() {
                 </div>
 
                 <div className="sidebar-top">
-                    <h1>Elency.</h1>
+                    <img src={logo} alt="logo" style={{width: '100px'}}/>
                     <Link to="/dashboard/placeorder" style={{textDecoration: 'none'}}><Button variant="contained" size="small" startIcon={<AddCircleOutlineIcon />} style={{width: '180px'}} >Place order</Button></Link>
                 </div>
 
@@ -369,7 +386,7 @@ export default function SideBar() {
                         </li>
                         <li>
                             <AccountBalanceWalletOutlinedIcon style={{fontSize: '20px'}} />
-                            <h5>Balance <span style={{paddingLeft: '10px'}}>$0.00</span></h5>
+                            <h5>Balance <span style={{paddingLeft: '8px'}}>$0.00</span></h5>
                         </li>
                         <li>
                             <NotificationsOutlinedIcon style={{fontSize: '20px'}} />
@@ -411,13 +428,14 @@ export default function SideBar() {
                     {oldMessages.map((content, i) => {
                         return (
                             <div className="row no-gutters" key={i} ref={scrollRef}>
+                                <h5>{formatDate(content.createdAt)}</h5>
                                 <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
                                     <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
                                         <div className="msg-cont">
                                             {content.content}
                                         </div>
                                         <div className="time">
-                                            <p>20:02</p>
+                                            {formatTime(content.createdAt)}
                                         </div>
                                     </div>
                                 </div>
