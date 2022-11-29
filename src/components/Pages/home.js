@@ -195,7 +195,9 @@ export default function Home(){
                 {displaySamples}
 
                 <div className="hamburger">
-                    <h1>Elency</h1>
+                    <div className="mini-logo">
+                        <img src={logo1} alt="logo" style={{width: '100px'}}/>
+                    </div>
                     <div className="hamburg-menu" onClick={() => setIsExpanded(!isExpanded)}>
                         <span className="h-top"></span>
                         <span className="h-middle"></span>
@@ -541,15 +543,15 @@ export default function Home(){
                                 <h1>Contact Us</h1>
                                 <ul>
                                     <li>
-                                        <LocalPhoneOutlinedIcon style={{fontSize: '26px'}}/>
+                                        <LocalPhoneOutlinedIcon style={{fontSize: '24px'}}/>
                                         +1234 0055 8049
                                     </li>
                                     <li>
-                                        <EmailOutlinedIcon style={{fontSize: '26px'}}/>
-                                        [Email Protected]
+                                        <EmailOutlinedIcon style={{fontSize: '24px'}}/>
+                                        support@tothemoonexperts.com
                                     </li>
                                     <li>
-                                        <LocationOnOutlinedIcon style={{fontSize: '26px'}}/>
+                                        <LocationOnOutlinedIcon style={{fontSize: '24px'}}/>
                                         3102 Bartlett Avenue Southfield, MI 48075
                                     </li>
                                 </ul>

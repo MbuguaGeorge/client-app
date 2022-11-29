@@ -60,15 +60,6 @@
     width: 120px;
 }
 
-/* .navigation .navlinks .navbars .logo-img{
-    padding-top: 10px;
-    background: url(../images/logo1.png);
-    background-position: center;
-    width: 120px;
-    background-size: cover;
-    background-repeat: no-repeat;
-} */
-
 .services-container, .sample-work-container{
     position: relative;
     width: 100%;
@@ -141,7 +132,6 @@
     display: none;
 }
 
-
 .mini_links{
     display: none;
 }
@@ -151,9 +141,15 @@
     font-weight: 600;
 }
 
+.mini-logo{
+    height: 50px;
+}
+
 @media all and (max-width: 480px){
     .navigation{
-        padding: 20px 0;
+        padding: 0 0;
+        padding-bottom: 10px;
+        min-height: 15vh;
     }
     .navigation .logo{
         display: none;
@@ -161,32 +157,44 @@
     .hamburger{
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
     }
-    .navigation .navlinks ul{
+    .navigation .navlinks ul, .navigation .navlinks .navbars{
         display: none;
         position: fixed;
         background-color: #262838;
-        top: 15%;
+        top: 0;
+        height: 100vh;
         min-height: 100vh;
         width: 50%;
         z-index: 10;
-        padding: 30px 20px;
+        padding: 30px 10px;
         overflow: auto;
+        overflow-y: scroll;
+        transition: width .3s;
     }
-    .navigation .navlinks ul li{
+    .navigation .navlinks ul li, .navigation .navlinks .navbars li{
         color: #fff;
-        margin: 25px 0;
+        margin: 15px 0;
         font-weight: 700;
         display: flex;
         justify-content: space-between;
+    }
+    .navigation .navlinks .navbars{
+        color: #fff;
+    }
+    .navigation .navlinks .navbars{
+        display: none;
+    }
+    .navigation .navlinks .navbars li img{
+        display: none;
     }
     .order-slidebar{
         display: block;
         padding: 20px 20px;
         list-style: none;
     }
-    .navigation .navlinks.expanded ul{
+    .navigation .navlinks.expanded ul, .navigation .navlinks.expanded .navbars{
         display: block;
     }
     .sample-work-container{
@@ -224,7 +232,7 @@
         display: none;
         position: fixed;
         background-color: #262838;
-        top: 15%;
+        top: 0;
         height: 100vh;
         width: 50%;
         z-index: 10;
@@ -733,6 +741,22 @@
     color: #888;
 }
 
+@media all and (max-width: 480px){
+    .team-section-container{
+        padding: 0 20px;
+    }
+    .team-section ul{
+        display: block;
+        padding-left: 0;
+    }
+    .team-section ul li{
+        margin: 20px 0;
+    }
+    .team-section ul li img{
+        width: 300px;
+    }
+}
+
 /* CTA */
 
 .order-cta-container{
@@ -1080,7 +1104,7 @@
 }
 
 .footer-section .footer1{
-    width: 300px;
+    width: 250px;
 }
 
 .footer-section .footer1 img{
@@ -1120,7 +1144,7 @@
 }
 
 .footer-section .footer3 ul{
-    width: 180px;
+    width: 250px;
     text-align: center;
 }
 
@@ -1185,8 +1209,8 @@
 
 .footer-centre{
     display: flex;
-    justify-content: space-between;
-    width: 30%;
+    justify-content: space-evenly;
+    width: 50%;
 }
 
 .footer1 .social-links{

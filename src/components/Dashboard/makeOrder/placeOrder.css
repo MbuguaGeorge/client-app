@@ -386,6 +386,9 @@
     .summary-container .top{
         width: 100%;
     }
+    .place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select{
+        width: 100%;
+    }
 }
 
 @media all and (min-width: 481px) and (max-width: 768px){
@@ -458,6 +461,6 @@
         width: 100%;
     }
     .place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select{
-        width: 300px;
+        width: 100%;
     }
 }
