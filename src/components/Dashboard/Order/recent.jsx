@@ -26,8 +26,6 @@ function Recent({handleInfo}) {
         setRecentOrders(res)
     };
 
-    console.log(recentOrders)
-
     return (
         <>
             {recentOrders.length >= 1 ? recentOrders.map(recent => (

@@ -91,7 +91,7 @@ export default function Messaging(){
             })
 
             const res = await users.json()
-            const supportEmail = res.find(user => user.email === 'mbuguag026@gmail.com')
+            const supportEmail = res.find(user => user.email === 'support@tothemoonexpert.com')
             setCustomers(res)
             setUserReceiverID(supportEmail.id)
         };

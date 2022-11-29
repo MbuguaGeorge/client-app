@@ -3,11 +3,6 @@ import {useNavigate} from 'react-router-dom';
 import '../logIn/login.css';
 import logo from '../../images/logo2.png';
 
-const initialError = {
-    passwordError: null,
-    matchError: ''
-}
-
 export default function PasswordChange(){
 
     const [password, setPassword] = useState('');
@@ -15,7 +10,7 @@ export default function PasswordChange(){
     const [token, setToken] = useState('');
 
     const [redirect, setRedirect] = useState(false);
-    const [validators, setValidators] = useState(initialError);
+    const [validators, setValidators] = useState('');
 
     useEffect(() => {
         const url = window.location.pathname
@@ -33,7 +28,7 @@ export default function PasswordChange(){
         }
 
         if(matchError){
-            setValidators({matchError})
+            setValidators(matchError)
             return false
         }
         return true
@@ -52,11 +47,20 @@ export default function PasswordChange(){
                     'password': password
                 })
             }).then(
-                res => console.log(res)
+                res => {
+                    res.json().then(data => {
+                        if(data.status !== 'OK'){
+                            setValidators(data.password[0])
+                        }
+                    })
+                }
             ).then(() => {
-                alert('Password Changed Successfully')
-                setRedirect(!redirect)
-            }).catch(err => console.log('failed' + err))
+                if(validators.length < 0){
+                    alert('Password Changed successfully')
+                    setRedirect(true)
+                }
+            }
+            ).catch(err => console.log('failed' + err))
         }
     };
 
@@ -69,9 +73,8 @@ export default function PasswordChange(){
     return(
         <div className='login__container'>
             <div className="verification-content">
-                <div className="error-box" style={{display: validators.matchError.length < 1 ? 'none' : 'block'}}>
-                    {/* <h3>{validators.passwordError}</h3> */}
-                    <h3>{validators.matchError}</h3>
+                <div className="error-box" style={{display: validators.length > 0 ? 'block' : 'none'}}>
+                    <h3>{validators}</h3>
                 </div>
                 <h4>Password Change</h4>
                 <form onSubmit={handleSubmit}>
