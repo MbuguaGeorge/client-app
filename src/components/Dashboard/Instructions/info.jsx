@@ -56,7 +56,7 @@ function Info({pk}){
     let checkout;
 
     order.forEach(stat => {
-        if (stat.status === 'Recent'){      
+        if (stat.status === 'Recent' && stat.complete === false){      
             checkout = (
                 <>
                     <Link to={`/order/pay/${ref}`} style={{textDecoration: 'none'}}><button>Proceed to Checkout</button></Link>
