@@ -125,7 +125,8 @@ export default function Messaging(){
     },[email, customers]);
 
     useEffect(() => {
-        const URL = "https://tothemoonexperts.herokuapp.com/";
+        // const URL = "https://tothemoonexperts.herokuapp.com/";
+        const URL = "http://127.0.0.1:5000/";
         if (socket === null){
             setSocket(io(URL, {transports: ['websocket']}))
         };
