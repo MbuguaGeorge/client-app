@@ -92,7 +92,7 @@ function Info({pk}){
                     </li>
                     <li>
                         <h1>Discipline</h1>
-                        <h2>{new_order.details.subject}</h2>
+                        <h2>{new_order.details.discipline}</h2>
                     </li>
                     <li style={{display: new_order.details.title === null ? 'none' : 'flex'}}>
                         <h1>Title</h1>
