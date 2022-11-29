@@ -148,7 +148,7 @@ export default function SideBar() {
             })
 
             const res = await users.json()
-            const supportEmail = res.find(user => user.email === 'mbuguag026@gmail.com')
+            const supportEmail = res.find(user => user.email === 'support@tothemoonexperts.com')
             setCustomers(res)
             setUserReceiverID(supportEmail.id)
         };
@@ -354,7 +354,6 @@ export default function SideBar() {
         const msgTime = msgDate[1].split(':')
         return msgTime[0] + ":" + msgTime[1]
     };
-    console.log(oldMessages)
 
     return (
         <div className="user-dashboard">
