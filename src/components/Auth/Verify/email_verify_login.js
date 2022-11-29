@@ -75,8 +75,8 @@ export default function EmailVerifyLogin() {
 
     return (
         <div className='login__container'>
-            { valid === 1 && 
-                (
+            {valid === 1 
+                ?
                     <>
                         <div className="login-form">
                             <form onSubmit={handleSubmit}>
@@ -120,30 +120,29 @@ export default function EmailVerifyLogin() {
                             </div>
                         </div>
                     </>
-                )
-            }
+                :
 
-
-            <div className='login__container'>
-                <div className="verification-content">
-                    <h3>Email Verification Failed!</h3>
-                    <h5>Email may be already verified or the link is broken.</h5>
-                    <button>Re-send link to my email</button>
-                </div>
-
-                <div className='login-hero'>
-                    <div className="login-hero-content">
-                        <div className='logo'>
-                            <img src={logo} alt="logo" />
+                    <div className='login__container'>
+                        <div className="verification-content">
+                            <h3>Email Verification Failed!</h3>
+                            <h5>Email may be already verified or the link is broken.</h5>
+                            <button>Re-send link to my email</button>
                         </div>
 
-                        <div className='content-container'>
-                            <h4>WRITING SERVICE AT YOUR CONVENIENCE</h4>
-                            <h2>Top Essay Writing Service <br/> with Professional Essay Writers</h2>
+                        <div className='login-hero'>
+                            <div className="login-hero-content">
+                                <div className='logo'>
+                                    <img src={logo} alt="logo" />
+                                </div>
+
+                                <div className='content-container'>
+                                    <h4>WRITING SERVICE AT YOUR CONVENIENCE</h4>
+                                    <h2>Top Essay Writing Service <br/> with Professional Essay Writers</h2>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+            }
 
         </div>
     )
