@@ -127,7 +127,7 @@ export default function SideBar() {
 
     useEffect(() => {
         messages &&
-            curChat?.member.includes(messages.senderId) &&
+            curChat?.member.includes(messages.senderID) &&
                 setOldMessages((prev) => [...prev, messages])
     }, [messages, curChat]);
 
@@ -200,6 +200,7 @@ export default function SideBar() {
     
     }, [socket, userSenderID]);
 
+    // receive messages from socket
     useEffect(() => {
         if(socket){
             socket.on('received_message', (content) => {
@@ -208,9 +209,9 @@ export default function SideBar() {
                     content: content.content,
                     createdAt: new Date().toISOString(),
                 });
+                console.log(content)
             });
-        }
-
+        };
     }, [socket]);
 
     const sendMessage = async (event) => {
@@ -345,14 +346,15 @@ export default function SideBar() {
 
     // format messages dates
     function formatDate(date){
-        const msgDate = date.toString().split('T')
-        return msgDate[0]
+        let date1 = new Date(date)
+
+        return date1.toString().slice(4, 15)
     };
 
     function formatTime(date){
-        const msgDate = date.toString().split('T')
-        const msgTime = msgDate[1].split(':')
-        return msgTime[0] + ":" + msgTime[1]
+        let date1 = new Date(date)
+        
+        return date1.toString().slice(16, 21)
     };
 
     return (

@@ -526,8 +526,6 @@ export default function Home(){
                                 <img src={linkedin} alt="linkedin" />
                             </div>
                         </div>
-
-                        <div className="footer-centre">
                             <div className="footer2">
                                 <h1>Explore</h1>
                                 <ul>
@@ -556,8 +554,6 @@ export default function Home(){
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-
 
                         <div className="footer4">
                             <h1>Newsletter</h1>

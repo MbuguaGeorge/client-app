@@ -70,7 +70,7 @@ export default function Messaging(){
 
     useEffect(() => {
         messages &&
-            curChat?.member.includes(messages.senderId) &&
+            curChat?.member.includes(messages.senderID) &&
                 setOldMessages((prev) => [...prev, messages])
     }, [messages, curChat]);
 

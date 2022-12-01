@@ -281,10 +281,12 @@
 
 .prev-step{
     float: left;
+    padding-bottom: 20px;
 }
 
 .next-step{
     float: right;
+    padding-bottom: 20px;
 }
 
 .next-step button, .prev-step button{
@@ -387,7 +389,19 @@
         width: 100%;
     }
     .place-order-requirements .top .assignment-type .form-select, .place-order-requirements .mid .assignment-details .form-select, .place-order-requirements .mid .deadline .form-select{
+        width: 88%;
+    }
+    .ref{
         width: 100%;
+    }
+    .ref input[type='text']{
+        width: 30px;
+    }
+    .ref button{
+        padding: 8px 6px;
+    }
+    .bottom .files{
+        width: 100% !important;
     }
 }
 

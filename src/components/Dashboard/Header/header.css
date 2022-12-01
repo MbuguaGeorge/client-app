@@ -179,10 +179,10 @@
 @media all and (max-width: 480px){
     .sidebar{
         width: 12%;
-        height: 100%;
+        height: 100vh;
     }
     .sidebar.expanded{
-        width: 50%;
+        width: 55%;
         transition: width .4s;
     }
     .sidebar-mid.expanded ul li h5, .sidebar-bottom.expanded ul li h5{
@@ -241,7 +241,7 @@
     }
     .sidebar{
         width: 8%;
-        height: 100%;
+        height: 80vh;
     }
     .sidebar.expanded{
         width: 33%;
