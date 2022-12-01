@@ -1,7 +1,5 @@
 @media all and (max-width: 480px){
-    .row>*{
-        width: auto !important;
-    }
+    
     .phone-chat-container{
         width: 100%;
         height: 90vh;
@@ -9,7 +7,7 @@
     }
     
     .phone-chat-container .phone-chat-box{
-        height: 100%;
+        height: 100vh;
     }
     
     .phone-chat-box .phone-msg-header{
@@ -31,20 +29,24 @@
     }
     
     .phone-chat-box .chat-panel .chat-bubble{
-        width: auto;
-        padding: 0 20px;
-        max-width: 160%;
+        max-width: 35%;
+        padding: 5px 10px;
         overflow-wrap: break-word;
         word-break: break-word;
-    }
-
-    .phone-chat-box .chat-panel .chat-bubble .msg-cont{
-        padding: 0 2px;
     }
     
     .phone-chat-box .chat-panel .chat-bubble--blue{
         right: 0;
-        justify-content: flex-start;
+        color: #fff;
+        left: 45%;
+    }
+
+    .chat-panel .chat-bubble .time{
+        padding-top: 0;
+    }
+
+    .chat-panel .chat-bubble .time p{
+        margin-bottom: 0;
     }
     
     .phone-chat-box .phone-msg-input{

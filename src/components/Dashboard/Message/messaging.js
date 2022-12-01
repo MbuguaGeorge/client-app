@@ -149,7 +149,7 @@ export default function Messaging(){
                 setMessages({
                     senderID: content.senderID.id,
                     content: content.content,
-                    createdAt: Date.now(),
+                    createdAt: new Date().toISOString(),
                 });
                 console.log(content)
             });
@@ -165,11 +165,25 @@ export default function Messaging(){
                 content: curMessage,
                 receiverID: userReceiverID,
                 senderID: userSenderID,
+                createdAt: new Date().toISOString(),
             };
             await socket.emit('sendMessage', messageData);
             setOldMessages([...oldMessages, messageData]);
             setCurMessage("")
         }
+    };
+
+    // format messages dates
+    function formatDate(date){
+        let date1 = new Date(date)
+
+        return date1.toString().slice(4, 15)
+    };
+
+    function formatTime(date){
+        let date1 = new Date(date)
+        
+        return date1.toString().slice(16, 21)
     };
 
     return (
@@ -183,13 +197,14 @@ export default function Messaging(){
                     {oldMessages.map((content, i) => {
                         return (
                             <div className="row no-gutters" key={i} ref={scrollRef}>
+                                <h5>{formatDate(content.createdAt)}</h5>
                                 <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "col-md-3 offset-md-9" : "col-md-3"}>
                                     <div className={userSenderID.id === parseInt(content.senderID) || userSenderID.id === content.senderID.id ? "chat-bubble chat-bubble--blue chat-bubble--right" : "chat-bubble chat-bubble--left"}>
                                         <div className="msg-cont">
-                                            <h5>{content.content}</h5>
+                                            {content.content}
                                         </div>
                                         <div className="time">
-                                            <p>20:02</p>
+                                            <p>{formatTime(content.createdAt)}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +221,7 @@ export default function Messaging(){
                             onChange = {(event) => setCurMessage(event.target.value)}
                             onKeyPress = {event => event.key === 'Enter' ? sendMessage(event) : null}
                         />
-                        <div className="i"><SendIcon /></div>
+                        <div className="i"><SendIcon onClick={sendMessage}/></div>
                     </div>
                 </div>
             </div>
