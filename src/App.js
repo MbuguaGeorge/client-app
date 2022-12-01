@@ -1,4 +1,5 @@
 import './App.css';
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Profile from './components/Dashboard/Profile/profile';
 import Services from './components/Our services/Services';
