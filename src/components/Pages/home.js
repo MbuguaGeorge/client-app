@@ -401,21 +401,21 @@ export default function Home(){
                             <li>
                                 <img src={team2} alt="team5" />
                                 <div className="team-desc">
-                                    <h3>Emily Chen</h3>
+                                    <h3>David Miller</h3>
                                     <h4>Project manager</h4>
                                 </div>
                             </li>
                             <li>
                                 <img src={team6} alt="team5" />
                                 <div className="team-desc">
-                                    <h3>Emily Chen</h3>
+                                    <h3>Chase Myles</h3>
                                     <h4>App developer</h4>
                                 </div>
                             </li>
                             <li>
                                 <img src={team7} alt="team5" />
                                 <div className="team-desc">
-                                    <h3>Emily Chen</h3>
+                                    <h3>Chloe Johnson</h3>
                                     <h4>Team lead</h4>
                                 </div>
                             </li>
